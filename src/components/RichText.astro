@@ -1,0 +1,21 @@
+---
+import type { Document } from "@contentful/rich-text-types";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+console.log("RENDERING");
+
+interface Props {
+  content: Document;
+}
+
+const options = {
+  renderMark: {},
+  renderNode: {},
+};
+
+const { content } = Astro.props;
+---
+
+<div class="w-full">
+  <div class="prose" set:html={documentToHtmlString(content, options)} />
+</div>

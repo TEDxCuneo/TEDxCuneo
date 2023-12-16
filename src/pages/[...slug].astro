@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import contentful from "@lib/contentful";
+import type { TypePageSkeleton } from "@lib/generated/contentful/index";
+import RichText from "../components/RichText.astro";
+
+export async function getStaticPaths() {
+  const pages = (
+    await contentful.getEntries<TypePageSkeleton>({
+      content_type: "page",
+    })
+  ).items;
+
+  const staticPaths = pages.map((page) => {
+    return {
+      params: { slug: page.fields.slug == "/" ? undefined : page.fields.slug },
+      props: {
+        page: page.fields,
+        sys: page.sys,
+      },
+    };
+  });
+
+  return staticPaths;
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={page.browserTitle}>
+  <main>
+    <h1 class="text-2xl">Welcome to the TEDxCuneo new website</h1>
+    {
+      page.content?.map((content) => {
+        switch (content?.sys.contentType.sys.id) {
+          case "componentRichText":
+            return (
+              content.fields.content && (
+                <RichText content={content.fields.content} />
+              )
+            );
+          default:
+            return <p>Unknown content type</p>;
+        }
+      })
+    }
+  </main>
+</Layout>
