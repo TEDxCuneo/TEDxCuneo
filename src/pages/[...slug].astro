@@ -1,8 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Base from "../layouts/Base.astro";
 import contentful from "@lib/contentful";
-import type { TypePageSkeleton } from "@lib/generated/contentful/index";
+import type {
+  TypePageFields,
+  TypePageSkeleton,
+} from "@lib/generated/contentful/index";
 import RichText from "../components/RichText.astro";
+import Homepage from "src/layouts/Homepage.astro";
 
 export async function getStaticPaths() {
   const pages = (
@@ -24,12 +28,25 @@ export async function getStaticPaths() {
   return staticPaths;
 }
 
+const getLayout = (page: TypePageFields) => {
+  switch (page.layout as unknown as string) {
+    case "Generico":
+      return Base;
+    case "Homepage":
+      return Homepage;
+    case "Evento 2023":
+      return Base;
+    default:
+      return Base;
+  }
+};
+
 const { page } = Astro.props;
+const Layout = getLayout(page as unknown as TypePageFields);
 ---
 
 <Layout title={page.browserTitle}>
   <main>
-    <h1 class="text-2xl">Welcome to the TEDxCuneo new website</h1>
     {
       page.content?.map((content) => {
         switch (content?.sys.contentType.sys.id) {

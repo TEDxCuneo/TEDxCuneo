@@ -14,6 +14,12 @@ export interface TypeWebsiteFields {
      */
     internalName?: EntryFieldTypes.Symbol;
     /**
+     * Field type definition for field 'active' (Attivo)
+     * @name Attivo
+     * @localized false
+     */
+    active: EntryFieldTypes.Symbol<"Si">;
+    /**
      * Field type definition for field 'menuPages' (Pagine nel menù)
      * @name Pagine nel menù
      * @localized false
@@ -28,7 +34,7 @@ export interface TypeWebsiteFields {
  * @type {TypeWebsiteSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 7
+ * @version 11
  */
 export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website">;
 /**
@@ -37,6 +43,6 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @type {TypeWebsite}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 7
+ * @version 11
  */
 export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;

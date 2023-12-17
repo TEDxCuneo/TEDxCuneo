@@ -1,0 +1,56 @@
+---
+import Base from "./Base.astro";
+---
+
+<Base>
+  <section class="home-section">
+    <div>
+      <h1 class="title">Portiamo nuove idee da condividere a Cuneo</h1>
+      <p class="subtitle">
+        Vogliamo rendere la nostra città un luogo di incontro e scambio, dove la
+        cultura e la condivisione fanno nascere nuove idee.
+      </p>
+      <img
+        class="home-image"
+        src="/img/home/ubuntu-x.svg"
+        alt="x con pezzi di tetris"
+      />
+    </div>
+  </section>
+
+  <slot />
+</Base>
+
+<style lang="scss">
+  @import "@styles/variables.scss";
+
+  .home-section {
+    height: calc(100vh - $header-height);
+    padding-top: 64px;
+    @screen md {
+      height: auto;
+    }
+    min-height: 600px;
+    position: relative;
+    .title {
+      max-width: 610px;
+      margin-bottom: 24px;
+    }
+    .subtitle {
+      max-width: 400px;
+    }
+    .home-image {
+      position: absolute;
+      bottom: 48px;
+      right: 0;
+      left: 0;
+      margin: auto;
+      width: 300px;
+      @screen md {
+        top: 0px;
+        width: 550px;
+        left: unset;
+      }
+    }
+  }
+</style>

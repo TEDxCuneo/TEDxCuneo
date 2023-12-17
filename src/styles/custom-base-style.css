@@ -1,0 +1,38 @@
+@layer base {
+    a {
+      @apply underline;
+    }
+    html {
+      @apply bg-tedBlack text-tedWhite text-m_base;
+    }
+    h1 {
+      @apply text-m_3xl font-bold;
+    }
+    h2 {
+      @apply text-m_2xl font-bold;
+    }
+    h3 {
+      @apply text-m_xl font-bold;
+    }
+    .container {
+      @apply px-4 mx-auto w-full;
+      max-width: 1440px !important;
+    }
+    @screen md {
+      .container {
+        @apply px-12;
+      }
+      html {
+        @apply text-d_base;
+      }
+      h1 {
+        @apply text-d_3xl;
+      }
+      h2 {
+        @apply text-d_2xl;
+      }
+      h3 {
+        @apply text-d_xl;
+      }
+    }
+  }

@@ -146,6 +146,13 @@ export interface TypePageFields {
      * @summary Il contenuto libero della pagina
      */
     content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentRichTextSkeleton>>;
+    /**
+     * Field type definition for field 'navbarLabel' (Label per menù)
+     * @name Label per menù
+     * @localized false
+     * @summary Il testo visualizzato nel link verso questa pagina nel menù di navigazione. e.g. team.
+     */
+    navbarLabel?: EntryFieldTypes.Symbol;
 }
 
 /**
@@ -154,7 +161,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 39
+ * @version 41
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -163,6 +170,6 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 39
+ * @version 41
  */
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;

@@ -1,21 +1,48 @@
 ---
 import type { Document } from "@contentful/rich-text-types";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-
-console.log("RENDERING");
+import { BLOCKS } from "@contentful/rich-text-types";
+import {
+  documentToHtmlString,
+  type Options,
+} from "@contentful/rich-text-html-renderer";
+import type { Asset, AssetFields } from "contentful";
 
 interface Props {
   content: Document;
 }
 
-const options = {
+const options: Partial<Options> = {
   renderMark: {},
-  renderNode: {},
+  renderNode: {
+    // @ts-ignore
+    [BLOCKS.EMBEDDED_ASSET]: ({
+      data: {
+        target: {
+          fields: { title, file },
+        },
+      },
+    }: {
+      data: {
+        target: {
+          fields: AssetFields;
+        };
+      };
+    }) => {
+      return `<picture>
+        <source srcset="${file?.url}?fm=webp&q=80&w=1200&h=800" type="image/webp">
+        <source srcset="${file?.url}?fm=jpg&q=80&w=1200&h=800" type="image/jpeg">
+        <img src="${file?.url}?fm=jpg&q=80&w=1200&h=800" alt="${title}" loading="lazy">
+      </picture>`;
+    },
+  },
 };
 
 const { content } = Astro.props;
 ---
 
 <div class="w-full">
-  <div class="prose" set:html={documentToHtmlString(content, options)} />
+  <div
+    class="prose mx-auto"
+    set:html={documentToHtmlString(content, options)}
+  />
 </div>

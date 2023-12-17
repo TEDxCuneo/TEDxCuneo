@@ -1,0 +1,86 @@
+---
+const now = new Date();
+
+const links = [
+  {
+    label: "Informativa trattamento dati",
+    url: "/informativa-trattamento-dei-dati/",
+    target: "_self",
+  },
+  {
+    label: "Cookie policy",
+    url: "/cookie-policy/",
+    target: "_self",
+  },
+  {
+    label: "Repository GitHub",
+    url: "https://github.com/TEDxCuneo/TEDxCuneo",
+    target: "_blank",
+  },
+];
+---
+
+<footer class="flex-grow-0 py-4">
+  <div
+    class="md:min-h-280 border-t border-tedWhite grid grid-cols-1 py-4 gap-y-5 md:gap-x-10 md:grid-cols-3 md:py-7"
+  >
+    <div class="h-full flex flex-col justify-between">
+      <img
+        class="hidden w-44 mb-4 md:mb-6 md:block"
+        src="/img/tedxcuneo_logo.svg"
+        alt="Logo TEDxCuneo svg"
+      />
+      <div>
+        <p class="text-tedDarkWhite">
+          © {now.getFullYear()} TEDxCuneo - This independent TED event is
+          operated under license from TED.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-between">
+      <div class="mb-4 md:mb-6">
+        <a
+          class="mr-3 text-decoration-tedRed"
+          href="{{ settings.instagram }}"
+          target="_blank">Instagram ↗</a
+        >
+        <a
+          class="mr-3 text-decoration-tedRed"
+          href="{{ settings.facebook }}"
+          target="_blank">Facebook ↗</a
+        >
+        <a
+          class="text-decoration-tedRed"
+          href="{{ settings.linkedin }}"
+          target="_blank">Linkedin ↗</a
+        >
+      </div>
+
+      <p class="">
+        Associazione Anima Silvae
+        <br />
+         Via Luigi Teresio Cavallo 7/B - Cuneo CF 96100380045
+      </p>
+    </div>
+
+    <div class="flex flex-col justify-between">
+      <div></div>
+      <div>
+        {
+          links.map((link) => (
+            <div class="mb-3">
+              <a
+                class="text-decoration-tedRed"
+                href={link.url}
+                target={link.target}
+              >
+                {link.label}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

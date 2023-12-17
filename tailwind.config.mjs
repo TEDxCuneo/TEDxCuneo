@@ -83,6 +83,21 @@ export default {
       bold: 700,
     },
     extend: {
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "880px",
+            color: theme("colors.tedWhite"),
+            a: {
+              color: theme("colors.tedRed"),
+              "&:hover": {
+                color: theme("colors.tedRed"),
+              },
+            },
+            "--tw-prose-headings": theme("colors.tedWhite"),
+          },
+        },
+      }),
       screens: {
         xxsm: "350px",
         xsm: "400px",
@@ -117,5 +132,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
