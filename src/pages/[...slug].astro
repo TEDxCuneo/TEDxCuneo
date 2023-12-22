@@ -1,17 +1,18 @@
 ---
+import DynamicComponent from "@components/DynamicComponent.astro";
 import Base from "../layouts/Base.astro";
 import contentful from "@lib/contentful";
 import type {
   TypePageFields,
   TypePageSkeleton,
 } from "@lib/generated/contentful/index";
-import RichText from "../components/RichText.astro";
 import Homepage from "src/layouts/Homepage.astro";
 
 export async function getStaticPaths() {
   const pages = (
     await contentful.getEntries<TypePageSkeleton>({
       content_type: "page",
+      include: 10,
     })
   ).items;
 
@@ -48,18 +49,9 @@ const Layout = getLayout(page as unknown as TypePageFields);
 <Layout title={page.browserTitle}>
   <main>
     {
-      page.content?.map((content) => {
-        switch (content?.sys.contentType.sys.id) {
-          case "componentRichText":
-            return (
-              content.fields.content && (
-                <RichText content={content.fields.content} />
-              )
-            );
-          default:
-            return <p>Unknown content type</p>;
-        }
-      })
+      page.content
+        ?.filter((c) => c)
+        .map((c) => <DynamicComponent component={c!} />)
     }
   </main>
 </Layout>

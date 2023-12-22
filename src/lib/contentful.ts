@@ -1,4 +1,6 @@
-import contentful from "contentful";
+import contentful, { type ChainModifiers } from "contentful";
+
+export type ChainModifier = "WITHOUT_UNRESOLVABLE_LINKS";
 
 const space = import.meta.env.CONTENTFUL_SPACE_ID!;
 const accessToken = import.meta.env.CONTENTFUL_ACCESS_TOKEN!;

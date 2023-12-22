@@ -1,0 +1,24 @@
+---
+import type { TypeComponentGrid } from "@lib/generated/contentful";
+import type { ChainModifier } from "@lib/contentful";
+import DynamicComponent from "@components/DynamicComponent.astro";
+
+interface Props extends TypeComponentGrid<ChainModifier, string> {}
+
+const {
+  fields: {
+    elements,
+    mobileColumnsAmount,
+    tabletColumnsAmount,
+    desktopColumnsAmount,
+  },
+} = Astro.props;
+
+const className = `grid-cols-${mobileColumnsAmount} md:grid-cols-${tabletColumnsAmount} lg:grid-cols-${desktopColumnsAmount}`;
+
+console.log(className);
+---
+
+<div class={`w-full grid ${className}`}>
+  {elements?.filter((e) => e).map((e) => <DynamicComponent component={e!} />)}
+</div>

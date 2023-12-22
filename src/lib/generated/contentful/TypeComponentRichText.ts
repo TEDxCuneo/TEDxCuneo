@@ -27,7 +27,7 @@ export interface TypeComponentRichTextFields {
  * @type {TypeComponentRichTextSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:28:54.496Z
- * @version 1
+ * @version 7
  */
 export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichTextFields, "componentRichText">;
 /**
@@ -36,6 +36,10 @@ export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichT
  * @type {TypeComponentRichText}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:28:54.496Z
- * @version 1
+ * @version 7
  */
 export type TypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
+
+export function isTypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentRichText<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'componentRichText'
+}

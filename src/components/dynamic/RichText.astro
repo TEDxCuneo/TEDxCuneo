@@ -6,10 +6,10 @@ import {
   type Options,
 } from "@contentful/rich-text-html-renderer";
 import type { Asset, AssetFields } from "contentful";
+import type { TypeComponentRichText } from "@lib/generated/contentful";
+import type { ChainModifier } from "@lib/contentful";
 
-interface Props {
-  content: Document;
-}
+interface Props extends TypeComponentRichText<ChainModifier, string> {}
 
 const options: Partial<Options> = {
   renderMark: {},
@@ -37,12 +37,14 @@ const options: Partial<Options> = {
   },
 };
 
-const { content } = Astro.props;
+const {
+  fields: { content },
+} = Astro.props;
 ---
 
 <div class="w-full">
   <div
     class="prose mx-auto"
-    set:html={documentToHtmlString(content, options)}
+    set:html={content ? documentToHtmlString(content, options) : ""}
   />
 </div>

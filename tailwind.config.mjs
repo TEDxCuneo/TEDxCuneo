@@ -132,5 +132,11 @@ export default {
       },
     },
   },
+  safelist: [
+    {
+      pattern: /grid-cols-(1|2|3|4|5|6|7|8)/,
+      variants: ["lg", "md"],
+    },
+  ],
   plugins: [require("@tailwindcss/typography")],
 };

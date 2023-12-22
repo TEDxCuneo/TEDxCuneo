@@ -1,0 +1,21 @@
+---
+import {
+  isTypeComponentGrid,
+  isTypeComponentRichText,
+  type TypeComponentGridFields,
+} from "@lib/generated/contentful";
+import type { Entry } from "contentful";
+import RichText from "./dynamic/RichText.astro";
+import Grid from "./dynamic/Grid.astro";
+import type { ChainModifier } from "@lib/contentful";
+import type { Code } from "astro:components";
+
+interface Props {
+  component: Entry<any, ChainModifier, string>;
+}
+
+const { component } = Astro.props;
+---
+
+{isTypeComponentRichText(component) && <RichText {...component} />}
+{isTypeComponentGrid(component) && <Grid {...component} />}
