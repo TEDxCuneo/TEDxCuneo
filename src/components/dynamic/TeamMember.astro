@@ -1,0 +1,45 @@
+---
+import type { TypeTeamMemberSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/utils";
+
+interface Props extends Entry<TypeTeamMemberSkeleton> {}
+
+const {
+  fields: { firstName, lastName, image, link, linkLabel, role },
+} = Astro.props;
+---
+
+<div>
+  {
+    image?.fields.file && (
+      <picture>
+        <source
+          type="image/webp"
+          srcset={`${image!.fields.file!.url}?w=300&h=300&fit=thumb&fm=webp`}
+        />
+        <source
+          type="image/jpeg"
+          srcset={`${
+            image!.fields.file!.url
+          }?w=300&h=300&fit=thumb&fm=jpg&q=60`}
+        />
+        <img
+          class="mb-2"
+          src={`${image!.fields.file!.url}?w=300&h=300&fit=thumb&q=60`}
+          alt={`${firstName} ${lastName}`}
+        />
+      </picture>
+    )
+  }
+  <div>
+    <h3 class="mb-2">{firstName}<br />{lastName}</h3>
+    <p class="mb-2">{role}</p>
+    {
+      link && linkLabel && (
+        <a href={link} target="_blank">
+          {linkLabel}↗
+        </a>
+      )
+    }
+  </div>
+</div>

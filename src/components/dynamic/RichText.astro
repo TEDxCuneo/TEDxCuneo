@@ -5,9 +5,12 @@ import {
   documentToHtmlString,
   type Options,
 } from "@contentful/rich-text-html-renderer";
-import type { Asset, AssetFields } from "contentful";
-import type { TypeComponentRichText } from "@lib/generated/contentful";
-import type { ChainModifier } from "@lib/contentful";
+import type { AssetFields } from "contentful";
+import type {
+  TypeComponentRichText,
+  TypeComponentRichTextSkeleton,
+} from "@lib/generated/contentful";
+import type { ChainModifier, Entry } from "@lib/utils";
 
 interface Props extends TypeComponentRichText<ChainModifier, string> {}
 
@@ -42,9 +45,7 @@ const {
 } = Astro.props;
 ---
 
-<div class="w-full">
-  <div
-    class="prose mx-auto"
-    set:html={content ? documentToHtmlString(content, options) : ""}
-  />
-</div>
+<div
+  class="w-full prose mx-auto"
+  set:html={content ? documentToHtmlString(content, options) : ""}
+/>

@@ -22,21 +22,21 @@ export interface TypeComponentRichTextFields {
 }
 
 /**
- * Entry skeleton type definition for content type 'componentRichText' (Componente: testo libero)
+ * Entry skeleton type definition for content type 'componentRichText' (Componente: Testo libero)
  * @name TypeComponentRichTextSkeleton
  * @type {TypeComponentRichTextSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:28:54.496Z
- * @version 7
+ * @version 9
  */
 export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichTextFields, "componentRichText">;
 /**
- * Entry type definition for content type 'componentRichText' (Componente: testo libero)
+ * Entry type definition for content type 'componentRichText' (Componente: Testo libero)
  * @name TypeComponentRichText
  * @type {TypeComponentRichText}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:28:54.496Z
- * @version 7
+ * @version 9
  */
 export type TypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
 

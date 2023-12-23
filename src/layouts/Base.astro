@@ -1,42 +1,16 @@
 ---
 import "@styles/main.css";
-import Header from "@components/Header.svelte";
 import GoogleTagManager from "@components/GoogleTagManager.astro";
 import CookieyesBanner from "@components/CookieyesBanner.astro";
-import contentful from "@lib/contentful";
-import type {
-  TypePageSkeleton,
-  TypeWebsiteSkeleton,
-} from "@lib/generated/contentful";
-import Footer from "@components/Footer.astro";
-interface Props {
-  title?: string;
-}
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/utils";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
 
 const DEV = import.meta.env.DEV;
-
-const { title } = Astro.props;
-
-// Get pages to show in the navbar
-const navbarPages: {
-  title: string;
-  slug: string;
-}[] = (
-  await contentful.getEntries<TypeWebsiteSkeleton>({
-    content_type: "website",
-    "fields.active": "Si", // workaround to make Website a singleton
-    include: 1,
-  })
-).items.flatMap((item) => {
-  const pages = item.fields.menuPages as unknown as TypePageSkeleton[];
-  return pages.map((page) => {
-    return {
-      slug: page?.fields.slug as unknown as string,
-      title: (page?.fields.navbarLabel ??
-        page?.fields.title) as unknown as string,
-    };
-  });
-});
+const PROD = !DEV;
 ---
 
 <!doctype html>
@@ -47,7 +21,7 @@ const navbarPages: {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title ?? "TEDxCuneo"}</title>
+    <title>{page.fields.browserTitle ?? "TEDxCuneo"}</title>
     <meta name="theme-color" content="#0E0E0E" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <style>
@@ -70,14 +44,10 @@ const navbarPages: {
       }
     </style>
 
-    {!DEV && <CookieyesBanner />}
-    {!DEV && <GoogleTagManager />}
+    {PROD && <CookieyesBanner />}
+    {PROD && <GoogleTagManager />}
   </head>
   <body class="bg-tedBlack text-tedWhite">
-    <div class="container">
-      <Header pages={navbarPages} client:load />
-      <slot />
-      <Footer />
-    </div>
+    <slot />
   </body>
 </html>

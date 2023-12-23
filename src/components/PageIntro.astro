@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  intro?: string;
+  pageName?: string;
+}
+
+const { title, intro, pageName } = Astro.props;
+---
+
+<section>
+  <p class="mt-9 mb-6 uppercase text-tedDarkWhite md:mt-16">
+    {pageName}
+  </p>
+  <h1 class="mb-12 max-w-660 md:mb-16">{title}</h1>
+  <p class="mb-28 w-full md:w-1/2 md:mb-36">{intro}</p>
+</section>

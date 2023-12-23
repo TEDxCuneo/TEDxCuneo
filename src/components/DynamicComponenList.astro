@@ -1,0 +1,28 @@
+---
+import {
+  type TypeComponentGridSkeleton,
+  type TypeComponentRichTextSkeleton,
+} from "@lib/generated/contentful";
+import type { Entry } from "@lib/utils";
+import PageSection from "./PageSection.astro";
+import DynamicComponent from "./DynamicComponent.astro";
+
+interface Props {
+  components?: (
+    | Entry<TypeComponentGridSkeleton | TypeComponentRichTextSkeleton>
+    | undefined
+  )[];
+}
+
+const { components } = Astro.props;
+---
+
+{
+  components
+    ?.filter((c) => c)
+    .map((c) => (
+      <PageSection>
+        <DynamicComponent {...c!} />
+      </PageSection>
+    ))
+}

@@ -1,5 +1,7 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
+import type { TypeSpeakerSkeleton } from "./TypeSpeaker";
+import type { TypeTeamMemberSkeleton } from "./TypeTeamMember";
 
 /**
  * Fields type definition for content type 'TypeComponentGrid'
@@ -15,20 +17,27 @@ export interface TypeComponentGridFields {
      */
     internalTitle: EntryFieldTypes.Symbol;
     /**
-     * Field type definition for field 'mobileColumnsAmount' (Colonne mobile)
-     * @name Colonne mobile
+     * Field type definition for field 'heading' (Titolo)
+     * @name Titolo
+     * @localized false
+     * @summary Il titolo (opzionale) da mostrare prima della griglia come heading.
+     */
+    heading?: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'mobileColumnsAmount' (Numero colonne mobile)
+     * @name Numero colonne mobile
      * @localized false
      */
     mobileColumnsAmount: EntryFieldTypes.Symbol<"1" | "2" | "3" | "4" | "5" | "6">;
     /**
-     * Field type definition for field 'tabletColumnsAmount' (Colonne Tablet)
-     * @name Colonne Tablet
+     * Field type definition for field 'tabletColumnsAmount' (Numero colonne Tablet)
+     * @name Numero colonne Tablet
      * @localized false
      */
     tabletColumnsAmount: EntryFieldTypes.Symbol<"1" | "2" | "3" | "4" | "5" | "6">;
     /**
-     * Field type definition for field 'desktopColumnsAmount' (Colonne desktop)
-     * @name Colonne desktop
+     * Field type definition for field 'desktopColumnsAmount' (Numero colonne desktop)
+     * @name Numero colonne desktop
      * @localized false
      */
     desktopColumnsAmount: EntryFieldTypes.Symbol<"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8">;
@@ -37,25 +46,25 @@ export interface TypeComponentGridFields {
      * @name Elementi
      * @localized false
      */
-    elements: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentRichTextSkeleton>>;
+    elements: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentRichTextSkeleton | TypeSpeakerSkeleton | TypeTeamMemberSkeleton>>;
 }
 
 /**
- * Entry skeleton type definition for content type 'componentGrid' (Componente: griglia)
+ * Entry skeleton type definition for content type 'componentGrid' (Componente: Griglia)
  * @name TypeComponentGridSkeleton
  * @type {TypeComponentGridSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-22T21:32:33.934Z
- * @version 1
+ * @version 9
  */
 export type TypeComponentGridSkeleton = EntrySkeletonType<TypeComponentGridFields, "componentGrid">;
 /**
- * Entry type definition for content type 'componentGrid' (Componente: griglia)
+ * Entry type definition for content type 'componentGrid' (Componente: Griglia)
  * @name TypeComponentGrid
  * @type {TypeComponentGrid}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-22T21:32:33.934Z
- * @version 1
+ * @version 9
  */
 export type TypeComponentGrid<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentGridSkeleton, Modifiers, Locales>;
 

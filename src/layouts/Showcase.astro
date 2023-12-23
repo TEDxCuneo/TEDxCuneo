@@ -1,0 +1,29 @@
+---
+import type { Entry } from "@lib/utils";
+import WithNavigation from "./WithNavigation.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import PageIntro from "@components/PageIntro.astro";
+import DynamicComponent from "@components/DynamicComponent.astro";
+import Collapsible from "@components/Collapsible.astro";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+/**
+ * Showcase layout shows each component as collapsible sections
+ */
+---
+
+<WithNavigation {...page}>
+  <PageIntro {...page.fields} />
+  {
+    page.fields.content
+      ?.filter((c) => c?.sys.id)
+      .map((c) => (
+        <Collapsible title={c!.fields.internalTitle} id={c!.sys.id!}>
+          <DynamicComponent {...c!} />
+        </Collapsible>
+      ))
+  }
+</WithNavigation>

@@ -1,13 +1,17 @@
 ---
-import type { TypeComponentGrid } from "@lib/generated/contentful";
-import type { ChainModifier } from "@lib/contentful";
+import type {
+  TypeComponentGrid,
+  TypeComponentGridSkeleton,
+} from "@lib/generated/contentful";
+import type { ChainModifier, Entry } from "@lib/utils";
 import DynamicComponent from "@components/DynamicComponent.astro";
 
-interface Props extends TypeComponentGrid<ChainModifier, string> {}
+interface Props extends Entry<TypeComponentGridSkeleton> {}
 
 const {
   fields: {
     elements,
+    heading,
     mobileColumnsAmount,
     tabletColumnsAmount,
     desktopColumnsAmount,
@@ -15,10 +19,9 @@ const {
 } = Astro.props;
 
 const className = `grid-cols-${mobileColumnsAmount} md:grid-cols-${tabletColumnsAmount} lg:grid-cols-${desktopColumnsAmount}`;
-
-console.log(className);
 ---
 
-<div class={`w-full grid ${className}`}>
-  {elements?.filter((e) => e).map((e) => <DynamicComponent component={e!} />)}
+<h2 class="mb-6">{heading}</h2>
+<div class={`w-full grid gap-x-4 gap-y-7 lg:gap-y-10 ${className}`}>
+  {elements?.filter((e) => e).map((e) => <DynamicComponent {...e!} />)}
 </div>

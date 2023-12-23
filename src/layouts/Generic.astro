@@ -1,0 +1,20 @@
+---
+import type { Entry } from "@lib/utils";
+import WithNavigation from "./WithNavigation.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import PageIntro from "@components/PageIntro.astro";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+/**
+ * Generic layout shows basic page intro, then renders children
+ */
+---
+
+<WithNavigation {...page}>
+  <PageIntro {...page.fields} />
+  <DynamicComponenList components={page.fields.content} />
+</WithNavigation>

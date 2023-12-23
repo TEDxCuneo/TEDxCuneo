@@ -1,57 +1,44 @@
 ---
-import DynamicComponent from "@components/DynamicComponent.astro";
-import Base from "../layouts/Base.astro";
 import contentful from "@lib/contentful";
-import type {
-  TypePageFields,
-  TypePageSkeleton,
-} from "@lib/generated/contentful/index";
+import type { TypePageSkeleton } from "@lib/generated/contentful/index";
 import Homepage from "src/layouts/Homepage.astro";
+import Generic from "src/layouts/Generic.astro";
+import type { Entry } from "@lib/utils";
+import Showcase from "src/layouts/Showcase.astro";
 
 export async function getStaticPaths() {
-  const pages = (
-    await contentful.getEntries<TypePageSkeleton>({
-      content_type: "page",
-      include: 10,
-    })
-  ).items;
+  const pages = await contentful.getEntries<TypePageSkeleton>({
+    content_type: "page",
+    include: 10, // max include depth
+  });
 
-  const staticPaths = pages.map((page) => {
+  return pages.items.map((page) => {
     return {
       params: { slug: page.fields.slug == "/" ? undefined : page.fields.slug },
       props: {
-        page: page.fields,
-        sys: page.sys,
+        page: page,
       },
     };
   });
-
-  return staticPaths;
 }
 
-const getLayout = (page: TypePageFields) => {
-  switch (page.layout as unknown as string) {
+const getLayout = (page: Entry<TypePageSkeleton>) => {
+  switch (page.fields.layout) {
     case "Generico":
-      return Base;
+      return Generic;
     case "Homepage":
       return Homepage;
     case "Evento 2023":
-      return Base;
+      return Generic;
+    case "Showcase":
+      return Showcase;
     default:
-      return Base;
+      return Generic;
   }
 };
 
 const { page } = Astro.props;
-const Layout = getLayout(page as unknown as TypePageFields);
+const Layout = getLayout(page);
 ---
 
-<Layout title={page.browserTitle}>
-  <main>
-    {
-      page.content
-        ?.filter((c) => c)
-        .map((c) => <DynamicComponent component={c!} />)
-    }
-  </main>
-</Layout>
+<Layout {...page} />

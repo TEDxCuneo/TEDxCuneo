@@ -2,20 +2,25 @@
 import {
   isTypeComponentGrid,
   isTypeComponentRichText,
-  type TypeComponentGridFields,
+  isTypeTeamMember,
+  type TypeTeamMemberSkeleton,
+  type TypeComponentGridSkeleton,
+  type TypeComponentRichTextSkeleton,
+  type TypeSpeakerSkeleton,
+  isTypeSpeaker,
 } from "@lib/generated/contentful";
-import type { Entry } from "contentful";
+import type { Entry } from "@lib/utils";
 import RichText from "./dynamic/RichText.astro";
 import Grid from "./dynamic/Grid.astro";
-import type { ChainModifier } from "@lib/contentful";
-import type { Code } from "astro:components";
+import TeamMember from "./dynamic/TeamMember.astro";
+import Speaker from "./dynamic/Speaker.astro";
 
-interface Props {
-  component: Entry<any, ChainModifier, string>;
-}
+interface Props extends Entry<any> {}
 
-const { component } = Astro.props;
+const component = Astro.props;
 ---
 
 {isTypeComponentRichText(component) && <RichText {...component} />}
 {isTypeComponentGrid(component) && <Grid {...component} />}
+{isTypeTeamMember(component) && <TeamMember {...component} />}
+{isTypeSpeaker(component) && <Speaker {...component} />}

@@ -1,0 +1,80 @@
+---
+/**
+ * Collapsible component, makes the content collapsible
+ */
+
+interface Props {
+  id: string;
+  title?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<section class="mb-8 accordion">
+  <input type="checkbox" name={id} id={id} />
+  <div class="mb-4 handle">
+    <label for={id}>
+      <h2>{title ?? "Collapsible"}</h2>
+      <div class="plus-icon">
+        <span></span>
+        <span></span>
+      </div>
+    </label>
+  </div>
+  <div class="content mx-auto">
+    <slot />
+  </div>
+</section>
+
+<style lang="scss">
+  section {
+    > input[type="checkbox"] {
+      position: absolute;
+      left: -100vw;
+      &:checked ~ .content {
+        height: auto;
+        overflow: visible;
+      }
+      &:checked ~ .handle label .plus-icon span:first-child {
+        transform: rotate(180deg);
+      }
+    }
+    .content {
+      overflow-y: hidden;
+      height: 0;
+      transition: height 0.3s ease;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .plus-icon {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.5rem;
+      position: relative;
+      top: 0.2rem;
+      span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+        transform-origin: center;
+        &:first-child {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+</style>

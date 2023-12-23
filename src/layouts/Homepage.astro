@@ -1,8 +1,14 @@
 ---
-import Base from "./Base.astro";
+import type { Entry } from "@lib/utils";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import WithNavigation from "./WithNavigation.astro";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
 ---
 
-<Base>
+<WithNavigation {...page}>
   <section class="home-section">
     <div>
       <h1 class="title">Portiamo nuove idee da condividere a Cuneo</h1>
@@ -19,7 +25,7 @@ import Base from "./Base.astro";
   </section>
 
   <slot />
-</Base>
+</WithNavigation>
 
 <style lang="scss">
   @import "@styles/variables.scss";
