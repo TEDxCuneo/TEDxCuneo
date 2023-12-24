@@ -2,6 +2,7 @@
 import type { Entry } from "@lib/utils";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
 import WithNavigation from "./WithNavigation.astro";
+import DynamicComponenList from "@components/DynamicComponenList.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -11,7 +12,7 @@ const page = Astro.props;
 <WithNavigation {...page}>
   <section class="home-section">
     <div>
-      <h1 class="title">Portiamo nuove idee da condividere a Cuneo</h1>
+      <h1 class="title md:mt-16">Portiamo nuove idee da condividere a Cuneo</h1>
       <p class="subtitle">
         Vogliamo rendere la nostra città un luogo di incontro e scambio, dove la
         cultura e la condivisione fanno nascere nuove idee.
@@ -23,8 +24,7 @@ const page = Astro.props;
       />
     </div>
   </section>
-
-  <slot />
+  <DynamicComponenList components={page.fields.content} />
 </WithNavigation>
 
 <style lang="scss">
@@ -33,9 +33,6 @@ const page = Astro.props;
   .home-section {
     height: calc(100vh - $header-height);
     padding-top: 64px;
-    @screen md {
-      height: auto;
-    }
     min-height: 600px;
     position: relative;
     .title {

@@ -1,0 +1,166 @@
+---
+interface Props {
+  pages: {
+    title: string;
+    slug: string;
+  }[];
+}
+
+const { pages } = Astro.props;
+---
+
+<script>
+  // Init
+  let isNavbarOpen = false;
+  const menuButton = document.getElementById("menuButton")!;
+  const nav = document.getElementById("nav")!;
+  menuButton.addEventListener("click", toggleNavbar);
+
+  assignNavbarState();
+  // Hide navbar on scroll
+  window.addEventListener("scroll", () => {
+    if (isNavbarOpen) {
+      toggleNavbar();
+    }
+  });
+
+  // Utils
+  function toggleNavbar() {
+    isNavbarOpen = !isNavbarOpen;
+    assignNavbarState();
+  }
+
+  function assignNavbarState() {
+    if (isNavbarOpen) {
+      menuButton.classList.add("open");
+      nav.classList.add("open");
+    } else {
+      menuButton.classList.remove("open");
+      nav.classList.remove("open");
+    }
+  }
+</script>
+
+<header class="flex justify-between flex-row items-end">
+  <!-- Logo -->
+  <div class="flex-0 w-40 md:w-52 xl:mr-4">
+    <a href="/">
+      <img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
+    </a>
+  </div>
+  <div class="flex flex-row gap-x-6 items-end">
+    <!-- Desktop navigation -->
+    <nav class="hidden md:flex flex-row gap-x-4 items-baseline">
+      {
+        pages.map((page) => (
+          <a
+            href={page.slug}
+            class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
+          >
+            {page.title}
+          </a>
+        ))
+      }
+    </nav>
+    <!-- Hamburger button -->
+    <button class="icon" id="menuButton" name="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Full page navigation -->
+<nav class="full-page-nav bg-tedBlack z-30 flex flex-col justify-end" id="nav">
+  <ul class="container flex flex-col items-end pb-12 gap-y-4">
+    {
+      pages.map((page) => (
+        <li>
+          <h3>
+            <a
+              href={page.slug}
+              class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
+            >
+              {page.title}
+            </a>
+          </h3>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style lang="scss">
+  @import "src/styles/variables.scss";
+
+  header {
+    height: $header-height;
+  }
+  .icon {
+    cursor: pointer;
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    padding: 6px;
+    & span {
+      width: 25px;
+      height: 2px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 0.125rem;
+      transform-origin: top left;
+    }
+    &.open span:nth-child(1) {
+      transform: rotate(45deg) translate(3px, -3.5px);
+    }
+
+    &.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(1px, 3px);
+    }
+  }
+  .full-page-nav {
+    transition:
+      visibility 0s,
+      opacity 0.3s ease-in-out;
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+    opacity: 0;
+    visibility: hidden;
+    &.open {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  .link-underline {
+    border-bottom-width: 0;
+    background-image: linear-gradient(transparent, transparent),
+      linear-gradient(#fff, #fff);
+    background-size: 0 3px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease-in-out;
+    background-image: linear-gradient(transparent, transparent),
+      linear-gradient(#ff2b06, #ff2b06);
+  }
+
+  h2 .link-underline {
+    background-position: 0 88%;
+  }
+  h1 .link-underline {
+    background-position: 0 87%;
+  }
+
+  .link-underline:hover,
+  .link-underline-fixed {
+    background-size: 100% 3px;
+  }
+</style>

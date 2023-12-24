@@ -1,6 +1,6 @@
 ---
 import "@styles/main.css";
-import Header from "@components/Header.svelte";
+import Header from "@components/Header.astro";
 import GoogleTagManager from "@components/GoogleTagManager.astro";
 import CookieyesBanner from "@components/CookieyesBanner.astro";
 import contentful from "@lib/contentful";
@@ -10,7 +10,7 @@ import type {
 } from "@lib/generated/contentful";
 import Footer from "@components/Footer.astro";
 import type { Entry } from "@lib/utils";
-import Abstract from "./Base.astro";
+import Base from "./Base.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -38,10 +38,10 @@ const navbarPages: {
 });
 ---
 
-<Abstract {...page}>
+<Base {...page}>
   <div class="container">
-    <Header pages={navbarPages} client:load />
+    <Header pages={navbarPages} />
     <slot />
     <Footer />
   </div>
-</Abstract>
+</Base>

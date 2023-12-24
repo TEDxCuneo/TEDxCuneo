@@ -1,0 +1,61 @@
+---
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import CookieyesBanner from "./CookieyesBanner.astro";
+import GoogleTagManager from "./GoogleTagManager.astro";
+import FontLoader from "./FontLoader.astro";
+import type { Entry } from "@lib/utils";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+const PROD = !import.meta.env.DEV;
+
+const description =
+  (page.fields.ogDescription as string) ??
+  "Vogliamo rendere Cuneo, la nostra città, un luogo di incontro e scambio, dove la cultura e la condivisione fanno nascere nuove idee.";
+
+const title =
+  (page.fields.browserTitle as string) ??
+  "TEDxCuneo - Portiamo nuove idee da condividere a Cuneo";
+
+const ogTitle =
+  (page.fields.ogTitle as string) ??
+  "TEDxCuneo - Portiamo nuove idee da condividere a Cuneo";
+
+const ogImage = page.fields.ogImage?.fields.file?.url
+  ? `https:${page.fields.ogImage?.fields.file?.url}?fm=jpg&q=70&w=1200&h=630&fit=thumb`
+  : undefined;
+
+const index = page.fields.noIndex ? "noindex" : "index";
+const follow = page.fields.noFollow ? "nofollow" : "follow";
+const robots = `${index}, ${follow}`;
+
+const keywords = page.fields.keywords ? page.fields.keywords!.join(", ") : "";
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content={keywords} />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="theme-color" content="#0E0E0E" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+  <meta name="og:title" content={ogTitle} />
+  <meta name="og:description" content={description} />
+  <meta name="og:image" content={ogImage} />
+  <meta name="og:locale" content="it_IT" />
+  <meta name="og:site_name" content="TEDxCuneo" />
+  <meta name="og:type" content="website" />
+  <meta name="og:image:url" content={ogImage} />
+  <meta name="og:image:type" content="image/jpeg" />
+  <meta name="og:image:width" content="1200" />
+  <meta name="og:image:height" content="630" />
+  <meta name="robots" content={robots} />
+  <FontLoader />
+  {PROD && <CookieyesBanner />}
+  {PROD && <GoogleTagManager />}
+</head>

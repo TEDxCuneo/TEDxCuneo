@@ -7,7 +7,6 @@ const dev = import.meta.env.DEV;
 
 const client = contentful.createClient({
   space,
-  environment: dev ? "dev" : "master",
   accessToken: dev ? previewToken : accessToken,
   host: dev ? "preview.contentful.com" : "cdn.contentful.com",
 });

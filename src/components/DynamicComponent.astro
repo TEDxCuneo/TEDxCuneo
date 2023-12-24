@@ -3,17 +3,13 @@ import {
   isTypeComponentGrid,
   isTypeComponentRichText,
   isTypeTeamMember,
-  type TypeTeamMemberSkeleton,
-  type TypeComponentGridSkeleton,
-  type TypeComponentRichTextSkeleton,
-  type TypeSpeakerSkeleton,
   isTypeSpeaker,
 } from "@lib/generated/contentful";
 import type { Entry } from "@lib/utils";
 import RichText from "./dynamic/RichText.astro";
 import Grid from "./dynamic/Grid.astro";
 import TeamMember from "./dynamic/TeamMember.astro";
-import Speaker from "./dynamic/Speaker.astro";
+import Speaker from "./dynamic/SpeakerCard.astro";
 
 interface Props extends Entry<any> {}
 

@@ -1,52 +1,16 @@
 ---
-import "@styles/main.css";
-import GoogleTagManager from "@components/GoogleTagManager.astro";
-import CookieyesBanner from "@components/CookieyesBanner.astro";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/utils";
+import Head from "@components/Head.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
 const page = Astro.props;
-
-const DEV = import.meta.env.DEV;
-const PROD = !DEV;
 ---
 
 <!doctype html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{page.fields.browserTitle ?? "TEDxCuneo"}</title>
-    <meta name="theme-color" content="#0E0E0E" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <style>
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        src:
-          url("/font/Inter-Regular.woff2") format("woff2"),
-          url("/font/Inter-Regular.woff") format("woff");
-      }
-
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 700;
-        src:
-          url("/font/Inter-Bold.woff2") format("woff2"),
-          url("/font/Inter-Bold.woff") format("woff");
-      }
-    </style>
-
-    {PROD && <CookieyesBanner />}
-    {PROD && <GoogleTagManager />}
-  </head>
+  <Head {...page} />
   <body class="bg-tedBlack text-tedWhite">
     <slot />
   </body>

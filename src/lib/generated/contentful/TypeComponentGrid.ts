@@ -42,6 +42,20 @@ export interface TypeComponentGridFields {
      */
     desktopColumnsAmount: EntryFieldTypes.Symbol<"1" | "2" | "3" | "4" | "5" | "6" | "7" | "8">;
     /**
+     * Field type definition for field 'gapX' (Spaziatura orizzontale)
+     * @name Spaziatura orizzontale
+     * @localized false
+     * @summary Spaziatura orizzontale tra gli elementi della griglia
+     */
+    gapX: EntryFieldTypes.Symbol<"None" | "lg" | "sm" | "xlg" | "xsm" | "xxlg" | "xxsm">;
+    /**
+     * Field type definition for field 'gapY' (Spaziatura verticale)
+     * @name Spaziatura verticale
+     * @localized false
+     * @summary Spaziatura verticale tra gli elementi
+     */
+    gapY: EntryFieldTypes.Symbol<"None" | "lg" | "sm" | "xlg" | "xsm" | "xxlg" | "xxsm">;
+    /**
      * Field type definition for field 'elements' (Elementi)
      * @name Elementi
      * @localized false
@@ -55,7 +69,7 @@ export interface TypeComponentGridFields {
  * @type {TypeComponentGridSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-22T21:32:33.934Z
- * @version 9
+ * @version 13
  */
 export type TypeComponentGridSkeleton = EntrySkeletonType<TypeComponentGridFields, "componentGrid">;
 /**
@@ -64,7 +78,7 @@ export type TypeComponentGridSkeleton = EntrySkeletonType<TypeComponentGridField
  * @type {TypeComponentGrid}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-22T21:32:33.934Z
- * @version 9
+ * @version 13
  */
 export type TypeComponentGrid<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentGridSkeleton, Modifiers, Locales>;
 

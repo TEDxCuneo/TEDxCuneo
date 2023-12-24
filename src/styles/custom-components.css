@@ -1,19 +1,4 @@
 @layer components {
-  .checkbox:checked + svg {
-    display: block;
-  }
-  .landing-map::before {
-    content: " ";
-    position: absolute;
-    z-index: -1;
-    top: 0px !important;
-    right: -200px;
-    background: url("/assets/img/mappa_cuneo_empty_compr.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-  }
-
   .link-underline {
     border-bottom-width: 0;
     background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
@@ -33,72 +18,5 @@
 
   .link-underline:hover, .link-underline-fixed {
     background-size: 100% 3px;
-  }
-  .markdown p,
-  .markdown ul,
-  .markdown ol,
-  .markdown blockquote {
-    min-height: theme("fontSize.m_base.1.lineHeight");
-    margin-top: theme("fontSize.m_base.1.lineHeight");
-    margin-bottom: theme("fontSize.m_base.1.lineHeight");
-  }
-  .markdown h2 {
-    @apply mt-12;
-  }
-
-  .markdown ul,
-  ol {
-    margin-left: 24px;
-  }
-  .markdown ul > li:before {
-    content: "・";
-    float: left;
-    margin: 0 0 0 -0.9em;
-    width: 0.9em;
-  }
-  .markdown ol {
-    list-style: initial;
-    list-style-type: decimal;
-  }
-  .markdown > *:first-child {
-    margin-top: 0px !important;
-  }
-
-  .faq-block a {
-    @apply text-decoration-tedRed;
-  }
-  .faq-block > * {
-    min-height: theme("fontSize.m_base.1.lineHeight");
-  }
-  .cta-partnership > h2 {
-    @apply text-m_3xl;
-  }
-  @screen md {
-    .cta-partnership > h2 {
-      @apply text-d_3xl;
-    }
-    .faq-block > p,
-    .markdown > p {
-      min-height: theme("fontSize.d_base.1.lineHeight");
-    }
-    .markdown ul,
-    .markdown ol {
-      margin-left: 36px;
-    }
-    .markdown ul > li:before {
-      margin: 0 0 0 -1.5em;
-      width: 1.5em;
-    }
-    .markdown p,
-    .markdown ul,
-    .markdown ol,
-    .markdown blockquote {
-      min-height: theme("fontSize.d_base.1.lineHeight");
-      margin-top: theme("fontSize.d_base.1.lineHeight");
-      margin-bottom: theme("fontSize.d_base.1.lineHeight");
-    }
-    .markdown h2 {
-      @apply mt-16;
-    }
   }
 }

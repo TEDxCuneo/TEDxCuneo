@@ -1,4 +1,5 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypePageSkeleton } from "./TypePage";
 
 /**
  * Fields type definition for content type 'TypeSpeaker'
@@ -50,6 +51,12 @@ export interface TypeSpeakerFields {
      * @summary L'ID del video YouTube del talk, lo si trova nell'URL. ES: Y5JW7KYucC4
      */
     youtubeId?: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'page' (Pagina dello speaker)
+     * @name Pagina dello speaker
+     * @localized false
+     */
+    page?: EntryFieldTypes.EntryLink<TypePageSkeleton>;
 }
 
 /**
@@ -58,7 +65,7 @@ export interface TypeSpeakerFields {
  * @type {TypeSpeakerSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-23T14:59:21.889Z
- * @version 3
+ * @version 5
  */
 export type TypeSpeakerSkeleton = EntrySkeletonType<TypeSpeakerFields, "speaker">;
 /**
@@ -67,7 +74,7 @@ export type TypeSpeakerSkeleton = EntrySkeletonType<TypeSpeakerFields, "speaker"
  * @type {TypeSpeaker}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-23T14:59:21.889Z
- * @version 3
+ * @version 5
  */
 export type TypeSpeaker<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeSpeakerSkeleton, Modifiers, Locales>;
 

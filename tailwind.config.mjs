@@ -89,7 +89,7 @@ export default {
             maxWidth: "880px",
             color: theme("colors.tedWhite"),
             a: {
-              color: theme("colors.tedRed"),
+              color: theme("colors.tedWhite"),
               "&:hover": {
                 color: theme("colors.tedRed"),
               },
@@ -136,6 +136,9 @@ export default {
     {
       pattern: /grid-cols-(1|2|3|4|5|6|7|8)/,
       variants: ["lg", "md"],
+    },
+    {
+      pattern: /gap-(x|y)-(0|1|3|6|8|12|24)/,
     },
   ],
   plugins: [require("@tailwindcss/typography")],

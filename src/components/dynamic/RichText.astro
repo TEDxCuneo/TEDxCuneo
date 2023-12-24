@@ -1,16 +1,15 @@
 ---
-import type { Document } from "@contentful/rich-text-types";
-import { BLOCKS } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import {
   documentToHtmlString,
   type Options,
 } from "@contentful/rich-text-html-renderer";
 import type { AssetFields } from "contentful";
-import type {
-  TypeComponentRichText,
-  TypeComponentRichTextSkeleton,
-} from "@lib/generated/contentful";
-import type { ChainModifier, Entry } from "@lib/utils";
+import type { TypeComponentRichText } from "@lib/generated/contentful";
+import type { ChainModifier } from "@lib/utils";
+
+// check if first level domain is tedxcuneo.com
+const ourHostRegex = /^https?:\/\/(www\.)?tedxcuneo\.com/;
 
 interface Props extends TypeComponentRichText<ChainModifier, string> {}
 
@@ -36,6 +35,14 @@ const options: Partial<Options> = {
         <source srcset="${file?.url}?fm=jpg&q=80&w=1200&h=800" type="image/jpeg">
         <img src="${file?.url}?fm=jpg&q=80&w=1200&h=800" alt="${title}" loading="lazy">
       </picture>`;
+    },
+    // @ts-ignore
+    [INLINES.HYPERLINK]: ({ data: { uri }, content }, next) => {
+      return `<a href="${uri}" target="${
+        ourHostRegex.test(uri) ? "_self" : "_blank"
+      }" rel="noopener noreferrer" class="no-underline link-underline link-underline-fixed ">${next(
+        content
+      )}</a>`;
     },
   },
 };
