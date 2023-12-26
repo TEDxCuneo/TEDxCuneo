@@ -4,6 +4,8 @@ export { isTypeComponentRichText } from "./TypeComponentRichText";
 export type { TypeComponentRichText, TypeComponentRichTextFields, TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
 export { isTypePage } from "./TypePage";
 export type { TypePage, TypePageFields, TypePageSkeleton } from "./TypePage";
+export { isTypePartner } from "./TypePartner";
+export type { TypePartner, TypePartnerFields, TypePartnerSkeleton } from "./TypePartner";
 export { isTypeSpeaker } from "./TypeSpeaker";
 export type { TypeSpeaker, TypeSpeakerFields, TypeSpeakerSkeleton } from "./TypeSpeaker";
 export { isTypeTeamMember } from "./TypeTeamMember";

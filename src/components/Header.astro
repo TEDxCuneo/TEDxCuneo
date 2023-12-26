@@ -3,10 +3,21 @@ interface Props {
   pages: {
     title: string;
     slug: string;
+    active?: boolean;
   }[];
 }
 
 const { pages } = Astro.props;
+
+// Set active page
+const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, "");
+const currentPages = pages.map((page) => {
+  //ignore starting or trailing slashes
+  return {
+    ...page,
+    active: page.slug.replace(/^\/|\/$/g, "") === currentPath,
+  };
+});
 ---
 
 <script>
@@ -17,12 +28,6 @@ const { pages } = Astro.props;
   menuButton.addEventListener("click", toggleNavbar);
 
   assignNavbarState();
-  // Hide navbar on scroll
-  window.addEventListener("scroll", () => {
-    if (isNavbarOpen) {
-      toggleNavbar();
-    }
-  });
 
   // Utils
   function toggleNavbar() {
@@ -34,14 +39,24 @@ const { pages } = Astro.props;
     if (isNavbarOpen) {
       menuButton.classList.add("open");
       nav.classList.add("open");
+      // remove scrolling
+      document.body.style.overflowY = "hidden";
+      // set aria attributes
+      menuButton.setAttribute("aria-expanded", "true");
+      nav.setAttribute("aria-hidden", "false");
     } else {
       menuButton.classList.remove("open");
       nav.classList.remove("open");
+      // restore scrolling
+      document.body.style.overflowY = "auto";
+      // set aria attributes
+      menuButton.setAttribute("aria-expanded", "false");
+      nav.setAttribute("aria-hidden", "true");
     }
   }
 </script>
 
-<header class="flex justify-between flex-row items-end">
+<header class="flex justify-between flex-row items-end" aria-label="Header">
   <!-- Logo -->
   <div class="flex-0 w-40 md:w-52 xl:mr-4">
     <a href="/">
@@ -50,12 +65,17 @@ const { pages } = Astro.props;
   </div>
   <div class="flex flex-row gap-x-6 items-end">
     <!-- Desktop navigation -->
-    <nav class="hidden md:flex flex-row gap-x-4 items-baseline">
+    <nav
+      role="navigation"
+      aria-label="Main desktop navigation"
+      class="desktop-navigation hidden md:flex flex-row gap-x-4 items-baseline"
+    >
       {
-        pages.map((page) => (
+        currentPages.map((page) => (
           <a
             href={page.slug}
             class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
+            class:list={[{ "link-underline-fixed": page.active }]}
           >
             {page.title}
           </a>
@@ -63,33 +83,44 @@ const { pages } = Astro.props;
       }
     </nav>
     <!-- Hamburger button -->
-    <button class="icon" id="menuButton" name="menu">
+    <button
+      class="icon cursor-pointer flex gap-y-[6px] flex-col transition-transform duration-300 ease-in-out md:p-[6px]"
+      id="menuButton"
+      name="menu"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
       <span></span>
     </button>
   </div>
+  <!-- Full page navigation -->
+  <nav
+    class="full-page-nav bg-tedBlack fixed left-0 right-0 bottom-0 z-30 flex flex-col justify-end pt-4"
+    id="nav"
+    aria-label="Main full page navigation"
+    aria-hidden="true"
+  >
+    <ul class="container flex flex-col items-end pb-12 gap-y-4 overflow-auto">
+      {
+        currentPages.map((page) => (
+          <li>
+            <h3>
+              <a
+                href={page.slug}
+                class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
+                class:list={[{ "link-underline-fixed": page.active }]}
+              >
+                {page.title}
+              </a>
+            </h3>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
-
-<!-- Full page navigation -->
-<nav class="full-page-nav bg-tedBlack z-30 flex flex-col justify-end" id="nav">
-  <ul class="container flex flex-col items-end pb-12 gap-y-4">
-    {
-      pages.map((page) => (
-        <li>
-          <h3>
-            <a
-              href={page.slug}
-              class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
-            >
-              {page.title}
-            </a>
-          </h3>
-        </li>
-      ))
-    }
-  </ul>
-</nav>
 
 <style lang="scss">
   @import "src/styles/variables.scss";
@@ -98,12 +129,7 @@ const { pages } = Astro.props;
     height: $header-height;
   }
   .icon {
-    cursor: pointer;
-    display: flex;
-    gap: 6px;
-    flex-direction: column;
     transition: transform 0.3s ease-in-out;
-    padding: 6px;
     & span {
       width: 25px;
       height: 2px;
@@ -127,12 +153,8 @@ const { pages } = Astro.props;
   .full-page-nav {
     transition:
       visibility 0s,
-      opacity 0.3s ease-in-out;
-    position: fixed;
+      opacity 0.2s ease-in-out;
     top: $header-height;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 64px);
     opacity: 0;
     visibility: hidden;
     &.open {

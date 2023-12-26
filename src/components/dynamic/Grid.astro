@@ -1,9 +1,6 @@
 ---
-import type {
-  TypeComponentGrid,
-  TypeComponentGridSkeleton,
-} from "@lib/generated/contentful";
-import type { ChainModifier, Entry } from "@lib/utils";
+import type { TypeComponentGridSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 import DynamicComponent from "@components/DynamicComponent.astro";
 
 interface Props extends Entry<TypeComponentGridSkeleton> {}

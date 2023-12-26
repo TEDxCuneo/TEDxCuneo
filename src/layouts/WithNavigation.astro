@@ -1,41 +1,15 @@
 ---
 import "@styles/main.css";
 import Header from "@components/Header.astro";
-import GoogleTagManager from "@components/GoogleTagManager.astro";
-import CookieyesBanner from "@components/CookieyesBanner.astro";
-import contentful from "@lib/contentful";
-import type {
-  TypePageSkeleton,
-  TypeWebsiteSkeleton,
-} from "@lib/generated/contentful";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
 import Footer from "@components/Footer.astro";
-import type { Entry } from "@lib/utils";
+import type { Entry } from "@lib/types";
 import Base from "./Base.astro";
+import navbarPages from "@lib/website";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
 const page = Astro.props;
-
-// Get pages to show in the navbar
-const navbarPages: {
-  title: string;
-  slug: string;
-}[] = (
-  await contentful.getEntries<TypeWebsiteSkeleton>({
-    content_type: "website",
-    "fields.active": "Si", // workaround to make Website a singleton
-    include: 1,
-  })
-).items.flatMap((item) => {
-  const pages = item.fields.menuPages as unknown as TypePageSkeleton[];
-  return pages.map((page) => {
-    return {
-      slug: page?.fields.slug as unknown as string,
-      title: (page?.fields.navbarLabel ??
-        page?.fields.title) as unknown as string,
-    };
-  });
-});
 ---
 
 <Base {...page}>

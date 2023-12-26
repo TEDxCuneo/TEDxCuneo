@@ -274,7 +274,7 @@
 /*      ----------|---------- */
 /* -----|---------|------ */
 .home-banner-2022 {
-  background-image: url('../assets/img/home/heart.svg');
+  background-image: url('/img/home/heart.svg');
   background-position: center 85%;
   background-repeat: no-repeat;
   background-size: 300px;
@@ -292,10 +292,10 @@
   will-change: transform; 
 }
 .home-top-writing{
-  background-image: url('../assets/img/home/top_write.svg');
+  background-image: url('/img/home/top_write.svg');
 }
 .home-bottom-writing{
-  background-image: url('../assets/img/home/bottom_write.svg');
+  background-image: url('/img/home/bottom_write.svg');
 }
 
 @screen md {

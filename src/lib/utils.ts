@@ -1,9 +1,20 @@
-import type { Entry as RawEntry, EntrySkeletonType } from "contentful";
-
-export type ChainModifier = "WITHOUT_UNRESOLVABLE_LINKS";
-
-export type Entry<T extends EntrySkeletonType> = RawEntry<
-  T,
-  ChainModifier,
-  string
->;
+/**
+ * Formats a date as a string in the format "HH:MM:SS"
+ *
+ * @param date The date to format
+ * @returns The formatted date as a string in the format "HH:MM:SS"
+ */
+export function formatTimestamp(date: Date): string {
+  // format timestamp as HH:MM:SS
+  const ts = `${date.getHours().toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${date.getMinutes().toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${date.getSeconds().toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
+  return ts;
+}

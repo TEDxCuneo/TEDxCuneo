@@ -4,12 +4,14 @@ import {
   isTypeComponentRichText,
   isTypeTeamMember,
   isTypeSpeaker,
+  isTypePartner,
 } from "@lib/generated/contentful";
-import type { Entry } from "@lib/utils";
+import type { Entry } from "@lib/types";
 import RichText from "./dynamic/RichText.astro";
 import Grid from "./dynamic/Grid.astro";
 import TeamMember from "./dynamic/TeamMember.astro";
 import Speaker from "./dynamic/SpeakerCard.astro";
+import Partner from "./dynamic/Partner.astro";
 
 interface Props extends Entry<any> {}
 
@@ -20,3 +22,4 @@ const component = Astro.props;
 {isTypeComponentGrid(component) && <Grid {...component} />}
 {isTypeTeamMember(component) && <TeamMember {...component} />}
 {isTypeSpeaker(component) && <Speaker {...component} />}
+{isTypePartner(component) && <Partner {...component} />}

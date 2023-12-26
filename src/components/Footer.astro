@@ -1,20 +1,40 @@
 ---
+import type { Link } from "@lib/types";
+
 const now = new Date();
 
-const links = [
+const links: Link[] = [
   {
-    label: "Informativa trattamento dati",
+    label: "Informativa trattamento dati ↗",
     url: "/informativa-trattamento-dei-dati/",
     target: "_self",
   },
   {
-    label: "Cookie policy",
+    label: "Cookie policy ↗",
     url: "/cookie-policy/",
     target: "_self",
   },
   {
-    label: "Repository GitHub",
+    label: "Repository GitHub ↗",
     url: "https://github.com/TEDxCuneo/TEDxCuneo",
+    target: "_blank",
+  },
+];
+
+const social: Link[] = [
+  {
+    label: "Instagram ↗",
+    url: "https://www.instagram.com/tedxcuneo/",
+    target: "_blank",
+  },
+  {
+    label: "Linkedin ↗",
+    url: "https://www.linkedin.com/company/tedxcuneo/",
+    target: "_blank",
+  },
+  {
+    label: "Facebook ↗",
+    url: "https://www.facebook.com/TEDxCuneo/",
     target: "_blank",
   },
 ];
@@ -40,23 +60,18 @@ const links = [
 
     <div class="flex flex-col justify-between">
       <div class="mb-4 md:mb-6">
-        <a
-          class="mr-3 text-decoration-tedRed"
-          href="{{ settings.instagram }}"
-          target="_blank">Instagram ↗</a
-        >
-        <a
-          class="mr-3 text-decoration-tedRed"
-          href="{{ settings.facebook }}"
-          target="_blank">Facebook ↗</a
-        >
-        <a
-          class="text-decoration-tedRed"
-          href="{{ settings.linkedin }}"
-          target="_blank">Linkedin ↗</a
-        >
+        {
+          social.map((link) => (
+            <a
+              class="mr-3 text-decoration-tedRed"
+              href={link.url}
+              target={link.target ?? "_blank"}
+            >
+              {link.label}
+            </a>
+          ))
+        }
       </div>
-
       <p class="">
         Associazione Anima Silvae
         <br />

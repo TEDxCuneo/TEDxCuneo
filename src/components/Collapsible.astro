@@ -21,12 +21,11 @@ const { title, id } = Astro.props;
     >
       <h2>{title ?? "Collapsible"}</h2>
       <div class="plus-icon inline-block mr-2 relative w-4 h-4">
-        <span
-          class="bg-tedRed block w-full h-0.5 absolute left-0 top-1/2 -translate-y-1/2 transition-transform"
-        ></span>
-        <span
-          class="bg-tedRed block w-full h-0.5 absolute left-0 top-1/2 -translate-y-1/2 transition-transform"
-        ></span>
+        {
+          [0, 1].map(() => (
+            <span class="bg-tedRed block w-full h-0.5 absolute left-0 top-1/2 -translate-y-1/2 transition-transform duration-300 origin-center" />
+          ))
+        }
       </div>
     </label>
   </div>
@@ -42,16 +41,17 @@ const { title, id } = Astro.props;
         height: auto;
         overflow: visible;
       }
-      &:checked ~ .handle label .plus-icon span:first-child {
-        transform: rotate(180deg);
+      &:checked ~ .handle label .plus-icon span {
+        &:first-child {
+          transform: rotate(180deg);
+        }
+        &:last-child {
+          transform: rotate(180deg);
+        }
       }
-    }
-    .content {
-      transition: height 0.3s ease;
     }
     .plus-icon {
       span {
-        transform-origin: center;
         &:first-child {
           transform: rotate(90deg);
         }
