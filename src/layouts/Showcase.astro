@@ -4,7 +4,7 @@ import WithNavigation from "./WithNavigation.astro";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
 import PageIntro from "@components/PageIntro.astro";
 import DynamicComponent from "@components/DynamicComponent.astro";
-import Collapsible from "@components/Collapsible.astro";
+import Collapsible from "@components/Accordion.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -21,7 +21,7 @@ const page = Astro.props;
     page.fields.content
       ?.filter((c) => c?.sys.id)
       .map((c) => (
-        <Collapsible title={c!.fields.internalTitle} id={c!.sys.id!}>
+        <Collapsible title={c!.fields.internalTitle}>
           <DynamicComponent {...c!} />
         </Collapsible>
       ))

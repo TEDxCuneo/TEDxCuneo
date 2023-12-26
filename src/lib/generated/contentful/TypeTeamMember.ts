@@ -8,18 +8,6 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
  */
 export interface TypeTeamMemberFields {
     /**
-     * Field type definition for field 'internalTitle' (Titolo interno)
-     * @name Titolo interno
-     * @localized false
-     */
-    internalTitle: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'image' (Immagine)
-     * @name Immagine
-     * @localized false
-     */
-    image?: EntryFieldTypes.AssetLink;
-    /**
      * Field type definition for field 'firstName' (Nome)
      * @name Nome
      * @localized false
@@ -31,6 +19,12 @@ export interface TypeTeamMemberFields {
      * @localized false
      */
     lastName: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'image' (Immagine)
+     * @name Immagine
+     * @localized false
+     */
+    image?: EntryFieldTypes.AssetLink;
     /**
      * Field type definition for field 'role' (Ruolo)
      * @name Ruolo
@@ -57,7 +51,7 @@ export interface TypeTeamMemberFields {
  * @type {TypeTeamMemberSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-23T12:40:55.206Z
- * @version 7
+ * @version 13
  */
 export type TypeTeamMemberSkeleton = EntrySkeletonType<TypeTeamMemberFields, "teamMember">;
 /**
@@ -66,7 +60,7 @@ export type TypeTeamMemberSkeleton = EntrySkeletonType<TypeTeamMemberFields, "te
  * @type {TypeTeamMember}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-23T12:40:55.206Z
- * @version 7
+ * @version 13
  */
 export type TypeTeamMember<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeTeamMemberSkeleton, Modifiers, Locales>;
 

@@ -1,0 +1,67 @@
+---
+/**
+ * Collapsible component, makes the content collapsible
+ */
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<script>
+  const handles = document.getElementsByClassName("handle");
+  for (const handle of handles) {
+    handle.addEventListener("click", () => {
+      handle.nextElementSibling!.classList.toggle("open");
+      handle.classList.toggle("open");
+    });
+  }
+</script>
+
+<section class="mb-8 accordion" aria-expanded="false">
+  <div
+    class="handle mb-4 flex items-center justify-between cursor-pointer py-6 border-b border-tedDarkWhite"
+  >
+    <h2>{title ?? "Accordion"}</h2>
+    <div
+      class="plus-icon inline-block mr-2 relative w-4 h-4"
+      role="button"
+      aria-label="Toggle accordion"
+    >
+      {
+        [0, 1].map(() => (
+          <span class="bg-tedRed block w-full h-0.5 absolute left-0 top-1/2 -translate-y-1/2 transition-transform duration-300 origin-center" />
+        ))
+      }
+    </div>
+  </div>
+  <div class="content mx-auto overflow-y-hidden h-0" role="tabpanel">
+    <slot />
+  </div>
+</section>
+
+<style lang="scss">
+  .content.open {
+    height: auto;
+    overflow: visible;
+  }
+  .handle.open {
+    .plus-icon span {
+      &:first-child {
+        transform: rotate(180deg);
+      }
+      &:last-child {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .plus-icon {
+    span {
+      &:first-child {
+        transform: rotate(90deg);
+      }
+    }
+  }
+</style>

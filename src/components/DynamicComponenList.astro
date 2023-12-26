@@ -1,7 +1,9 @@
 ---
 import {
+  type TypeComponentAccordionSkeleton,
   type TypeComponentGridSkeleton,
   type TypeComponentRichTextSkeleton,
+  type TypePageSkeleton,
 } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
 import PageSection from "./PageSection.astro";
@@ -9,7 +11,12 @@ import DynamicComponent from "./DynamicComponent.astro";
 
 interface Props {
   components?: (
-    | Entry<TypeComponentGridSkeleton | TypeComponentRichTextSkeleton>
+    | Entry<
+        | TypeComponentGridSkeleton
+        | TypeComponentRichTextSkeleton
+        | TypeComponentAccordionSkeleton
+        | TypePageSkeleton
+      >
     | undefined
   )[];
 }

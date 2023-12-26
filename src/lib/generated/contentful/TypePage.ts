@@ -1,4 +1,5 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
 import type { TypeComponentGridSkeleton } from "./TypeComponentGrid";
 import type { TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
 
@@ -146,7 +147,7 @@ export interface TypePageFields {
      * @localized false
      * @summary Il contenuto libero della pagina
      */
-    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentGridSkeleton | TypeComponentRichTextSkeleton>>;
+    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypePageSkeleton>>;
     /**
      * Field type definition for field 'navbarLabel' (Label per menù)
      * @name Label per menù
@@ -162,7 +163,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 45
+ * @version 49
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -171,7 +172,7 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 45
+ * @version 49
  */
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
 

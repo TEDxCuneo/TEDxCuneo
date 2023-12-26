@@ -89,6 +89,7 @@ export default {
             maxWidth: "880px",
             color: theme("colors.tedWhite"),
             a: {
+              fontWeight: "inherit",
               color: theme("colors.tedWhite"),
               "&:hover": {
                 color: theme("colors.tedRed"),

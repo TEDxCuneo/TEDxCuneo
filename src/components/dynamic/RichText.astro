@@ -4,7 +4,6 @@ import {
   documentToHtmlString,
   type Options,
 } from "@contentful/rich-text-html-renderer";
-import type { AssetFields } from "contentful";
 import type { TypeComponentRichText } from "@lib/generated/contentful";
 import type { ChainModifier } from "@lib/types";
 
@@ -16,19 +15,12 @@ interface Props extends TypeComponentRichText<ChainModifier, string> {}
 const options: Partial<Options> = {
   renderMark: {},
   renderNode: {
-    // @ts-ignore
     [BLOCKS.EMBEDDED_ASSET]: ({
       data: {
         target: {
           fields: { title, file },
         },
       },
-    }: {
-      data: {
-        target: {
-          fields: AssetFields;
-        };
-      };
     }) => {
       return `<picture>
         <source srcset="${file?.url}?fm=webp&q=80&w=1200&h=800" type="image/webp">
@@ -36,11 +28,10 @@ const options: Partial<Options> = {
         <img src="${file?.url}?fm=jpg&q=80&w=1200&h=800" alt="${title}" loading="lazy">
       </picture>`;
     },
-    // @ts-ignore
     [INLINES.HYPERLINK]: ({ data: { uri }, content }, next) => {
       return `<a href="${uri}" target="${
         ourHostRegex.test(uri) ? "_self" : "_blank"
-      }" rel="noopener noreferrer" class="no-underline link-underline link-underline-fixed ">${next(
+      }" class="no-underline link-underline link-underline-fixed ">${next(
         content
       )}</a>`;
     },

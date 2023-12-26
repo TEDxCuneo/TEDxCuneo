@@ -1,4 +1,5 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
 import type { TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
 import type { TypePartnerSkeleton } from "./TypePartner";
 import type { TypeSpeakerSkeleton } from "./TypeSpeaker";
@@ -61,7 +62,7 @@ export interface TypeComponentGridFields {
      * @name Elementi
      * @localized false
      */
-    elements: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentRichTextSkeleton | TypePartnerSkeleton | TypeSpeakerSkeleton | TypeTeamMemberSkeleton>>;
+    elements: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentRichTextSkeleton | TypePartnerSkeleton | TypeSpeakerSkeleton | TypeTeamMemberSkeleton>>;
 }
 
 /**
@@ -70,7 +71,7 @@ export interface TypeComponentGridFields {
  * @type {TypeComponentGridSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-22T21:32:33.934Z
- * @version 15
+ * @version 17
  */
 export type TypeComponentGridSkeleton = EntrySkeletonType<TypeComponentGridFields, "componentGrid">;
 /**
@@ -79,7 +80,7 @@ export type TypeComponentGridSkeleton = EntrySkeletonType<TypeComponentGridField
  * @type {TypeComponentGrid}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-22T21:32:33.934Z
- * @version 15
+ * @version 17
  */
 export type TypeComponentGrid<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentGridSkeleton, Modifiers, Locales>;
 

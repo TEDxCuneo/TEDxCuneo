@@ -1,3 +1,5 @@
+export { isTypeComponentAccordion } from "./TypeComponentAccordion";
+export type { TypeComponentAccordion, TypeComponentAccordionFields, TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
 export { isTypeComponentGrid } from "./TypeComponentGrid";
 export type { TypeComponentGrid, TypeComponentGridFields, TypeComponentGridSkeleton } from "./TypeComponentGrid";
 export { isTypeComponentRichText } from "./TypeComponentRichText";

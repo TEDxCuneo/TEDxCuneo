@@ -9,11 +9,11 @@ import type { TypePageSkeleton } from "./TypePage";
  */
 export interface TypeSpeakerFields {
     /**
-     * Field type definition for field 'titoloInterno' (Titolo interno)
+     * Field type definition for field 'internalTitle' (Titolo interno)
      * @name Titolo interno
      * @localized false
      */
-    titoloInterno: EntryFieldTypes.Symbol;
+    internalTitle: EntryFieldTypes.Symbol;
     /**
      * Field type definition for field 'image' (Immagine)
      * @name Immagine
@@ -65,7 +65,7 @@ export interface TypeSpeakerFields {
  * @type {TypeSpeakerSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-23T14:59:21.889Z
- * @version 5
+ * @version 13
  */
 export type TypeSpeakerSkeleton = EntrySkeletonType<TypeSpeakerFields, "speaker">;
 /**
@@ -74,7 +74,7 @@ export type TypeSpeakerSkeleton = EntrySkeletonType<TypeSpeakerFields, "speaker"
  * @type {TypeSpeaker}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-23T14:59:21.889Z
- * @version 5
+ * @version 13
  */
 export type TypeSpeaker<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeSpeakerSkeleton, Modifiers, Locales>;
 

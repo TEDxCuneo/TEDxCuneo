@@ -1,0 +1,51 @@
+---
+import type { AssetFields } from "contentful";
+interface Props {
+  preTitle?: string;
+  title?: string;
+  description?: string;
+  image?: AssetFields;
+  url?: string;
+  urlLabel?: string;
+}
+
+const { preTitle, title, description, image, url, urlLabel } = Astro.props;
+
+const imageUrl = image?.file?.url ?? "";
+---
+
+<a
+  href={url}
+  class="-mx-4 px-4 py-4 gap-y-4 gap-x-8 bg-tedGray no-underline flex flex-col md:rounded-lg lg:flex-row lg:p-8"
+>
+  <div class="">
+    <picture>
+      <source
+        type="image/webp"
+        srcset={`${imageUrl}?h=410&fit=fill&fm=webp 1x, ${imageUrl}?h=820&fit=fill&fm=webp 2x`}
+      />
+      <source
+        type="image/jpeg"
+        srcset={`${imageUrl}?w=410&h=350&fit=fill&q=70&fm=jpg 1x, ${imageUrl}?h=820&fit=fill&q=70&fm=jpg 2x`}
+      />
+      <img
+        loading="lazy"
+        class="object-cover w-full rounded-lg h-full"
+        src={`${imageUrl}?h=410&fit=fill&q=70&fm=jpg`}
+        alt={image?.title}
+      />
+    </picture>
+  </div>
+  <div class="flex flex-col justify-between lg:max-w-[60%]">
+    <div>
+      <h3 class="text-tedDarkWhite mb-4 lg:mb-6">{preTitle}</h3>
+      <h1 class="mb-4 lg:mb-6">{title}</h1>
+      <p class="mb-6 lg:mb-8">{description}</p>
+    </div>
+    <div class="flex justify-end">
+      <span class="link-underline link-underline-fixed no-underline">
+        {urlLabel}
+      </span>
+    </div>
+  </div>
+</a>

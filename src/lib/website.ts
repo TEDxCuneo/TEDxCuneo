@@ -15,14 +15,15 @@ const navbarPages: {
     include: 1,
   })
 ).items.flatMap((item) => {
-  const pages = item.fields.menuPages as unknown as TypePageSkeleton[];
-  return pages.map((page) => {
-    return {
-      slug: page?.fields.slug as unknown as string,
-      title: (page?.fields.navbarLabel ??
-        page?.fields.title) as unknown as string,
-    };
-  });
+  const pages = item.fields.menuPages;
+  return pages
+    .filter((p) => p)
+    .map((page) => {
+      return {
+        slug: page!.fields.slug,
+        title: page!.fields.navbarLabel ?? page!.fields.title,
+      };
+    });
 });
 
 export default navbarPages;
