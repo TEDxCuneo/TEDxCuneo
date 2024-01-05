@@ -1,8 +1,5 @@
 import contentful from "./contentful";
-import type {
-  TypePageSkeleton,
-  TypeWebsiteSkeleton,
-} from "./generated/contentful";
+import type { TypeWebsiteSkeleton } from "./generated/contentful";
 
 // Get pages to show in the navbar
 const navbarPages: {

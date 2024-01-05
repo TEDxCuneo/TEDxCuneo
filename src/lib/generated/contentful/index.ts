@@ -1,9 +1,15 @@
 export { isTypeComponentAccordion } from "./TypeComponentAccordion";
 export type { TypeComponentAccordion, TypeComponentAccordionFields, TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
+export { isTypeComponentCarousel } from "./TypeComponentCarousel";
+export type { TypeComponentCarousel, TypeComponentCarouselFields, TypeComponentCarouselSkeleton } from "./TypeComponentCarousel";
 export { isTypeComponentGrid } from "./TypeComponentGrid";
 export type { TypeComponentGrid, TypeComponentGridFields, TypeComponentGridSkeleton } from "./TypeComponentGrid";
 export { isTypeComponentRichText } from "./TypeComponentRichText";
 export type { TypeComponentRichText, TypeComponentRichTextFields, TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
+export { isTypeComponentSpecialSection } from "./TypeComponentSpecialSection";
+export type { TypeComponentSpecialSection, TypeComponentSpecialSectionFields, TypeComponentSpecialSectionSkeleton } from "./TypeComponentSpecialSection";
+export { isTypeComponentVideo } from "./TypeComponentVideo";
+export type { TypeComponentVideo, TypeComponentVideoFields, TypeComponentVideoSkeleton } from "./TypeComponentVideo";
 export { isTypePage } from "./TypePage";
 export type { TypePage, TypePageFields, TypePageSkeleton } from "./TypePage";
 export { isTypePartner } from "./TypePartner";

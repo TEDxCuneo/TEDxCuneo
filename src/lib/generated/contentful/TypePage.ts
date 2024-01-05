@@ -1,7 +1,10 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
+import type { TypeComponentCarouselSkeleton } from "./TypeComponentCarousel";
 import type { TypeComponentGridSkeleton } from "./TypeComponentGrid";
 import type { TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
+import type { TypeComponentSpecialSectionSkeleton } from "./TypeComponentSpecialSection";
+import type { TypeComponentVideoSkeleton } from "./TypeComponentVideo";
 
 /**
  * Fields type definition for content type 'TypePage'
@@ -147,7 +150,7 @@ export interface TypePageFields {
      * @localized false
      * @summary Il contenuto libero della pagina
      */
-    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypePageSkeleton>>;
+    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentCarouselSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypeComponentSpecialSectionSkeleton | TypeComponentVideoSkeleton | TypePageSkeleton>>;
     /**
      * Field type definition for field 'navbarLabel' (Label per menù)
      * @name Label per menù
@@ -163,7 +166,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 49
+ * @version 53
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -172,7 +175,7 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 49
+ * @version 53
  */
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
 

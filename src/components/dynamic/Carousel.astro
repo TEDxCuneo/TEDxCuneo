@@ -1,0 +1,10 @@
+---
+import type { TypeComponentCarouselSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
+
+interface Props extends Entry<TypeComponentCarouselSkeleton> {}
+
+const {
+  fields: { type, cards, images, showNavigation },
+} = Astro.props;
+---

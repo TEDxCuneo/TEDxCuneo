@@ -1,8 +1,11 @@
 ---
 import {
   type TypeComponentAccordionSkeleton,
+  type TypeComponentCarouselSkeleton,
   type TypeComponentGridSkeleton,
   type TypeComponentRichTextSkeleton,
+  type TypeComponentSpecialSectionSkeleton,
+  type TypeComponentVideoSkeleton,
   type TypePageSkeleton,
 } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
@@ -15,6 +18,9 @@ interface Props {
         | TypeComponentGridSkeleton
         | TypeComponentRichTextSkeleton
         | TypeComponentAccordionSkeleton
+        | TypeComponentVideoSkeleton
+        | TypeComponentCarouselSkeleton
+        | TypeComponentSpecialSectionSkeleton
         | TypePageSkeleton
       >
     | undefined
