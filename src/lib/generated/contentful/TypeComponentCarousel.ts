@@ -1,5 +1,7 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypePartnerSkeleton } from "./TypePartner";
 import type { TypeSpeakerSkeleton } from "./TypeSpeaker";
+import type { TypeTeamMemberSkeleton } from "./TypeTeamMember";
 
 /**
  * Fields type definition for content type 'TypeComponentCarousel'
@@ -14,6 +16,12 @@ export interface TypeComponentCarouselFields {
      * @localized false
      */
     internalTitle: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'title' (Titolo)
+     * @name Titolo
+     * @localized false
+     */
+    title?: EntryFieldTypes.Symbol;
     /**
      * Field type definition for field 'type' (Tipo)
      * @name Tipo
@@ -38,7 +46,7 @@ export interface TypeComponentCarouselFields {
      * @name Cards
      * @localized false
      */
-    cards?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeSpeakerSkeleton>>;
+    cards?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePartnerSkeleton | TypeSpeakerSkeleton | TypeTeamMemberSkeleton>>;
 }
 
 /**
@@ -47,7 +55,7 @@ export interface TypeComponentCarouselFields {
  * @type {TypeComponentCarouselSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T18:36:19.750Z
- * @version 5
+ * @version 9
  */
 export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarouselFields, "componentCarousel">;
 /**
@@ -56,7 +64,7 @@ export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarou
  * @type {TypeComponentCarousel}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T18:36:19.750Z
- * @version 5
+ * @version 9
  */
 export type TypeComponentCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentCarouselSkeleton, Modifiers, Locales>;
 

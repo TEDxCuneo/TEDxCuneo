@@ -164,9 +164,6 @@
   animation: reverse-spin 100s linear infinite;
 }
 
-.swiper-slide {
-  height: auto !important;
-}
 
 .landing-map-home::before {
   width: 719px;

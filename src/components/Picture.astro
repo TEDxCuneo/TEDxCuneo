@@ -1,0 +1,64 @@
+---
+import type { Asset } from "@lib/types";
+
+interface Props extends Asset {
+  width: number;
+  crop?: "pad" | "fill" | "scale" | "thumb" | "crop";
+  focusArea?:
+    | "center"
+    | "top"
+    | "right"
+    | "bottom"
+    | "left"
+    | "top_right"
+    | "bottom_right"
+    | "bottom_left"
+    | "top_left"
+    | "face"
+    | "faces";
+  quality?: number;
+}
+
+const {
+  width,
+  fields: { file, title },
+  crop,
+  focusArea,
+  quality = 75,
+} = Astro.props;
+
+let additionalAttributes = `&q=${quality}`;
+additionalAttributes += crop ? `&fit=${crop}` : "";
+additionalAttributes += focusArea ? `&f=${focusArea}` : "";
+---
+
+{
+  file && (
+    <picture>
+      <source
+        type="image/avif"
+        srcset={`${file.url}?w=${width}&fm=avif${additionalAttributes} 1x, ${
+          file.url
+        }?w=${2 * width}&fm=avif${additionalAttributes} 2x`}
+      />
+      <source
+        type="image/webp"
+        srcset={`${file.url}?w=${width}&fm=webp${additionalAttributes} 1x, ${
+          file.url
+        }?w=${2 * width}&fm=webp${additionalAttributes} 2x`}
+      />
+      <source
+        type="image/jpeg"
+        srcset={`${file.url}?w=${width}&fm=jpg${additionalAttributes} 1x, ${
+          file.url
+        }?w=${2 * width}&fm=jpg${additionalAttributes} 2x`}
+      />
+      <img
+        class="object-cover w-full"
+        loading="lazy"
+        src={`${file.url}?w=${width}&fm=jpg${additionalAttributes}`}
+        alt={title ?? ""}
+      />
+    </picture>
+  )
+}

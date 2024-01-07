@@ -1,4 +1,8 @@
-import type { Entry as RawEntry, EntrySkeletonType } from "contentful";
+import type {
+  Entry as RawEntry,
+  EntrySkeletonType,
+  Asset as RawAsset,
+} from "contentful";
 
 export type ChainModifier = "WITHOUT_UNRESOLVABLE_LINKS";
 
@@ -13,3 +17,5 @@ export type Link = {
   url: string;
   target?: string;
 };
+
+export type Asset = RawAsset<ChainModifier, string>;

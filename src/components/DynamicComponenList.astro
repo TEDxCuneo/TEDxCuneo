@@ -13,18 +13,7 @@ import PageSection from "./PageSection.astro";
 import DynamicComponent from "./DynamicComponent.astro";
 
 interface Props {
-  components?: (
-    | Entry<
-        | TypeComponentGridSkeleton
-        | TypeComponentRichTextSkeleton
-        | TypeComponentAccordionSkeleton
-        | TypeComponentVideoSkeleton
-        | TypeComponentCarouselSkeleton
-        | TypeComponentSpecialSectionSkeleton
-        | TypePageSkeleton
-      >
-    | undefined
-  )[];
+  components?: (Entry<any> | undefined)[];
 }
 
 const { components } = Astro.props;
