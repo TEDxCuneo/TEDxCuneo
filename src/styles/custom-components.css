@@ -19,4 +19,8 @@
   .link-underline:hover, .link-underline-fixed {
     background-size: 100% 3px;
   }
+
+  .swiper-slide {
+    height: auto!important;
+  }
 }

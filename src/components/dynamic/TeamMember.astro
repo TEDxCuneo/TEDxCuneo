@@ -1,34 +1,30 @@
 ---
+import Picture from "@components/Picture.astro";
 import type { TypeTeamMemberSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
+import type { Code } from "astro:components";
 
-interface Props extends Entry<TypeTeamMemberSkeleton> {}
+interface Props extends Entry<TypeTeamMemberSkeleton> {
+  class?: string;
+}
 
 const {
+  class: className = "",
   fields: { firstName, lastName, image, link, linkLabel, role },
 } = Astro.props;
 ---
 
-<div>
+<div class:list={className}>
   {
-    image?.fields.file && (
-      <picture>
-        <source
-          type="image/webp"
-          srcset={`${image!.fields.file!.url}?w=300&h=300&fit=thumb&fm=webp`}
-        />
-        <source
-          type="image/jpeg"
-          srcset={`${
-            image!.fields.file!.url
-          }?w=300&h=300&fit=thumb&fm=jpg&q=60`}
-        />
-        <img
-          class="mb-2"
-          src={`${image!.fields.file!.url}?w=300&h=300&fit=thumb&q=60`}
-          alt={`${firstName} ${lastName}`}
-        />
-      </picture>
+    image && (
+      <Picture
+        {...image}
+        class="mb-2"
+        width={300}
+        height={300}
+        crop="thumb"
+        alt={`${firstName} ${lastName}`}
+      />
     )
   }
   <div>

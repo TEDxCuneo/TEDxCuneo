@@ -2,9 +2,12 @@
 import type { TypeSpeakerSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
 
-interface Props extends Entry<TypeSpeakerSkeleton> {}
+interface Props extends Entry<TypeSpeakerSkeleton> {
+  class?: string;
+}
 
 const {
+  class: className = "",
   fields: { firstName, lastName, job, image, page, talkTitle },
 } = Astro.props;
 
@@ -15,7 +18,10 @@ const WrapperHtmlElement = clickable ? "a" : "div";
 <WrapperHtmlElement
   href={page?.fields.slug}
   class="rounded-lg no-underline bg-tedGray flex flex-col justify-between shadow overflow-hidden h-auto self-stretch transition ease-in-out delay-100 duration-200 select-none"
-  class:list={clickable ? ["md:hover:scale-105", "cursor-pointer"] : []}
+  class:list={[
+    className,
+    clickable && ["md:hover:scale-105", "cursor-pointer"],
+  ]}
 >
   <div class="mb-6">
     <picture>
@@ -41,7 +47,7 @@ const WrapperHtmlElement = clickable ? "a" : "div";
           <p class="mb-2 text-tedDarkWhite">
             {firstName}&nbsp;{lastName}
           </p>
-          <h3 class="mb-2 text-tedDarkWhite">{talkTitle}</h3>
+          <h3 class="mb-2">{talkTitle}</h3>
         </>
       ) : (
         <>

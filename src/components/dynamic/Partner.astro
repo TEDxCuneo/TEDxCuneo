@@ -2,9 +2,12 @@
 import type { TypePartnerSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
 
-interface Props extends Entry<TypePartnerSkeleton> {}
+interface Props extends Entry<TypePartnerSkeleton> {
+  class?: string;
+}
 
 const {
+  class: className = "",
   fields: { name, url, logo },
 } = Astro.props;
 
@@ -25,8 +28,9 @@ const imageStyle =
 <WrapperHtmlElement
   href={clickable ? url : undefined}
   target={clickable ? "_blank" : undefined}
-  style="background: rgba(255, 255, 255, 0.06); padding-bottom: 66.66%"
-  class="block w-full relative rounded transition ease-in-out delay-300 duration-200 select-none md:hover:scale-105"
+  style="background: rgba(255, 255, 255, 0.06);"
+  class="block w-full relative rounded transition ease-in-out delay-300 duration-200 select-none aspect-[3/2] md:hover:scale-105"
+  class:list={className}
 >
   {
     logo && logo.fields.file && (

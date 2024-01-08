@@ -21,8 +21,8 @@ const {
 
 {title && <h2 class="mb-6">{title}</h2>}
 <div class="relative w-full mx-auto flex flex-col">
-  <div class="swiper w-full" id={`swiper-${id}`}>
-    <div class="swiper-wrapper">
+  <div class="swiper w-full" id={`swiper-${id}`} style="overflow: visible">
+    <div class="swiper-wrapper flex items-stretch">
       {
         type === "Immagini" ? (
           images?.map(
@@ -38,11 +38,20 @@ const {
             {cards?.map(
               (c) =>
                 c && (
-                  <div class="swiper-slide">
-                    {isTypeSpeaker(c) && <Speaker {...c} />}
-                    {isTypePartner(c) && <Partner {...c} />}
-                    {isTypeTeamMember(c) && <TeamMember {...c} />}
-                  </div>
+                  <>
+                    {isTypeSpeaker(c) && (
+                      <Speaker {...c} class="swiper-slide" />
+                    )}
+                    {isTypePartner(c) && (
+                      <Partner {...c} class="swiper-slide" />
+                    )}
+                    {isTypeTeamMember(c) && (
+                      <TeamMember
+                        {...c}
+                        class="swiper-slide flex flex-column"
+                      />
+                    )}
+                  </>
                 )
             )}
           </>
@@ -51,7 +60,7 @@ const {
     </div>
     {
       showNavigation === true && (
-        <div class="flex justify-center items-center mt-12">
+        <div class="flex justify-center items-center mt-8">
           <div class="flex items-center">
             <button class="swiper-button-prev bg-white -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
               <svg
