@@ -12,32 +12,34 @@ const page = Astro.props;
 const PROD = !import.meta.env.DEV;
 
 const description =
-  (page.fields.ogDescription as string) ??
+  page.fields.ogDescription ??
   "Vogliamo rendere Cuneo, la nostra città, un luogo di incontro e scambio, dove la cultura e la condivisione fanno nascere nuove idee.";
 
 const title =
-  (page.fields.browserTitle as string) ??
+  page.fields.browserTitle ??
   "TEDxCuneo - Portiamo nuove idee da condividere a Cuneo";
 
 const ogTitle =
-  (page.fields.ogTitle as string) ??
-  "TEDxCuneo - Portiamo nuove idee da condividere a Cuneo";
+  page.fields.ogTitle.length > 0
+    ? page.fields.ogTitle
+    : "TEDxCuneo - Portiamo nuove idee da condividere a Cuneo";
 
 const ogImage = page.fields.ogImage?.fields.file?.url
   ? `https:${page.fields.ogImage?.fields.file?.url}?fm=jpg&q=70&w=1200&h=630&fit=thumb`
-  : undefined;
+  : "/img/tedxcuneo_og_image.jpg";
 
 const index = page.fields.noIndex ? "noindex" : "index";
 const follow = page.fields.noFollow ? "nofollow" : "follow";
 const robots = `${index}, ${follow}`;
 
-const keywords = page.fields.keywords ? page.fields.keywords!.join(", ") : "";
+const keywords = page.fields.keywords?.join(", ") ?? "TEDxCuneo, TEDx, Cuneo";
 ---
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <title>{title}</title>
+  <link rel="sitemap" href="/sitemap-index.xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content={keywords} />
   <meta name="generator" content={Astro.generator} />

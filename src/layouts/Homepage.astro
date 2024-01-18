@@ -1,7 +1,7 @@
 ---
 import type { Entry } from "@lib/types";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
-import WithNavigation from "./WithNavigation.astro";
+import WithNavigation from "./abstract/WithNavigation.astro";
 import DynamicComponenList from "@components/DynamicComponenList.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}

@@ -23,4 +23,19 @@
   .swiper-slide {
     height: auto!important;
   }
+
+  /* .button {
+    @apply cursor-pointer font-bold text-small uppercase text-tedBlack bg-tedWhite py-3 px-4 rounded-none no-underline transition-colors;
+    
+  }
+  .button::hover {
+    @apply bg-tedRed text-tedWhite;
+  }
+
+  .button--red {
+    @apply button bg-tedRed text-tedWhite;
+  }
+  .button--red::hover {
+    @apply bg-tedWhite text-tedRed;
+  } */
 }

@@ -1,0 +1,24 @@
+---
+import WithNavigation from "src/layouts/abstract/WithNavigation.astro";
+import { fakePage } from "@lib/utils";
+
+const page = { ...fakePage };
+
+page.fields = {
+  ...page.fields,
+  title: "Pagina non trovata | TEDxCuneo",
+  browserTitle: "Pagina non trovata | TEDxCuneo",
+  ogTitle: "Pagina non trovata | TEDxCuneo",
+  ogDescription: "Errore 404 - Pagina non trovata :(",
+};
+---
+
+<WithNavigation {...page}>
+  <div class="flex-1 flex flex-col items-center justify-center text-center">
+    <div>
+      <h1 class="mb-6">Errore 404</h1>
+      <p class="mb-5">La pagina che stai cercando non esiste.</p>
+      <a href="/" class="button--red">Torna alla home</a>
+    </div>
+  </div>
+</WithNavigation>

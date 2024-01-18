@@ -13,9 +13,11 @@ const page = Astro.props;
 ---
 
 <Base {...page}>
-  <div class="container overflow-x-hidden">
+  <div class="container overflow-x-hidden flex flex-col min-h-screen relative">
     <Header pages={navbarPages} />
-    <slot />
+    <main class="flex-1 relative flex flex-col">
+      <slot />
+    </main>
     <Footer />
   </div>
 </Base>
