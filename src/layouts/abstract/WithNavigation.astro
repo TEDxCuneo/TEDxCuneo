@@ -5,7 +5,7 @@ import type { TypePageSkeleton } from "@lib/generated/contentful";
 import Footer from "@components/Footer.astro";
 import type { Entry } from "@lib/types";
 import Base from "./Base.astro";
-import navbarPages from "@lib/website";
+import website from "@lib/website";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -14,10 +14,10 @@ const page = Astro.props;
 
 <Base {...page}>
   <div class="container overflow-x-hidden flex flex-col min-h-screen relative">
-    <Header pages={navbarPages} />
+    <Header {...website} />
     <main class="flex-1 relative flex flex-col">
       <slot />
     </main>
-    <Footer />
+    <Footer {...website} />
   </div>
 </Base>

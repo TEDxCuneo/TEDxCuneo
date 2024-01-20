@@ -110,6 +110,13 @@ export interface TypePageFields {
      */
     noFollow: EntryFieldTypes.Boolean;
     /**
+     * Field type definition for field 'previewKicker' (Kicker preview)
+     * @name Kicker preview
+     * @localized false
+     * @summary Il testo da mostrare prima del titolo della preview
+     */
+    previewKicker?: EntryFieldTypes.Symbol;
+    /**
      * Field type definition for field 'previewTitle' (Titolo Preview)
      * @name Titolo Preview
      * @localized false
@@ -145,19 +152,19 @@ export interface TypePageFields {
      */
     browserTitle?: EntryFieldTypes.Symbol;
     /**
-     * Field type definition for field 'content' (Contenuto)
-     * @name Contenuto
-     * @localized false
-     * @summary Il contenuto libero della pagina
-     */
-    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentCarouselSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypeComponentSpecialSectionSkeleton | TypeComponentVideoSkeleton | TypePageSkeleton>>;
-    /**
      * Field type definition for field 'navbarLabel' (Label per menù)
      * @name Label per menù
      * @localized false
      * @summary Il testo visualizzato nel link verso questa pagina nel menù di navigazione. e.g. team.
      */
     navbarLabel?: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'content' (Contenuto)
+     * @name Contenuto
+     * @localized false
+     * @summary Il contenuto libero della pagina
+     */
+    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentCarouselSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypeComponentSpecialSectionSkeleton | TypeComponentVideoSkeleton | TypePageSkeleton>>;
 }
 
 /**
@@ -166,7 +173,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 53
+ * @version 57
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -175,7 +182,7 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 53
+ * @version 57
  */
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
 

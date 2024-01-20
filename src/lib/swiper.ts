@@ -4,21 +4,28 @@ import "swiper/css";
 document.addEventListener("DOMContentLoaded", function () {
   const carousels = document.getElementsByClassName("swiper");
   for (const carousel of carousels) {
+    const title = carousel.getAttribute("data-title");
     const swiper = new Swiper(`#${carousel.id}`, {
       loop: false,
-      slidesPerView: 1.2,
+      spaceBetween: 15,
+      slidesPerView: "auto",
+      a11y: {
+        enabled: true,
+        containerMessage: title ?? "Carosello",
+        prevSlideMessage: "Slide precedente",
+        nextSlideMessage: "Slide successiva",
+        firstSlideMessage: "Prima slide",
+        containerRoleDescriptionMessage: "Carosello",
+        id: carousel.id,
+        itemRoleDescriptionMessage: "Slide",
+        lastSlideMessage: "Ultima slide",
+      },
       breakpoints: {
-        540: {
-          slidesPerView: 1.5,
-          spaceBetween: 10,
-        },
         768: {
-          slidesPerView: 2.2,
-          spaceBetween: 10,
+          spaceBetween: 18,
         },
         1024: {
-          slidesPerView: 3.5,
-          spaceBetween: 10,
+          spaceBetween: 20,
         },
       },
     });

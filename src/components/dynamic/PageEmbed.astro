@@ -2,15 +2,27 @@
 import CallToAction from "@components/CallToAction.astro";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
+
 interface Props extends Entry<TypePageSkeleton> {}
 
 const page = Astro.props;
+
+// Don't render the preview if the page has not the image, the title and the description
+const skipRender =
+  !page.fields.previewImage ||
+  !page.fields.previewTitle ||
+  !page.fields.previewDescription;
 ---
 
-<CallToAction
-  title={page.fields.previewTitle}
-  description={page.fields.previewDescription}
-  image={page.fields.previewImage?.fields}
-  url={page.fields.slug}
-  urlLabel={page.fields.previewCTAText}
-/>
+{
+  !skipRender && (
+    <CallToAction
+      kicker={page.fields.previewKicker}
+      title={page.fields.previewTitle}
+      description={page.fields.previewDescription}
+      image={page.fields.previewImage ?? page.fields.ogImage}
+      url={page.fields.slug}
+      urlLabel={page.fields.previewCTAText}
+    />
+  )
+}

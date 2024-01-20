@@ -1,23 +1,28 @@
 ---
-interface Props {
-  pages: {
-    title: string;
-    slug: string;
-    active?: boolean;
-  }[];
-}
+import type { TypeWebsiteSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-const { pages } = Astro.props;
+interface Props extends Entry<TypeWebsiteSkeleton> {}
 
-// Set active page
+const {
+  fields: { menuPages, hamburgerPages: rawHamburgerPages },
+} = Astro.props;
+
 const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, "");
-const currentPages = pages.map((page) => {
-  //ignore starting or trailing slashes
-  return {
-    ...page,
-    active: page.slug.replace(/^\/|\/$/g, "") === currentPath,
-  };
-});
+
+const mapPages = (pages: Entry<TypeWebsiteSkeleton>["fields"]["menuPages"]) =>
+  pages
+    .map((page) => {
+      return {
+        title: page?.fields.navbarLabel ?? page?.fields.title,
+        slug: page?.fields.slug,
+        active: currentPath === page?.fields.slug.replace(/^\/|\/$/g, ""), //ignore starting or trailing slashes
+      };
+    })
+    .filter((page) => page.title && page.slug !== undefined);
+
+const headerPages = mapPages(menuPages);
+const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 ---
 
 <script>
@@ -71,7 +76,7 @@ const currentPages = pages.map((page) => {
       class="desktop-navigation hidden md:flex flex-row gap-x-4 items-baseline"
     >
       {
-        currentPages.map((page) => (
+        headerPages.map((page) => (
           <a
             href={page.slug}
             class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
@@ -104,7 +109,7 @@ const currentPages = pages.map((page) => {
   >
     <ul class="container flex flex-col items-end pb-12 gap-y-4 overflow-auto">
       {
-        currentPages.map((page) => (
+        hamburgerPages.map((page) => (
           <li>
             <h3>
               <a

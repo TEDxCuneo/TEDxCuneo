@@ -1,26 +1,13 @@
 import contentful from "./contentful";
 import type { TypeWebsiteSkeleton } from "./generated/contentful";
 
-// Get pages to show in the navbar
-const navbarPages: {
-  title: string;
-  slug: string;
-}[] = (
+// Get website settings
+const websiteSettings = (
   await contentful.getEntries<TypeWebsiteSkeleton>({
     content_type: "website",
     "fields.active": "Si", // workaround to make Website a singleton
     include: 1,
   })
-).items.flatMap((item) => {
-  const pages = item.fields.menuPages;
-  return pages
-    .filter((p) => p)
-    .map((page) => {
-      return {
-        slug: page!.fields.slug,
-        title: page!.fields.navbarLabel ?? page!.fields.title,
-      };
-    });
-});
+).items[0];
 
-export default navbarPages;
+export default websiteSettings;

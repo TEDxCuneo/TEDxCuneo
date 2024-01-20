@@ -55,7 +55,7 @@ export interface TypeComponentCarouselFields {
  * @type {TypeComponentCarouselSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T18:36:19.750Z
- * @version 9
+ * @version 11
  */
 export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarouselFields, "componentCarousel">;
 /**
@@ -64,7 +64,7 @@ export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarou
  * @type {TypeComponentCarousel}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T18:36:19.750Z
- * @version 9
+ * @version 11
  */
 export type TypeComponentCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentCarouselSkeleton, Modifiers, Locales>;
 

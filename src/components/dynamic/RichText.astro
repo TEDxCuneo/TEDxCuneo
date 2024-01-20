@@ -15,6 +15,21 @@ interface Props extends TypeComponentRichText<ChainModifier, string> {}
 const options: Partial<Options> = {
   renderMark: {},
   renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, next) =>
+      `<p>${next(node.content).replace(/\n/g, "<br/>")}</p>`,
+    [BLOCKS.TABLE]: (node, next) => {
+      return `<div class="overflow-x-auto">
+          <table class="table-auto overflow-scroll w-full border-collapse overflow-x-auto">${next(
+            node.content
+          )}</table>
+        </div>`;
+    },
+    [BLOCKS.TABLE_CELL]: (node, next) => {
+      return `<td class="px-4 py-2">${next(node.content)}</td>`;
+    },
+    [BLOCKS.TABLE_HEADER_CELL]: (node, next) => {
+      return `<td class="bo px-4 py-2">${next(node.content)}</td>`;
+    },
     [BLOCKS.EMBEDDED_ASSET]: ({
       data: {
         target: {
@@ -31,9 +46,7 @@ const options: Partial<Options> = {
     [INLINES.HYPERLINK]: ({ data: { uri }, content }, next) => {
       return `<a href="${uri}" target="${
         ourHostRegex.test(uri) ? "_self" : "_blank"
-      }" class="no-underline link-underline link-underline-fixed ">${next(
-        content
-      )}</a>`;
+      }" class="link-underline link-underline-fixed">${next(content)}</a>`;
     },
   },
 };

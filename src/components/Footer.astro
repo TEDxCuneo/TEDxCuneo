@@ -1,19 +1,16 @@
 ---
-import type { Link } from "@lib/types";
+import type { TypeWebsiteSkeleton } from "@lib/generated/contentful";
+import type { Entry, Link } from "@lib/types";
+
+interface Props extends Entry<TypeWebsiteSkeleton> {}
+
+const {
+  fields: { footerPages, linkedin, instagram, facebook },
+} = Astro.props;
 
 const now = new Date();
 
 const links: Link[] = [
-  {
-    label: "Informativa trattamento dati ↗",
-    url: "/informativa-trattamento-dei-dati/",
-    target: "_self",
-  },
-  {
-    label: "Cookie policy ↗",
-    url: "/cookie-policy/",
-    target: "_self",
-  },
   {
     label: "Repository GitHub ↗",
     url: "https://github.com/TEDxCuneo/TEDxCuneo",
@@ -24,78 +21,90 @@ const links: Link[] = [
 const social: Link[] = [
   {
     label: "Instagram ↗",
-    url: "https://www.instagram.com/tedxcuneo/",
+    url: instagram ?? "https://www.instagram.com/tedxcuneo/",
     target: "_blank",
   },
   {
     label: "Linkedin ↗",
-    url: "https://www.linkedin.com/company/tedxcuneo/",
+    url: linkedin ?? "https://www.linkedin.com/company/tedxcuneo/",
     target: "_blank",
   },
   {
     label: "Facebook ↗",
-    url: "https://www.facebook.com/TEDxCuneo/",
+    url: facebook ?? "https://www.facebook.com/TEDxCuneo/",
     target: "_blank",
   },
 ];
+
+if (footerPages) {
+  footerPages
+    .filter((page) => page && page.fields.slug)
+    .map((page) => ({
+      label: (page!.fields.navbarLabel ?? page!.fields.title) + " ↗",
+      url: `/${page!.fields.slug}`,
+      target: "_self",
+    }))
+    .reverse()
+    .forEach((link) => links.unshift(link));
+}
 ---
 
-<footer class="flex-grow-0 py-4">
-  <div
-    class="md:min-h-280 border-t border-tedWhite grid grid-cols-1 py-4 gap-y-5 md:gap-x-10 md:grid-cols-3 md:py-7"
-  >
-    <div class="h-full flex flex-col justify-between">
-      <img
-        class="hidden w-44 mb-4 md:mb-6 md:block"
-        src="/img/tedxcuneo_logo.svg"
-        alt="Logo TEDxCuneo svg"
-      />
-      <div>
-        <p class="text-tedDarkWhite">
-          © {now.getFullYear()} TEDxCuneo - This independent TED event is
-          operated under license from TED.
-        </p>
-      </div>
+<footer
+  class="flex-grow-0 border-t py-8 border-tedWhite grid grid-cols-1 gap-y-10 gap-x-10 md:grid-cols-3 md:min-h-280"
+>
+  <div class="h-full flex flex-col justify-between">
+    <img
+      class="w-44 mb-4 md:mb-6 md:block"
+      src="/img/tedxcuneo_logo.svg"
+      alt="Logo TEDxCuneo svg"
+    />
+    <div>
+      <p class="text-tedDarkWhite">
+        © {now.getFullYear()} TEDxCuneo - This independent TED event is operated
+        under license from TED.
+      </p>
     </div>
+  </div>
 
-    <div class="flex flex-col justify-between">
-      <div class="mb-4 md:mb-6">
-        {
-          social.map((link) => (
+  <div class="flex flex-col justify-between">
+    <div class="mb-4 inline-flex flex-col gap-2 xl:mb-6 xl:flex-row">
+      {
+        social.map((link) => (
+          <p>
             <a
-              class="mr-3 text-decoration-tedRed"
+              class="link-underline link-underline-fixed"
               href={link.url}
               target={link.target ?? "_blank"}
             >
               {link.label}
             </a>
-          ))
-        }
-      </div>
-      <p class="">
-        Associazione Anima Silvae
-        <br />
-         Via Luigi Teresio Cavallo 7/B - Cuneo CF 96100380045
-      </p>
+          </p>
+        ))
+      }
     </div>
+    <p class="">
+      Associazione Anima Silvae
+      <br />
+      Via Luigi Teresio Cavallo 7/B - Cuneo CF 96100380045
+    </p>
+  </div>
 
-    <div class="flex flex-col justify-between">
-      <div></div>
-      <div>
-        {
-          links.map((link) => (
-            <div class="mb-3">
-              <a
-                class="text-decoration-tedRed"
-                href={link.url}
-                target={link.target}
-              >
-                {link.label}
-              </a>
-            </div>
-          ))
-        }
-      </div>
+  <div class="flex flex-col justify-between">
+    <div></div>
+    <div>
+      {
+        links.map((link) => (
+          <div class="mb-3">
+            <a
+              class="link-underline link-underline-fixed"
+              href={link.url}
+              target={link.target}
+            >
+              {link.label}
+            </a>
+          </div>
+        ))
+      }
     </div>
   </div>
 </footer>

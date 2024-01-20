@@ -21,12 +21,42 @@ export interface TypeWebsiteFields {
      */
     active: EntryFieldTypes.Symbol<"Si">;
     /**
+     * Field type definition for field 'linkedin' (URL Linkedin)
+     * @name URL Linkedin
+     * @localized false
+     */
+    linkedin?: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'instagram' (URL Instagram)
+     * @name URL Instagram
+     * @localized false
+     */
+    instagram?: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'facebook' (URL Facebook)
+     * @name URL Facebook
+     * @localized false
+     */
+    facebook?: EntryFieldTypes.Symbol;
+    /**
      * Field type definition for field 'menuPages' (Pagine nel menù)
      * @name Pagine nel menù
      * @localized false
      * @summary Le pagine da mostrare nell'header del sito.
      */
     menuPages: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
+    /**
+     * Field type definition for field 'hamburgerPages' (Pagine nel menù hamburger)
+     * @name Pagine nel menù hamburger
+     * @localized false
+     */
+    hamburgerPages?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
+    /**
+     * Field type definition for field 'footerPages' (Pagine nel footer)
+     * @name Pagine nel footer
+     * @localized false
+     */
+    footerPages?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
 }
 
 /**
@@ -35,7 +65,7 @@ export interface TypeWebsiteFields {
  * @type {TypeWebsiteSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 13
+ * @version 17
  */
 export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website">;
 /**
@@ -44,7 +74,7 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @type {TypeWebsite}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 13
+ * @version 17
  */
 export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
 

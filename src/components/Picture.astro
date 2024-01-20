@@ -74,6 +74,8 @@ const height2x = height ? `&h=${2 * height}` : "";
         loading={lazy ? "lazy" : "eager"}
         src={`${file.url}?w=${width}&fm=jpg${additionalAttributes}${height1x}`}
         alt={alt ?? title ?? ""}
+        width={width}
+        height={height}
       />
     </picture>
   )

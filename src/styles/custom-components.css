@@ -1,12 +1,16 @@
 @layer components {
   .link-underline {
+    text-decoration: none;
     border-bottom-width: 0;
     background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
     background-size: 0 3px;
     background-position: 0 100%;
     background-repeat: no-repeat;
     transition: background-size .3s ease-in-out;
-    background-image: linear-gradient(transparent, transparent), linear-gradient(#FF2B06, #FF2B06)
+    background-image: linear-gradient(transparent, transparent), linear-gradient(#FF2B06, #FF2B06);
+    * {
+      text-decoration: none;
+    }
   }
 
   h2 .link-underline {
@@ -21,10 +25,12 @@
   }
 
   .swiper-slide {
-    height: auto!important;
+    min-width: 250px;
+    height: auto !important;
+    flex-shrink: 1 !important;
   }
 
-  /* .button {
+  .button {
     @apply cursor-pointer font-bold text-small uppercase text-tedBlack bg-tedWhite py-3 px-4 rounded-none no-underline transition-colors;
     
   }
@@ -37,5 +43,5 @@
   }
   .button--red::hover {
     @apply bg-tedWhite text-tedRed;
-  } */
+  }
 }

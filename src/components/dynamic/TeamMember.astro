@@ -5,10 +5,12 @@ import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypeTeamMemberSkeleton> {
   class?: string;
+  lazy?: boolean;
 }
 
 const {
   class: className = "",
+  lazy = true,
   fields: { firstName, lastName, image, link, linkLabel, role },
 } = Astro.props;
 ---
@@ -19,9 +21,10 @@ const {
       <Picture
         {...image}
         class="mb-2"
-        width={300}
-        height={300}
+        width={320}
+        height={320}
         crop="thumb"
+        lazy={lazy}
         alt={`${firstName} ${lastName}`}
       />
     )

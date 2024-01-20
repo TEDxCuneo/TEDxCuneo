@@ -35,7 +35,7 @@ export interface TypeComponentAccordionFields {
  * @type {TypeComponentAccordionSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-26T20:37:47.836Z
- * @version 3
+ * @version 5
  */
 export type TypeComponentAccordionSkeleton = EntrySkeletonType<TypeComponentAccordionFields, "componentAccordion">;
 /**
@@ -44,7 +44,7 @@ export type TypeComponentAccordionSkeleton = EntrySkeletonType<TypeComponentAcco
  * @type {TypeComponentAccordion}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-12-26T20:37:47.836Z
- * @version 3
+ * @version 5
  */
 export type TypeComponentAccordion<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentAccordionSkeleton, Modifiers, Locales>;
 

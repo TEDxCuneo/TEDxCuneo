@@ -1,4 +1,5 @@
 ---
+import Picture from "@components/Picture.astro";
 import type { TypeSpeakerSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
 
@@ -24,21 +25,13 @@ const WrapperHtmlElement = clickable ? "a" : "div";
   ]}
 >
   <div class="mb-6">
-    <picture>
-      <source
-        type="image/webp"
-        srcset={image?.fields.file?.url + "?w=500&h=500&fit=thumb&fm=webp"}
-      />
-      <source
-        type="image/jpeg"
-        srcset={image?.fields.file?.url + "?w=500&h=500&fit=thumb&q=70&fm=jpg"}
-      />
-      <img
-        class="w-full"
-        src={image?.fields.file?.url + "?w=500&h=500&fit=thumb&q=70&fm=jpg"}
-        alt={firstName + " " + lastName}
-      />
-    </picture>
+    <Picture
+      {...image!}
+      class="w-full"
+      alt={firstName + " " + lastName}
+      width={500}
+      height={500}
+    />
   </div>
   <div class="px-4 pb-4">
     {
