@@ -1,0 +1,15 @@
+.button {
+  @apply cursor-pointer font-bold text-center text-small uppercase text-tedBlack bg-tedWhite py-3 px-4 rounded-none no-underline transition-colors;
+  &--white {
+    @apply bg-tedWhite text-tedBlack;
+    &:hover {
+      @apply bg-tedRed text-tedWhite;
+    }
+  }
+  &--red {
+    @apply bg-tedRed text-tedWhite;
+    &:hover {
+      @apply bg-tedWhite text-tedRed;
+    }
+  }
+}

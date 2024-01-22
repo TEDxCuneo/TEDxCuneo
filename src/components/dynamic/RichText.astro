@@ -46,7 +46,7 @@ const options: Partial<Options> = {
     [INLINES.HYPERLINK]: ({ data: { uri }, content }, next) => {
       return `<a href="${uri}" target="${
         ourHostRegex.test(uri) ? "_self" : "_blank"
-      }" class="link-underline link-underline-fixed">${next(content)}</a>`;
+      }" class="link-underline link-underline--fixed">${next(content)}</a>`;
     },
   },
 };
@@ -57,6 +57,6 @@ const {
 ---
 
 <div
-  class="w-full prose mx-auto"
+  class="w-full rich-text mx-auto"
   set:html={content ? documentToHtmlString(content, options) : ""}
 />

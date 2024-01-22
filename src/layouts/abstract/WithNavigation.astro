@@ -1,5 +1,5 @@
 ---
-import "@styles/main.css";
+import "@styles/main.scss";
 import Header from "@components/Header.astro";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
 import Footer from "@components/Footer.astro";
@@ -13,7 +13,8 @@ const page = Astro.props;
 ---
 
 <Base {...page}>
-  <div class="container overflow-x-hidden flex flex-col min-h-screen relative">
+  <slot name="before-container" />
+  <div class="container relative flex flex-col min-h-screen">
     <Header {...website} />
     <main class="flex-1 relative flex flex-col">
       <slot />

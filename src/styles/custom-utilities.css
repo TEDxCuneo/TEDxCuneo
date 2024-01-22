@@ -1,5 +1,0 @@
-@layer utilities {
-  .text-decoration-tedRed {
-    text-decoration-color: theme("colors.tedRed");
-  }
-}

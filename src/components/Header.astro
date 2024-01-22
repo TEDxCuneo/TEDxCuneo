@@ -63,7 +63,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 
 <header class="flex justify-between flex-row items-end" aria-label="Header">
   <!-- Logo -->
-  <div class="flex-0 w-40 md:w-52 xl:mr-4">
+  <div class="flex-0 w-40 z-20 md:w-52 xl:mr-4">
     <a href="/">
       <img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
     </a>
@@ -80,7 +80,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
           <a
             href={page.slug}
             class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
-            class:list={[{ "link-underline-fixed": page.active }]}
+            class:list={[{ "link-underline--fixed": page.active }]}
           >
             {page.title}
           </a>
@@ -89,7 +89,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
     </nav>
     <!-- Hamburger button -->
     <button
-      class="icon cursor-pointer flex gap-y-[6px] flex-col transition-transform duration-300 ease-in-out md:p-[6px]"
+      class="icon cursor-pointer flex gap-y-[6px] flex-col z-20 transition-transform duration-300 ease-in-out md:p-[6px]"
       id="menuButton"
       name="menu"
       aria-label="Menu"
@@ -102,7 +102,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
   </div>
   <!-- Full page navigation -->
   <nav
-    class="full-page-nav bg-tedBlack fixed left-0 right-0 bottom-0 z-30 flex flex-col justify-end pt-4"
+    class="full-page-nav bg-tedBlack fixed left-0 right-0 bottom-0 top-[0] z-10 flex flex-col justify-end pt-4"
     id="nav"
     aria-label="Main full page navigation"
     aria-hidden="true"
@@ -115,7 +115,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
               <a
                 href={page.slug}
                 class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
-                class:list={[{ "link-underline-fixed": page.active }]}
+                class:list={[{ "link-underline--fixed": page.active }]}
               >
                 {page.title}
               </a>
@@ -159,35 +159,11 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
     transition:
       visibility 0s,
       opacity 0.2s ease-in-out;
-    top: $header-height;
     opacity: 0;
     visibility: hidden;
     &.open {
       visibility: visible;
       opacity: 1;
     }
-  }
-  .link-underline {
-    border-bottom-width: 0;
-    background-image: linear-gradient(transparent, transparent),
-      linear-gradient(#fff, #fff);
-    background-size: 0 3px;
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    transition: background-size 0.3s ease-in-out;
-    background-image: linear-gradient(transparent, transparent),
-      linear-gradient(#ff2b06, #ff2b06);
-  }
-
-  h2 .link-underline {
-    background-position: 0 88%;
-  }
-  h1 .link-underline {
-    background-position: 0 87%;
-  }
-
-  .link-underline:hover,
-  .link-underline-fixed {
-    background-size: 100% 3px;
   }
 </style>

@@ -43,7 +43,7 @@ const gapXClass = `gap-x-${contentfulGaptoTwGap(gapX)}`;
 const gapYClass = `gap-y-${contentfulGaptoTwGap(gapY)}`;
 ---
 
-<h2 class="mb-6">{heading}</h2>
+{heading && <h2 class="mb-6">{heading}</h2>}
 
 <div class={`w-full grid gap-y- ${colsClass} ${gapXClass} ${gapYClass}`}>
   {elements?.filter((e) => e).map((e) => <DynamicComponent {...e!} />)}

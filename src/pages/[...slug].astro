@@ -5,6 +5,7 @@ import Homepage from "src/layouts/Homepage.astro";
 import Generic from "src/layouts/Generic.astro";
 import type { Entry } from "@lib/types";
 import Showcase from "src/layouts/Showcase.astro";
+import Partnership from "src/layouts/Partnership.astro";
 
 export async function getStaticPaths() {
   const pages = await contentful.getEntries<TypePageSkeleton>({
@@ -13,8 +14,11 @@ export async function getStaticPaths() {
   });
 
   return pages.items.map((page) => {
+    const slug = page.fields.slug.startsWith("/")
+      ? page.fields.slug
+      : `/${page.fields.slug}`;
     return {
-      params: { slug: page.fields.slug == "/" ? undefined : page.fields.slug },
+      params: { slug: slug === "/" ? undefined : slug },
       props: {
         page: page,
       },
@@ -32,6 +36,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
       return Generic;
     case "Showcase":
       return Showcase;
+    case "Partnership":
+      return Partnership;
     default:
       return Generic;
   }

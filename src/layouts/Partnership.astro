@@ -1,0 +1,42 @@
+---
+import type { Entry } from "@lib/types";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import WithNavigation from "./abstract/WithNavigation.astro";
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+---
+
+<WithNavigation {...page}>
+  <div
+    style="background-image: url('/img/partnership_hero.jpg')"
+    class="absolute top-0 left-0 right-0 w-full h-550 z-1 bg-center bg-no-repeat bg-cover sm:h-600 md:h-800"
+    slot="before-container"
+  >
+  </div>
+  <div class="mt-20 mb-40 xsm:mb-64 md:mb-56 lg:mb-56">
+    <h1 class="mb-16 xxsm:mb-24 max-w-660 md:mb-28 md:mt-16">
+      {page.fields.title}
+    </h1>
+
+    <svg class="h-12" viewBox="0 0 13 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fill="white"
+        d="M2.03383e-07 17.1647L6.5 24L13 17.1647L11.8973 15.9898L7.29799 20.8264L7.29799 -2.49243e-07L5.70201 -3.19005e-07L5.70201 20.8264L1.11719 15.9898L2.03383e-07 17.1647Z"
+      ></path>
+    </svg>
+  </div>
+
+  <div class="flex flex-col mb-16 md:flex-row items-start md:items-center">
+    <h3 class="mb-4 md:mb-0">Perchè diventare partner</h3>
+    <a href="#partner-form" class="button button--white md:ml-8"
+      >diventa partner</a
+    >
+  </div>
+
+  <DynamicComponenList components={page.fields.content} />
+</WithNavigation>
+
+<style lang="scss"></style>
