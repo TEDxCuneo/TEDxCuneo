@@ -41,7 +41,9 @@ if (footerPages) {
     .filter((page) => page && page.fields.slug)
     .map((page) => ({
       label: (page!.fields.navbarLabel ?? page!.fields.title) + " ↗",
-      url: `/${page!.fields.slug}`,
+      url: page!.fields.slug.startsWith("/")
+        ? `${page!.fields.slug}`
+        : `/${page!.fields.slug}`,
       target: "_self",
     }))
     .reverse()

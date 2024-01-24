@@ -12,11 +12,14 @@ const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, "");
 
 const mapPages = (pages: Entry<TypeWebsiteSkeleton>["fields"]["menuPages"]) =>
   pages
+    .filter((page) => page?.fields?.slug !== undefined)
     .map((page) => {
       return {
-        title: page?.fields.navbarLabel ?? page?.fields.title,
-        slug: page?.fields.slug,
-        active: currentPath === page?.fields.slug.replace(/^\/|\/$/g, ""), //ignore starting or trailing slashes
+        title: page!.fields.navbarLabel ?? page!.fields.title,
+        slug: page!.fields.slug.startsWith("/")
+          ? `${page!.fields.slug}`
+          : `/${page!.fields.slug}`,
+        active: currentPath === page!.fields.slug.replace(/^\/|\/$/g, ""), //ignore starting or trailing slashes
       };
     })
     .filter((page) => page.title && page.slug !== undefined);
