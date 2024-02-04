@@ -17,7 +17,7 @@ const {
   },
 } = Astro.props;
 
-function contentfulGaptoTwGap(
+function contentfulGapToTwGap(
   gap: "None" | "lg" | "sm" | "xlg" | "xsm" | "xxlg" | "xxsm"
 ): string {
   switch (gap) {
@@ -39,8 +39,8 @@ function contentfulGaptoTwGap(
 }
 
 const colsClass = `grid-cols-${mobileColumnsAmount} md:grid-cols-${tabletColumnsAmount} lg:grid-cols-${desktopColumnsAmount}`;
-const gapXClass = `gap-x-${contentfulGaptoTwGap(gapX)}`;
-const gapYClass = `gap-y-${contentfulGaptoTwGap(gapY)}`;
+const gapXClass = `gap-x-${contentfulGapToTwGap(gapX)}`;
+const gapYClass = `gap-y-${contentfulGapToTwGap(gapY)}`;
 ---
 
 {heading && <h2 class="mb-6">{heading}</h2>}

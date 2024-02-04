@@ -10,6 +10,7 @@ import {
   isTypeComponentVideo,
   isTypeComponentSpecialSection,
   isTypeComponentCarousel,
+  isTypeComponentCTA,
 } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
 import RichText from "./dynamic/RichText.astro";
@@ -18,10 +19,10 @@ import TeamMember from "./dynamic/TeamMember.astro";
 import Speaker from "./dynamic/SpeakerCard.astro";
 import Partner from "./dynamic/Partner.astro";
 import DynamicAccordion from "./dynamic/DynamicAccordion.astro";
-import PageEmbed from "./dynamic/PageEmbed.astro";
 import Video from "./dynamic/Video.astro";
 import Carousel from "./dynamic/Carousel.astro";
 import SpecialSection from "./dynamic/SpecialSection.astro";
+import CallToAction from "./dynamic/CallToAction.astro";
 
 interface Props extends Entry<any> {} // allow any since we use guards to check the type
 
@@ -34,7 +35,7 @@ const component = Astro.props;
 {isTypeSpeaker(component) && <Speaker {...component} />}
 {isTypePartner(component) && <Partner {...component} />}
 {isTypeComponentAccordion(component) && <DynamicAccordion {...component} />}
-{isTypePage(component) && <PageEmbed {...component} />}
 {isTypeComponentVideo(component) && <Video {...component} />}
 {isTypeComponentCarousel(component) && <Carousel {...component} />}
 {isTypeComponentSpecialSection(component) && <SpecialSection {...component} />}
+{isTypeComponentCTA(component) && <CallToAction {...component} />}

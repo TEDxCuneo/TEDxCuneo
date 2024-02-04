@@ -1,5 +1,7 @@
 export { isTypeComponentAccordion } from "./TypeComponentAccordion";
 export type { TypeComponentAccordion, TypeComponentAccordionFields, TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
+export { isTypeComponentCTA } from "./TypeComponentCTA";
+export type { TypeComponentCTA, TypeComponentCTAFields, TypeComponentCTASkeleton } from "./TypeComponentCTA";
 export { isTypeComponentCarousel } from "./TypeComponentCarousel";
 export type { TypeComponentCarousel, TypeComponentCarouselFields, TypeComponentCarouselSkeleton } from "./TypeComponentCarousel";
 export { isTypeComponentGrid } from "./TypeComponentGrid";

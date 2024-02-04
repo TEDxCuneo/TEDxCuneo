@@ -1,5 +1,6 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
+import type { TypeComponentCTASkeleton } from "./TypeComponentCTA";
 import type { TypeComponentCarouselSkeleton } from "./TypeComponentCarousel";
 import type { TypeComponentGridSkeleton } from "./TypeComponentGrid";
 import type { TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
@@ -110,41 +111,6 @@ export interface TypePageFields {
      */
     noFollow: EntryFieldTypes.Boolean;
     /**
-     * Field type definition for field 'previewKicker' (Kicker preview)
-     * @name Kicker preview
-     * @localized false
-     * @summary Il testo da mostrare prima del titolo della preview
-     */
-    previewKicker?: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'previewTitle' (Titolo Preview)
-     * @name Titolo Preview
-     * @localized false
-     * @summary Titolo della pagina quando viene renderizzata nell'anteprima.
-     */
-    previewTitle?: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'previewImage' (Immagine preview)
-     * @name Immagine preview
-     * @localized false
-     * @summary Immagine della pagina da visualizzare nell'anteprima. 
-     */
-    previewImage?: EntryFieldTypes.AssetLink;
-    /**
-     * Field type definition for field 'previewDescription' (Descrizione preview)
-     * @name Descrizione preview
-     * @localized false
-     * @summary La descrizione della pagina da mostrare nell'anteprima.
-     */
-    previewDescription?: EntryFieldTypes.Text;
-    /**
-     * Field type definition for field 'previewCTAText' (Testo CTA preview)
-     * @name Testo CTA preview
-     * @localized false
-     * @summary Il testo da mostrare sul bottone/link per aprire la pagine corrente dall'anteprima.
-     */
-    previewCTAText?: EntryFieldTypes.Symbol;
-    /**
      * Field type definition for field 'browserTitle' (Testo nel tab del browser)
      * @name Testo nel tab del browser
      * @localized false
@@ -164,7 +130,7 @@ export interface TypePageFields {
      * @localized false
      * @summary Il contenuto libero della pagina
      */
-    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentCarouselSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypeComponentSpecialSectionSkeleton | TypeComponentVideoSkeleton | TypePageSkeleton>>;
+    content?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeComponentAccordionSkeleton | TypeComponentCTASkeleton | TypeComponentCarouselSkeleton | TypeComponentGridSkeleton | TypeComponentRichTextSkeleton | TypeComponentSpecialSectionSkeleton | TypeComponentVideoSkeleton>>;
 }
 
 /**
@@ -173,7 +139,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 59
+ * @version 69
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -182,7 +148,7 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 59
+ * @version 69
  */
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
 
