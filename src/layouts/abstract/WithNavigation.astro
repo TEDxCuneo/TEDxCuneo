@@ -1,24 +1,24 @@
 ---
-import "@styles/main.scss";
-import Header from "@components/Header.astro";
-import type { TypePageSkeleton } from "@lib/generated/contentful";
-import Footer from "@components/Footer.astro";
-import type { Entry } from "@lib/types";
-import Base from "./Base.astro";
-import website from "@lib/website";
+import '@styles/main.scss'
+import Header from '@components/Header.astro'
+import type { TypePageSkeleton } from '@lib/generated/contentful'
+import Footer from '@components/Footer.astro'
+import type { Entry } from '@lib/types'
+import Base from './Base.astro'
+import website from '@lib/website'
 
 interface Props extends Entry<TypePageSkeleton> {}
 
-const page = Astro.props;
+const page = Astro.props
 ---
 
 <Base {...page}>
-  <slot name="before-container" />
-  <div class="container relative flex flex-col min-h-screen">
-    <Header {...website} />
-    <main class="flex-1 relative flex flex-col">
-      <slot />
-    </main>
-    <Footer {...website} />
-  </div>
+	<slot name="before-container" />
+	<div class="container relative flex min-h-screen flex-col">
+		<Header {...website} />
+		<main class="relative flex flex-1 flex-col">
+			<slot />
+		</main>
+		<Footer {...website} />
+	</div>
 </Base>

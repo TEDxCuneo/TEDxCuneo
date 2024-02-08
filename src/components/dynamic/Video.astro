@@ -1,27 +1,27 @@
 ---
-import type { TypeComponentVideoSkeleton } from "@lib/generated/contentful";
-import type { Entry } from "@lib/types";
+import type { TypeComponentVideoSkeleton } from '@lib/generated/contentful'
+import type { Entry } from '@lib/types'
 
 interface Props extends Entry<TypeComponentVideoSkeleton> {}
 
 const {
-  fields: { id, source, maxWidth, aspectRatio },
-} = Astro.props;
+	fields: { id, source, maxWidth, aspectRatio },
+} = Astro.props
 
 const videoUrl =
-  source === "youtube"
-    ? `https://www.youtube-nocookie.com/embed/${id}`
-    : `https://player.vimeo.com/video/${id}`;
+	source === 'youtube'
+		? `https://www.youtube-nocookie.com/embed/${id}`
+		: `https://player.vimeo.com/video/${id}`
 
 const aspectRatioStyle = {
-  aspectRatio: aspectRatio,
-};
+	aspectRatio: aspectRatio,
+}
 ---
 
 <iframe
-  class={`w-full m-auto ${maxWidth ? "max-w-[1000px]" : ""}`}
-  style={aspectRatioStyle}
-  src={videoUrl}
-  title="YouTube video player"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen=""></iframe>
+	class={`w-full m-auto ${maxWidth ? 'max-w-[1000px]' : ''}`}
+	style={aspectRatioStyle}
+	src={videoUrl}
+	title="YouTube video player"
+	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+	allowfullscreen=""></iframe>

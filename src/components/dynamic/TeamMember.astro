@@ -1,43 +1,43 @@
 ---
-import Picture from "@components/Picture.astro";
-import type { TypeTeamMemberSkeleton } from "@lib/generated/contentful";
-import type { Entry } from "@lib/types";
+import Picture from '@components/Picture.astro'
+import type { TypeTeamMemberSkeleton } from '@lib/generated/contentful'
+import type { Entry } from '@lib/types'
 
 interface Props extends Entry<TypeTeamMemberSkeleton> {
-  class?: string;
-  lazy?: boolean;
+	class?: string
+	lazy?: boolean
 }
 
 const {
-  class: className = "",
-  lazy = true,
-  fields: { firstName, lastName, image, link, linkLabel, role },
-} = Astro.props;
+	class: className = '',
+	lazy = true,
+	fields: { firstName, lastName, image, link, linkLabel, role },
+} = Astro.props
 ---
 
 <div class:list={className}>
-  {
-    image && (
-      <Picture
-        {...image}
-        class="mb-2"
-        width={320}
-        height={320}
-        crop="thumb"
-        lazy={lazy}
-        alt={`${firstName} ${lastName}`}
-      />
-    )
-  }
-  <div>
-    <h3 class="mb-2">{firstName}<br />{lastName}</h3>
-    <p class="mb-2">{role}</p>
-    {
-      link && linkLabel && (
-        <a href={link} target="_blank">
-          {linkLabel}↗
-        </a>
-      )
-    }
-  </div>
+	{
+		image && (
+			<Picture
+				{...image}
+				class="mb-2"
+				width={320}
+				height={320}
+				crop="thumb"
+				lazy={lazy}
+				alt={`${firstName} ${lastName}`}
+			/>
+		)
+	}
+	<div>
+		<h3 class="mb-2">{firstName}<br />{lastName}</h3>
+		<p class="mb-2">{role}</p>
+		{
+			link && linkLabel && (
+				<a href={link} target="_blank">
+					{linkLabel}↗
+				</a>
+			)
+		}
+	</div>
 </div>

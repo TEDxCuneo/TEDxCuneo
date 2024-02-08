@@ -1,64 +1,53 @@
 ---
-import Picture from "@components/Picture.astro";
-import type { TypeSpeakerSkeleton } from "@lib/generated/contentful";
-import type { Entry } from "@lib/types";
+import Picture from '@components/Picture.astro'
+import type { TypeSpeakerSkeleton } from '@lib/generated/contentful'
+import type { Entry } from '@lib/types'
 
 interface Props extends Entry<TypeSpeakerSkeleton> {
-  class?: string;
+	class?: string
 }
 
 const {
-  class: className = "",
-  fields: { firstName, lastName, job, image, page, talkTitle },
-} = Astro.props;
+	class: className = '',
+	fields: { firstName, lastName, job, image, page, talkTitle },
+} = Astro.props
 
-const clickable = page ? true : false;
-const WrapperHtmlElement = clickable ? "a" : "div";
+const clickable = page ? true : false
+const WrapperHtmlElement = clickable ? 'a' : 'div'
 ---
 
 <WrapperHtmlElement
-  href={page?.fields.slug}
-  class="rounded-lg no-underline bg-tedGray flex flex-col justify-between shadow overflow-hidden h-auto self-stretch transition ease-in-out delay-100 duration-200 select-none"
-  class:list={[
-    className,
-    clickable && ["md:hover:scale-105", "cursor-pointer"],
-  ]}
+	href={page?.fields.slug}
+	class="flex h-auto select-none flex-col justify-between self-stretch overflow-hidden rounded-lg bg-tedGray no-underline shadow transition delay-100 duration-200 ease-in-out"
+	class:list={[className, clickable && ['md:hover:scale-105', 'cursor-pointer']]}
 >
-  <div class="mb-6">
-    <Picture
-      {...image!}
-      class="w-full"
-      alt={firstName + " " + lastName}
-      width={500}
-      height={500}
-    />
-  </div>
-  <div class="px-4 pb-4">
-    {
-      talkTitle ? (
-        <>
-          <p class="mb-2 text-tedDarkWhite">
-            {firstName}&nbsp;{lastName}
-          </p>
-          <h3 class="mb-2">{talkTitle}</h3>
-        </>
-      ) : (
-        <>
-          <h3 class="mb-2">
-            {firstName}&nbsp;{lastName}
-          </h3>
-          <p class="text-tedDarkWhite">{job}</p>
-        </>
-      )
-    }
-  </div>
-  {
-    page && (
-      <p class="w-full text-center mt-4 pb-4">
-        <span class="link-underline link-underline--fixed">
-          Scopri di più →
-        </span>
-      </p>
-    )
-  }
+	<div class="mb-6">
+		<Picture {...image!} class="w-full" alt={firstName + ' ' + lastName} width={500} height={500} />
+	</div>
+	<div class="px-4 pb-4">
+		{
+			talkTitle ? (
+				<>
+					<p class="mb-2 text-tedDarkWhite">
+						{firstName}&nbsp;{lastName}
+					</p>
+					<h3 class="mb-2">{talkTitle}</h3>
+				</>
+			) : (
+				<>
+					<h3 class="mb-2">
+						{firstName}&nbsp;{lastName}
+					</h3>
+					<p class="text-tedDarkWhite">{job}</p>
+				</>
+			)
+		}
+	</div>
+	{
+		page && (
+			<p class="mt-4 w-full pb-4 text-center">
+				<span class="link-underline link-underline--fixed">Scopri di più →</span>
+			</p>
+		)
+	}
 </WrapperHtmlElement>

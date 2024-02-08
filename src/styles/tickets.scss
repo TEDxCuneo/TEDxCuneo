@@ -1,17 +1,16 @@
-
 .landing-map-tickets::before {
-    width: 100%;
-    height: 100%;
-    right: -100px;
+	width: 100%;
+	height: 100%;
+	right: -100px;
 }
 
-@screen md{
-    .landing-map-tickets::before {
-        right: -300px;
-    }
+@screen md {
+	.landing-map-tickets::before {
+		right: -300px;
+	}
 }
-@screen lg{
-    .landing-map-tickets::before {
-        right: -500px;
-    }
+@screen lg {
+	.landing-map-tickets::before {
+		right: -500px;
+	}
 }

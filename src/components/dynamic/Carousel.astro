@@ -1,115 +1,105 @@
 ---
 import {
-  isTypePartner,
-  isTypeSpeaker,
-  isTypeTeamMember,
-  type TypeComponentCarouselSkeleton,
-} from "@lib/generated/contentful";
-import type { Entry } from "@lib/types";
-import Speaker from "@components/dynamic/SpeakerCard.astro";
-import Picture from "@components/Picture.astro";
-import Partner from "./Partner.astro";
-import TeamMember from "./TeamMember.astro";
+	isTypePartner,
+	isTypeSpeaker,
+	isTypeTeamMember,
+	type TypeComponentCarouselSkeleton,
+} from '@lib/generated/contentful'
+import type { Entry } from '@lib/types'
+import Speaker from '@components/dynamic/SpeakerCard.astro'
+import Picture from '@components/Picture.astro'
+import Partner from './Partner.astro'
+import TeamMember from './TeamMember.astro'
 
 interface Props extends Entry<TypeComponentCarouselSkeleton> {}
 
 const {
-  fields: { type, title, cards, images, showNavigation },
-  sys: { id },
-} = Astro.props;
+	fields: { type, title, cards, images, showNavigation },
+	sys: { id },
+} = Astro.props
 ---
 
 {title && <h2 class="mb-6">{title}</h2>}
-<div class="relative w-full mx-auto flex flex-col">
-  <div
-    class="swiper w-full"
-    id={`swiper-${id}`}
-    style="overflow: visible"
-    data-title={title}
-  >
-    <div class="swiper-wrapper flex items-stretch">
-      {
-        type === "Immagini" ? (
-          images?.map(
-            (i) =>
-              i && (
-                <div class="swiper-slide !min-w-[300px] md:!min-w-[430px]">
-                  <Picture width={450} {...i} class="" />
-                </div>
-              )
-          )
-        ) : (
-          <>
-            {cards?.map(
-              (c) =>
-                c && (
-                  <>
-                    {isTypeSpeaker(c) && (
-                      <Speaker {...c} class="swiper-slide !min-w-[280px]" />
-                    )}
-                    {isTypePartner(c) && (
-                      <Partner
-                        {...c}
-                        class="swiper-slide !min-w-[270px] md:!min-w-[320px]"
-                      />
-                    )}
-                    {isTypeTeamMember(c) && (
-                      <TeamMember
-                        {...c}
-                        lazy={false}
-                        class="swiper-slide flex flex-column !min-w-[270px] md:!min-w-[320px]"
-                      />
-                    )}
-                  </>
-                )
-            )}
-          </>
-        )
-      }
-    </div>
-    {
-      showNavigation === true && (
-        <div class="flex justify-center items-center mt-8">
-          <div class="flex items-center">
-            <button
-              class="swiper-button-prev bg-white -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none"
-              aria-label="Slide precedente"
-            >
-              <svg
-                class="w-6"
-                viewBox="0 0 24 21"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.449 -1.18467e-06L9.17939e-07 10.5L10.449 21L12.2449 19.1953L4.85131 11.7891L24 11.7891L24 9.21094L4.85131 9.21093L12.2449 1.78125L10.449 -1.18467e-06Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="flex items-center">
-            <button
-              class="swiper-button-next bg-white -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none"
-              aria-label="Slide successiva"
-            >
-              <svg
-                class="w-6"
-                viewBox="0 0 24 21"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.551 21L24 10.5L13.551 0L11.7551 1.80469L19.1487 9.21094H0V11.7891H19.1487L11.7551 19.2188L13.551 21Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )
-    }
-  </div>
+<div class="relative mx-auto flex w-full flex-col">
+	<div class="swiper w-full" id={`swiper-${id}`} style="overflow: visible" data-title={title}>
+		<div class="swiper-wrapper flex items-stretch">
+			{
+				type === 'Immagini' ? (
+					images?.map(
+						(i) =>
+							i && (
+								<div class="swiper-slide !min-w-[300px] md:!min-w-[430px]">
+									<Picture width={450} {...i} class="" />
+								</div>
+							),
+					)
+				) : (
+					<>
+						{cards?.map(
+							(c) =>
+								c && (
+									<>
+										{isTypeSpeaker(c) && <Speaker {...c} class="swiper-slide !min-w-[280px]" />}
+										{isTypePartner(c) && (
+											<Partner {...c} class="swiper-slide !min-w-[270px] md:!min-w-[320px]" />
+										)}
+										{isTypeTeamMember(c) && (
+											<TeamMember
+												{...c}
+												lazy={false}
+												class="swiper-slide flex-column flex !min-w-[270px] md:!min-w-[320px]"
+											/>
+										)}
+									</>
+								),
+						)}
+					</>
+				)
+			}
+		</div>
+		{
+			showNavigation === true && (
+				<div class="mt-8 flex items-center justify-center">
+					<div class="flex items-center">
+						<button
+							class="swiper-button-prev bg-white -ml-2 flex h-10 w-10 items-center justify-center rounded-full shadow focus:outline-none lg:-ml-4"
+							aria-label="Slide precedente"
+						>
+							<svg
+								class="w-6"
+								viewBox="0 0 24 21"
+								fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M10.449 -1.18467e-06L9.17939e-07 10.5L10.449 21L12.2449 19.1953L4.85131 11.7891L24 11.7891L24 9.21094L4.85131 9.21093L12.2449 1.78125L10.449 -1.18467e-06Z"
+									fill="white"
+								/>
+							</svg>
+						</button>
+					</div>
+					<div class="flex items-center">
+						<button
+							class="swiper-button-next bg-white -mr-2 flex h-10 w-10 items-center justify-center rounded-full shadow focus:outline-none lg:-mr-4"
+							aria-label="Slide successiva"
+						>
+							<svg
+								class="w-6"
+								viewBox="0 0 24 21"
+								fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M13.551 21L24 10.5L13.551 0L11.7551 1.80469L19.1487 9.21094H0V11.7891H19.1487L11.7551 19.2188L13.551 21Z"
+									fill="white"
+								/>
+							</svg>
+						</button>
+					</div>
+				</div>
+			)
+		}
+	</div>
 </div>
 
 <script src="../../lib/swiper.ts"></script>

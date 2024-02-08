@@ -1,24 +1,68 @@
 export { isTypeComponentAccordion } from "./TypeComponentAccordion";
-export type { TypeComponentAccordion, TypeComponentAccordionFields, TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
+export type {
+  TypeComponentAccordion,
+  TypeComponentAccordionFields,
+  TypeComponentAccordionSkeleton,
+} from "./TypeComponentAccordion";
 export { isTypeComponentCTA } from "./TypeComponentCTA";
-export type { TypeComponentCTA, TypeComponentCTAFields, TypeComponentCTASkeleton } from "./TypeComponentCTA";
+export type {
+  TypeComponentCTA,
+  TypeComponentCTAFields,
+  TypeComponentCTASkeleton,
+} from "./TypeComponentCTA";
 export { isTypeComponentCarousel } from "./TypeComponentCarousel";
-export type { TypeComponentCarousel, TypeComponentCarouselFields, TypeComponentCarouselSkeleton } from "./TypeComponentCarousel";
+export type {
+  TypeComponentCarousel,
+  TypeComponentCarouselFields,
+  TypeComponentCarouselSkeleton,
+} from "./TypeComponentCarousel";
 export { isTypeComponentGrid } from "./TypeComponentGrid";
-export type { TypeComponentGrid, TypeComponentGridFields, TypeComponentGridSkeleton } from "./TypeComponentGrid";
+export type {
+  TypeComponentGrid,
+  TypeComponentGridFields,
+  TypeComponentGridSkeleton,
+} from "./TypeComponentGrid";
 export { isTypeComponentRichText } from "./TypeComponentRichText";
-export type { TypeComponentRichText, TypeComponentRichTextFields, TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
+export type {
+  TypeComponentRichText,
+  TypeComponentRichTextFields,
+  TypeComponentRichTextSkeleton,
+} from "./TypeComponentRichText";
 export { isTypeComponentSpecialSection } from "./TypeComponentSpecialSection";
-export type { TypeComponentSpecialSection, TypeComponentSpecialSectionFields, TypeComponentSpecialSectionSkeleton } from "./TypeComponentSpecialSection";
+export type {
+  TypeComponentSpecialSection,
+  TypeComponentSpecialSectionFields,
+  TypeComponentSpecialSectionSkeleton,
+} from "./TypeComponentSpecialSection";
 export { isTypeComponentVideo } from "./TypeComponentVideo";
-export type { TypeComponentVideo, TypeComponentVideoFields, TypeComponentVideoSkeleton } from "./TypeComponentVideo";
+export type {
+  TypeComponentVideo,
+  TypeComponentVideoFields,
+  TypeComponentVideoSkeleton,
+} from "./TypeComponentVideo";
 export { isTypePage } from "./TypePage";
 export type { TypePage, TypePageFields, TypePageSkeleton } from "./TypePage";
 export { isTypePartner } from "./TypePartner";
-export type { TypePartner, TypePartnerFields, TypePartnerSkeleton } from "./TypePartner";
+export type {
+  TypePartner,
+  TypePartnerFields,
+  TypePartnerSkeleton,
+} from "./TypePartner";
 export { isTypeSpeaker } from "./TypeSpeaker";
-export type { TypeSpeaker, TypeSpeakerFields, TypeSpeakerSkeleton } from "./TypeSpeaker";
+export type {
+  TypeSpeaker,
+  TypeSpeakerFields,
+  TypeSpeakerSkeleton,
+} from "./TypeSpeaker";
 export { isTypeTeamMember } from "./TypeTeamMember";
-export type { TypeTeamMember, TypeTeamMemberFields, TypeTeamMemberSkeleton } from "./TypeTeamMember";
+export type {
+  TypeTeamMember,
+  TypeTeamMemberFields,
+  TypeTeamMemberSkeleton,
+} from "./TypeTeamMember";
 export { isTypeWebsite } from "./TypeWebsite";
-export type { TypeWebsite, TypeWebsiteFields, TypeWebsiteSkeleton } from "./TypeWebsite";
+export type {
+  TypeWebsite,
+  TypeWebsiteFields,
+  TypeWebsiteSkeleton,
+} from "./TypeWebsite";

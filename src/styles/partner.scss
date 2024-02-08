@@ -1,13 +1,13 @@
-
 @screen md {
-    .partner-group-0{
-        
-    }
-    .partner-group-0, .partner-group-1 {
-        @apply w-1/2 inline-block;
-    }
-    .partner-group-grid-0, .partner-group-grid-1 {
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        width: 70% !important;
-    }
+	.partner-group-0 {
+	}
+	.partner-group-0,
+	.partner-group-1 {
+		@apply inline-block w-1/2;
+	}
+	.partner-group-grid-0,
+	.partner-group-grid-1 {
+		grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+		width: 70% !important;
+	}
 }

@@ -1,172 +1,170 @@
 ---
-import type { TypeWebsiteSkeleton } from "@lib/generated/contentful";
-import type { Entry } from "@lib/types";
+import type { TypeWebsiteSkeleton } from '@lib/generated/contentful'
+import type { Entry } from '@lib/types'
 
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
 const {
-  fields: { menuPages, hamburgerPages: rawHamburgerPages },
-} = Astro.props;
+	fields: { menuPages, hamburgerPages: rawHamburgerPages },
+} = Astro.props
 
-const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, "");
+const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, '')
 
-const mapPages = (pages: Entry<TypeWebsiteSkeleton>["fields"]["menuPages"]) =>
-  pages
-    .filter((page) => page?.fields?.slug !== undefined)
-    .map((page) => {
-      return {
-        title: page!.fields.navbarLabel ?? page!.fields.title,
-        slug: page!.fields.slug.startsWith("/")
-          ? `${page!.fields.slug}`
-          : `/${page!.fields.slug}`,
-        active: currentPath === page!.fields.slug.replace(/^\/|\/$/g, ""), //ignore starting or trailing slashes
-      };
-    })
-    .filter((page) => page.title && page.slug !== undefined);
+const mapPages = (pages: Entry<TypeWebsiteSkeleton>['fields']['menuPages']) =>
+	pages
+		.filter((page) => page?.fields?.slug !== undefined)
+		.map((page) => {
+			return {
+				title: page!.fields.navbarLabel ?? page!.fields.title,
+				slug: page!.fields.slug.startsWith('/') ? `${page!.fields.slug}` : `/${page!.fields.slug}`,
+				active: currentPath === page!.fields.slug.replace(/^\/|\/$/g, ''), //ignore starting or trailing slashes
+			}
+		})
+		.filter((page) => page.title && page.slug !== undefined)
 
-const headerPages = mapPages(menuPages);
-const hamburgerPages = mapPages(rawHamburgerPages ?? []);
+const headerPages = mapPages(menuPages)
+const hamburgerPages = mapPages(rawHamburgerPages ?? [])
 ---
 
 <script>
-  // Init
-  let isNavbarOpen = false;
-  const menuButton = document.getElementById("menuButton")!;
-  const nav = document.getElementById("nav")!;
-  menuButton.addEventListener("click", toggleNavbar);
+	// Init
+	let isNavbarOpen = false
+	const menuButton = document.getElementById('menuButton')!
+	const nav = document.getElementById('nav')!
+	menuButton.addEventListener('click', toggleNavbar)
 
-  assignNavbarState();
+	assignNavbarState()
 
-  // Utils
-  function toggleNavbar() {
-    isNavbarOpen = !isNavbarOpen;
-    assignNavbarState();
-  }
+	// Utils
+	function toggleNavbar() {
+		isNavbarOpen = !isNavbarOpen
+		assignNavbarState()
+	}
 
-  function assignNavbarState() {
-    if (isNavbarOpen) {
-      menuButton.classList.add("open");
-      nav.classList.add("open");
-      // remove scrolling
-      document.body.style.overflowY = "hidden";
-      // set aria attributes
-      menuButton.setAttribute("aria-expanded", "true");
-      nav.setAttribute("aria-hidden", "false");
-    } else {
-      menuButton.classList.remove("open");
-      nav.classList.remove("open");
-      // restore scrolling
-      document.body.style.overflowY = "auto";
-      // set aria attributes
-      menuButton.setAttribute("aria-expanded", "false");
-      nav.setAttribute("aria-hidden", "true");
-    }
-  }
+	function assignNavbarState() {
+		if (isNavbarOpen) {
+			menuButton.classList.add('open')
+			nav.classList.add('open')
+			// remove scrolling
+			document.body.style.overflowY = 'hidden'
+			// set aria attributes
+			menuButton.setAttribute('aria-expanded', 'true')
+			nav.setAttribute('aria-hidden', 'false')
+		} else {
+			menuButton.classList.remove('open')
+			nav.classList.remove('open')
+			// restore scrolling
+			document.body.style.overflowY = 'auto'
+			// set aria attributes
+			menuButton.setAttribute('aria-expanded', 'false')
+			nav.setAttribute('aria-hidden', 'true')
+		}
+	}
 </script>
 
-<header class="flex justify-between flex-row items-end" aria-label="Header">
-  <!-- Logo -->
-  <div class="flex-0 w-40 z-20 md:w-52 xl:mr-4">
-    <a href="/">
-      <img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
-    </a>
-  </div>
-  <div class="flex flex-row gap-x-6 items-end">
-    <!-- Desktop navigation -->
-    <nav
-      role="navigation"
-      aria-label="Main desktop navigation"
-      class="desktop-navigation hidden md:flex flex-row gap-x-4 items-baseline"
-    >
-      {
-        headerPages.map((page) => (
-          <a
-            href={page.slug}
-            class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
-            class:list={[{ "link-underline--fixed": page.active }]}
-          >
-            {page.title}
-          </a>
-        ))
-      }
-    </nav>
-    <!-- Hamburger button -->
-    <button
-      class="icon cursor-pointer flex gap-y-[6px] flex-col z-20 transition-transform duration-300 ease-in-out md:p-[6px]"
-      id="menuButton"
-      name="menu"
-      aria-label="Menu"
-      aria-expanded="false"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
-  <!-- Full page navigation -->
-  <nav
-    class="full-page-nav bg-tedBlack fixed left-0 right-0 bottom-0 top-[0] z-10 flex flex-col justify-end pt-4"
-    id="nav"
-    aria-label="Main full page navigation"
-    aria-hidden="true"
-  >
-    <ul class="container flex flex-col items-end pb-12 gap-y-4 overflow-auto">
-      {
-        hamburgerPages.map((page) => (
-          <li>
-            <h3>
-              <a
-                href={page.slug}
-                class="text-white link-underline no-underline hover:text-gray-300 transition-colors duration-200"
-                class:list={[{ "link-underline--fixed": page.active }]}
-              >
-                {page.title}
-              </a>
-            </h3>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+<header class="flex flex-row items-end justify-between" aria-label="Header">
+	<!-- Logo -->
+	<div class="flex-0 z-20 w-40 md:w-52 xl:mr-4">
+		<a href="/">
+			<img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
+		</a>
+	</div>
+	<div class="flex flex-row items-end gap-x-6">
+		<!-- Desktop navigation -->
+		<nav
+			role="navigation"
+			aria-label="Main desktop navigation"
+			class="desktop-navigation hidden flex-row items-baseline gap-x-4 md:flex"
+		>
+			{
+				headerPages.map((page) => (
+					<a
+						href={page.slug}
+						class="text-white link-underline hover:text-gray-300 no-underline transition-colors duration-200"
+						class:list={[{ 'link-underline--fixed': page.active }]}
+					>
+						{page.title}
+					</a>
+				))
+			}
+		</nav>
+		<!-- Hamburger button -->
+		<button
+			class="icon z-20 flex cursor-pointer flex-col gap-y-[6px] transition-transform duration-300 ease-in-out md:p-[6px]"
+			id="menuButton"
+			name="menu"
+			aria-label="Menu"
+			aria-expanded="false"
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+	<!-- Full page navigation -->
+	<nav
+		class="full-page-nav fixed bottom-0 left-0 right-0 top-[0] z-10 flex flex-col justify-end bg-tedBlack pt-4"
+		id="nav"
+		aria-label="Main full page navigation"
+		aria-hidden="true"
+	>
+		<ul class="container flex flex-col items-end gap-y-4 overflow-auto pb-12">
+			{
+				hamburgerPages.map((page) => (
+					<li>
+						<h3>
+							<a
+								href={page.slug}
+								class="text-white link-underline hover:text-gray-300 no-underline transition-colors duration-200"
+								class:list={[{ 'link-underline--fixed': page.active }]}
+							>
+								{page.title}
+							</a>
+						</h3>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </header>
 
 <style lang="scss">
-  @import "src/styles/variables.scss";
+	@import 'src/styles/variables.scss';
 
-  header {
-    height: $header-height;
-  }
-  .icon {
-    transition: transform 0.3s ease-in-out;
-    & span {
-      width: 25px;
-      height: 2px;
-      background-color: white;
-      transition: 0.3s;
-      border-radius: 0.125rem;
-      transform-origin: top left;
-    }
-    &.open span:nth-child(1) {
-      transform: rotate(45deg) translate(3px, -3.5px);
-    }
+	header {
+		height: $header-height;
+	}
+	.icon {
+		transition: transform 0.3s ease-in-out;
+		& span {
+			width: 25px;
+			height: 2px;
+			background-color: white;
+			transition: 0.3s;
+			border-radius: 0.125rem;
+			transform-origin: top left;
+		}
+		&.open span:nth-child(1) {
+			transform: rotate(45deg) translate(3px, -3.5px);
+		}
 
-    &.open span:nth-child(2) {
-      opacity: 0;
-    }
+		&.open span:nth-child(2) {
+			opacity: 0;
+		}
 
-    &.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(1px, 3px);
-    }
-  }
-  .full-page-nav {
-    transition:
-      visibility 0s,
-      opacity 0.2s ease-in-out;
-    opacity: 0;
-    visibility: hidden;
-    &.open {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
+		&.open span:nth-child(3) {
+			transform: rotate(-45deg) translate(1px, 3px);
+		}
+	}
+	.full-page-nav {
+		transition:
+			visibility 0s,
+			opacity 0.2s ease-in-out;
+		opacity: 0;
+		visibility: hidden;
+		&.open {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
 </style>

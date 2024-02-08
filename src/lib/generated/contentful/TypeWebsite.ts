@@ -1,4 +1,10 @@
-import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type {
+  ChainModifiers,
+  Entry,
+  EntryFieldTypes,
+  EntrySkeletonType,
+  LocaleCode,
+} from "contentful";
 import type { TypePageSkeleton } from "./TypePage";
 
 /**
@@ -8,55 +14,59 @@ import type { TypePageSkeleton } from "./TypePage";
  * @memberof TypeWebsite
  */
 export interface TypeWebsiteFields {
-    /**
-     * Field type definition for field 'internalName' (Internal name)
-     * @name Internal name
-     * @localized false
-     */
-    internalName?: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'active' (Attivo)
-     * @name Attivo
-     * @localized false
-     */
-    active: EntryFieldTypes.Symbol<"Si">;
-    /**
-     * Field type definition for field 'linkedin' (URL Linkedin)
-     * @name URL Linkedin
-     * @localized false
-     */
-    linkedin?: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'instagram' (URL Instagram)
-     * @name URL Instagram
-     * @localized false
-     */
-    instagram?: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'facebook' (URL Facebook)
-     * @name URL Facebook
-     * @localized false
-     */
-    facebook?: EntryFieldTypes.Symbol;
-    /**
-     * Field type definition for field 'menuPages' (Pagine nel menù)
-     * @name Pagine nel menù
-     * @localized false
-     * @summary Le pagine da mostrare nell'header del sito.
-     */
-    menuPages: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
-    /**
-     * Field type definition for field 'hamburgerPages' (Pagine nel menù hamburger)
-     * @name Pagine nel menù hamburger
-     * @localized false
-     */
-    hamburgerPages?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
-    /**
-     * Field type definition for field 'footerPages' (Pagine nel footer)
-     * @name Pagine nel footer
-     * @localized false
-     */
-    footerPages?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
+  /**
+   * Field type definition for field 'internalName' (Internal name)
+   * @name Internal name
+   * @localized false
+   */
+  internalName?: EntryFieldTypes.Symbol;
+  /**
+   * Field type definition for field 'active' (Attivo)
+   * @name Attivo
+   * @localized false
+   */
+  active: EntryFieldTypes.Symbol<"Si">;
+  /**
+   * Field type definition for field 'linkedin' (URL Linkedin)
+   * @name URL Linkedin
+   * @localized false
+   */
+  linkedin?: EntryFieldTypes.Symbol;
+  /**
+   * Field type definition for field 'instagram' (URL Instagram)
+   * @name URL Instagram
+   * @localized false
+   */
+  instagram?: EntryFieldTypes.Symbol;
+  /**
+   * Field type definition for field 'facebook' (URL Facebook)
+   * @name URL Facebook
+   * @localized false
+   */
+  facebook?: EntryFieldTypes.Symbol;
+  /**
+   * Field type definition for field 'menuPages' (Pagine nel menù)
+   * @name Pagine nel menù
+   * @localized false
+   * @summary Le pagine da mostrare nell'header del sito.
+   */
+  menuPages: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
+  /**
+   * Field type definition for field 'hamburgerPages' (Pagine nel menù hamburger)
+   * @name Pagine nel menù hamburger
+   * @localized false
+   */
+  hamburgerPages?: EntryFieldTypes.Array<
+    EntryFieldTypes.EntryLink<TypePageSkeleton>
+  >;
+  /**
+   * Field type definition for field 'footerPages' (Pagine nel footer)
+   * @name Pagine nel footer
+   * @localized false
+   */
+  footerPages?: EntryFieldTypes.Array<
+    EntryFieldTypes.EntryLink<TypePageSkeleton>
+  >;
 }
 
 /**
@@ -67,7 +77,10 @@ export interface TypeWebsiteFields {
  * @since 2023-11-27T20:55:26.267Z
  * @version 17
  */
-export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website">;
+export type TypeWebsiteSkeleton = EntrySkeletonType<
+  TypeWebsiteFields,
+  "website"
+>;
 /**
  * Entry type definition for content type 'website' (Website)
  * @name TypeWebsite
@@ -76,8 +89,16 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @since 2023-11-27T20:55:26.267Z
  * @version 17
  */
-export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
+export type TypeWebsite<
+  Modifiers extends ChainModifiers,
+  Locales extends LocaleCode,
+> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
 
-export function isTypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeWebsite<Modifiers, Locales> {
-    return entry.sys.contentType.sys.id === 'website'
+export function isTypeWebsite<
+  Modifiers extends ChainModifiers,
+  Locales extends LocaleCode,
+>(
+  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
+): entry is TypeWebsite<Modifiers, Locales> {
+  return entry.sys.contentType.sys.id === "website";
 }

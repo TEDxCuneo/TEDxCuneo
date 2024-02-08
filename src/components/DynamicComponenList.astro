@@ -1,21 +1,21 @@
 ---
-import type { Entry } from "@lib/types";
-import PageSection from "./PageSection.astro";
-import DynamicComponent from "./DynamicComponent.astro";
+import type { Entry } from '@lib/types'
+import PageSection from './PageSection.astro'
+import DynamicComponent from './DynamicComponent.astro'
 
 interface Props {
-  components?: (Entry<any> | undefined)[];
+	components?: (Entry<any> | undefined)[]
 }
 
-const { components } = Astro.props;
+const { components } = Astro.props
 ---
 
 {
-  components
-    ?.filter((c) => c)
-    .map((c) => (
-      <PageSection>
-        <DynamicComponent {...c!} />
-      </PageSection>
-    ))
+	components
+		?.filter((c) => c)
+		.map((c) => (
+			<PageSection>
+				<DynamicComponent {...c!} />
+			</PageSection>
+		))
 }

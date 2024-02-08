@@ -1,50 +1,48 @@
 ---
-import type { TypeComponentGridSkeleton } from "@lib/generated/contentful";
-import type { Entry } from "@lib/types";
-import DynamicComponent from "@components/DynamicComponent.astro";
+import type { TypeComponentGridSkeleton } from '@lib/generated/contentful'
+import type { Entry } from '@lib/types'
+import DynamicComponent from '@components/DynamicComponent.astro'
 
 interface Props extends Entry<TypeComponentGridSkeleton> {}
 
 const {
-  fields: {
-    elements,
-    heading,
-    mobileColumnsAmount,
-    tabletColumnsAmount,
-    desktopColumnsAmount,
-    gapX,
-    gapY,
-  },
-} = Astro.props;
+	fields: {
+		elements,
+		heading,
+		mobileColumnsAmount,
+		tabletColumnsAmount,
+		desktopColumnsAmount,
+		gapX,
+		gapY,
+	},
+} = Astro.props
 
-function contentfulGapToTwGap(
-  gap: "None" | "lg" | "sm" | "xlg" | "xsm" | "xxlg" | "xxsm"
-): string {
-  switch (gap) {
-    case "None":
-      return "0";
-    case "xxsm":
-      return "1";
-    case "xsm":
-      return "3";
-    case "sm":
-      return "6";
-    case "lg":
-      return "8";
-    case "xlg":
-      return "12";
-    case "xxlg":
-      return "24";
-  }
+function contentfulGapToTwGap(gap: 'None' | 'lg' | 'sm' | 'xlg' | 'xsm' | 'xxlg' | 'xxsm'): string {
+	switch (gap) {
+		case 'None':
+			return '0'
+		case 'xxsm':
+			return '1'
+		case 'xsm':
+			return '3'
+		case 'sm':
+			return '6'
+		case 'lg':
+			return '8'
+		case 'xlg':
+			return '12'
+		case 'xxlg':
+			return '24'
+	}
 }
 
-const colsClass = `grid-cols-${mobileColumnsAmount} md:grid-cols-${tabletColumnsAmount} lg:grid-cols-${desktopColumnsAmount}`;
-const gapXClass = `gap-x-${contentfulGapToTwGap(gapX)}`;
-const gapYClass = `gap-y-${contentfulGapToTwGap(gapY)}`;
+const colsClass = `grid-cols-${mobileColumnsAmount} md:grid-cols-${tabletColumnsAmount} lg:grid-cols-${desktopColumnsAmount}`
+const gapXClass = `gap-x-${contentfulGapToTwGap(gapX)}`
+const gapYClass = `gap-y-${contentfulGapToTwGap(gapY)}`
 ---
 
 {heading && <h2 class="mb-6">{heading}</h2>}
 
 <div class={`w-full grid gap-y- ${colsClass} ${gapXClass} ${gapYClass}`}>
-  {elements?.filter((e) => e).map((e) => <DynamicComponent {...e!} />)}
+	{elements?.filter((e) => e).map((e) => <DynamicComponent {...e!} />)}
 </div>

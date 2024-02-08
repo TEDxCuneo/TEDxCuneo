@@ -1,4 +1,10 @@
-import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type {
+  ChainModifiers,
+  Entry,
+  EntryFieldTypes,
+  EntrySkeletonType,
+  LocaleCode,
+} from "contentful";
 
 /**
  * Fields type definition for content type 'TypeComponentSpecialSection'
@@ -7,12 +13,12 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
  * @memberof TypeComponentSpecialSection
  */
 export interface TypeComponentSpecialSectionFields {
-    /**
-     * Field type definition for field 'section' (Sezione)
-     * @name Sezione
-     * @localized false
-     */
-    section: EntryFieldTypes.Symbol<"Newsletter form" | "Partner form">;
+  /**
+   * Field type definition for field 'section' (Sezione)
+   * @name Sezione
+   * @localized false
+   */
+  section: EntryFieldTypes.Symbol<"Newsletter form" | "Partner form">;
 }
 
 /**
@@ -23,7 +29,10 @@ export interface TypeComponentSpecialSectionFields {
  * @since 2024-01-05T21:35:56.664Z
  * @version 1
  */
-export type TypeComponentSpecialSectionSkeleton = EntrySkeletonType<TypeComponentSpecialSectionFields, "componentSpecialSection">;
+export type TypeComponentSpecialSectionSkeleton = EntrySkeletonType<
+  TypeComponentSpecialSectionFields,
+  "componentSpecialSection"
+>;
 /**
  * Entry type definition for content type 'componentSpecialSection' (Componente: Sezione speciale)
  * @name TypeComponentSpecialSection
@@ -32,8 +41,16 @@ export type TypeComponentSpecialSectionSkeleton = EntrySkeletonType<TypeComponen
  * @since 2024-01-05T21:35:56.664Z
  * @version 1
  */
-export type TypeComponentSpecialSection<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentSpecialSectionSkeleton, Modifiers, Locales>;
+export type TypeComponentSpecialSection<
+  Modifiers extends ChainModifiers,
+  Locales extends LocaleCode,
+> = Entry<TypeComponentSpecialSectionSkeleton, Modifiers, Locales>;
 
-export function isTypeComponentSpecialSection<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentSpecialSection<Modifiers, Locales> {
-    return entry.sys.contentType.sys.id === 'componentSpecialSection'
+export function isTypeComponentSpecialSection<
+  Modifiers extends ChainModifiers,
+  Locales extends LocaleCode,
+>(
+  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
+): entry is TypeComponentSpecialSection<Modifiers, Locales> {
+  return entry.sys.contentType.sys.id === "componentSpecialSection";
 }

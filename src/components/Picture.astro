@@ -1,82 +1,76 @@
 ---
-import type { Asset } from "@lib/types";
+import type { Asset } from '@lib/types'
 
 interface Props extends Asset {
-  width: number;
-  class?: string;
-  alt?: string;
-  height?: number;
-  lazy?: boolean;
-  crop?: "pad" | "fill" | "scale" | "thumb" | "crop";
-  focusArea?:
-    | "center"
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top_right"
-    | "bottom_right"
-    | "bottom_left"
-    | "top_left"
-    | "face"
-    | "faces";
-  quality?: number;
+	width: number
+	class?: string
+	alt?: string
+	height?: number
+	lazy?: boolean
+	crop?: 'pad' | 'fill' | 'scale' | 'thumb' | 'crop'
+	focusArea?:
+		| 'center'
+		| 'top'
+		| 'right'
+		| 'bottom'
+		| 'left'
+		| 'top_right'
+		| 'bottom_right'
+		| 'bottom_left'
+		| 'top_left'
+		| 'face'
+		| 'faces'
+	quality?: number
 }
 
 const {
-  width,
-  height,
-  alt,
-  lazy = true,
-  fields: { file, title },
-  crop,
-  class: className = "",
-  focusArea,
-  quality = 75,
-} = Astro.props;
+	width,
+	height,
+	alt,
+	lazy = true,
+	fields: { file, title },
+	crop,
+	class: className = '',
+	focusArea,
+	quality = 75,
+} = Astro.props
 
-let additionalAttributes = `&q=${quality}`;
-additionalAttributes += crop ? `&fit=${crop}` : "";
-additionalAttributes += focusArea ? `&f=${focusArea}` : "";
-const height1x = height ? `&h=${height}` : "";
-const height2x = height ? `&h=${2 * height}` : "";
+let additionalAttributes = `&q=${quality}`
+additionalAttributes += crop ? `&fit=${crop}` : ''
+additionalAttributes += focusArea ? `&f=${focusArea}` : ''
+const height1x = height ? `&h=${height}` : ''
+const height2x = height ? `&h=${2 * height}` : ''
 ---
 
 {
-  file && (
-    <picture>
-      <source
-        type="image/avif"
-        srcset={`${
-          file.url
-        }?w=${width}&fm=avif${additionalAttributes}${height1x} 1x, ${
-          file.url
-        }?w=${2 * width}&fm=avif${additionalAttributes}${height2x} 2x`}
-      />
-      <source
-        type="image/webp"
-        srcset={`${
-          file.url
-        }?w=${width}&fm=webp${additionalAttributes}${height1x} 1x, ${
-          file.url
-        }?w=${2 * width}&fm=webp${additionalAttributes}${height2x} 2x`}
-      />
-      <source
-        type="image/jpeg"
-        srcset={`${
-          file.url
-        }?w=${width}&fm=jpg${additionalAttributes}${height1x} 1x, ${
-          file.url
-        }?w=${2 * width}&fm=jpg${additionalAttributes}${height2x} 2x`}
-      />
-      <img
-        class={className}
-        loading={lazy ? "lazy" : "eager"}
-        src={`${file.url}?w=${width}&fm=jpg${additionalAttributes}${height1x}`}
-        alt={alt ?? title ?? ""}
-        width={width}
-        height={height}
-      />
-    </picture>
-  )
+	file && (
+		<picture>
+			<source
+				type="image/avif"
+				srcset={`${file.url}?w=${width}&fm=avif${additionalAttributes}${height1x} 1x, ${
+					file.url
+				}?w=${2 * width}&fm=avif${additionalAttributes}${height2x} 2x`}
+			/>
+			<source
+				type="image/webp"
+				srcset={`${file.url}?w=${width}&fm=webp${additionalAttributes}${height1x} 1x, ${
+					file.url
+				}?w=${2 * width}&fm=webp${additionalAttributes}${height2x} 2x`}
+			/>
+			<source
+				type="image/jpeg"
+				srcset={`${file.url}?w=${width}&fm=jpg${additionalAttributes}${height1x} 1x, ${
+					file.url
+				}?w=${2 * width}&fm=jpg${additionalAttributes}${height2x} 2x`}
+			/>
+			<img
+				class={className}
+				loading={lazy ? 'lazy' : 'eager'}
+				src={`${file.url}?w=${width}&fm=jpg${additionalAttributes}${height1x}`}
+				alt={alt ?? title ?? ''}
+				width={width}
+				height={height}
+			/>
+		</picture>
+	)
 }

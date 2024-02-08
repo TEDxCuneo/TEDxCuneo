@@ -1,269 +1,272 @@
-#intro-wrapper{
-  min-height: 100vh;
+#intro-wrapper {
+	min-height: 100vh;
 }
 
-.extraordinario-writing img{
-  width: 300px;
-  position: absolute;
-  bottom: 48px;
-  left: 0;
+.extraordinario-writing img {
+	width: 300px;
+	position: absolute;
+	bottom: 48px;
+	left: 0;
 }
 
 .extraordinario-writing {
-  height: calc(100vh - 120px) ;
-  min-height: 400px;
-  position: relative;
-  margin-bottom: 64px;
+	height: calc(100vh - 120px);
+	min-height: 400px;
+	position: relative;
+	margin-bottom: 64px;
 }
 
-.animation-wrapper{
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+.animation-wrapper {
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
 }
 
 .pulse {
-  animation: pulse 1s linear infinite;
+	animation: pulse 1s linear infinite;
 }
 
 .blue-moon {
-  width: 80px;
-  right: 0px;
-  bottom: calc(50% - 40px);
-  animation: reverse-spin 100s linear infinite;
+	width: 80px;
+	right: 0px;
+	bottom: calc(50% - 40px);
+	animation: reverse-spin 100s linear infinite;
 }
 
-.white-dot{
-  width: 40px;
-  position: absolute;
-  display: none;
+.white-dot {
+	width: 40px;
+	position: absolute;
+	display: none;
 }
 
-.white-circle{
-  width: 17px;
-  position: absolute;
-  display: none;
+.white-circle {
+	width: 17px;
+	position: absolute;
+	display: none;
 }
 
-.white-dot-1{
-  right: 5%;
-  bottom: 2%;
+.white-dot-1 {
+	right: 5%;
+	bottom: 2%;
 }
 
-.white-dot-2{
-  right: 40%;
-  bottom: 32%;
+.white-dot-2 {
+	right: 40%;
+	bottom: 32%;
 }
 
-.white-dot-3{
-  right: 40%;
-  bottom: 32%;
+.white-dot-3 {
+	right: 40%;
+	bottom: 32%;
 }
 
-.white-dot-4{
-  right: 55%;
-  top: 15%;
+.white-dot-4 {
+	right: 55%;
+	top: 15%;
 }
 
-.white-dot-5{
-  right: 40%;
-  top: 25%;
+.white-dot-5 {
+	right: 40%;
+	top: 25%;
 }
 
-.white-circle-1{
-  right: 64px;
-  top: 80px;
+.white-circle-1 {
+	right: 64px;
+	top: 80px;
 }
 
-.white-circle-2{
-  left: 64px;
-  top: 90px;
+.white-circle-2 {
+	left: 64px;
+	top: 90px;
 }
 
-.white-circle-3{
-  left: 184px;
-  top: 160px;
+.white-circle-3 {
+	left: 184px;
+	top: 160px;
 }
 
-.white-circle-3{
-  left: 384px;
-  top: 120px;
+.white-circle-3 {
+	left: 384px;
+	top: 120px;
 }
 
-.white-circle-4{
-  left: 45%;
-  top: 30%;
+.white-circle-4 {
+	left: 45%;
+	top: 30%;
 }
 
-.white-circle-5{
-  right: 25%;
-  bottom: 35px;
+.white-circle-5 {
+	right: 25%;
+	bottom: 35px;
 }
 
 .blue-star {
-  width: 60px;
-  height: 60px;
-  left: 20px;
-  top: 180px;
-  position: absolute;
+	width: 60px;
+	height: 60px;
+	left: 20px;
+	top: 180px;
+	position: absolute;
 }
 
 .white-star {
-  width: 30px;
-  height: 30px;
-  right: 20px;
-  bottom: 60px;
-  animation-delay: 200ms;
-  position: absolute;
+	width: 30px;
+	height: 30px;
+	right: 20px;
+	bottom: 60px;
+	animation-delay: 200ms;
+	position: absolute;
 }
 
-.blue-planet-1{
-  top: 10%;
-  right: 20px;
-  animation: spin 100s linear infinite;
+.blue-planet-1 {
+	top: 10%;
+	right: 20px;
+	animation: spin 100s linear infinite;
 }
 
-.blue-planet-2{
-  top: 80vh;
-  right: 10%;
-  animation: reverse-spin 100s linear infinite;
+.blue-planet-2 {
+	top: 80vh;
+	right: 10%;
+	animation: reverse-spin 100s linear infinite;
 }
 
-.sun{
-  width: 280px;
-  top: 13%;
-  right: -10%;
+.sun {
+	width: 280px;
+	top: 13%;
+	right: -10%;
 }
 
-.moon{
-  width: 170px;
-  left: -20px;
-  top: 30px;
+.moon {
+	width: 170px;
+	left: -20px;
+	top: 30px;
 }
 
-.red-planet{
-  top: 20%;
-  left: 5%;
-  animation: reverse-spin 800s linear infinite;
+.red-planet {
+	top: 20%;
+	left: 5%;
+	animation: reverse-spin 800s linear infinite;
 }
 
-.purple-planet{
-  right: 20px;
-  bottom: 40%;
-  animation: spin 60s linear infinite;
+.purple-planet {
+	right: 20px;
+	bottom: 40%;
+	animation: spin 60s linear infinite;
 }
 
-.orange-planet{
-  top: 50%;
-  left: 24px;
-  animation: reverse-spin 100s linear infinite;
+.orange-planet {
+	top: 50%;
+	left: 24px;
+	animation: reverse-spin 100s linear infinite;
 }
-
 
 .landing-map-home::before {
-  width: 719px;
-  height: 834px;
+	width: 719px;
+	height: 834px;
 }
 
-.direction-block-item{
-  @apply relative block bg-tedRed text-center whitespace-nowrap overflow-x-hidden;
-  padding: 22px ;
-  font-size: 32px;
-  width: 110vw;
-  box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.34);
-  z-index: 40;
-  overflow-y: hidden;
+.direction-block-item {
+	@apply relative block overflow-x-hidden whitespace-nowrap bg-tedRed text-center;
+	padding: 22px;
+	font-size: 32px;
+	width: 110vw;
+	box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.34);
+	z-index: 40;
+	overflow-y: hidden;
 }
 
 .-one {
-  left: -10px;
-  transform: rotate(12.03deg);
+	left: -10px;
+	transform: rotate(12.03deg);
 }
 .-two {
-  top: -2vw;
-  left: -10px;
-  transform: rotate(-13.54deg);
+	top: -2vw;
+	left: -10px;
+	transform: rotate(-13.54deg);
 }
 .-three {
-  left: -10px;
-  transform: rotate(7deg);
+	left: -10px;
+	transform: rotate(7deg);
 }
 
 .blinking {
-  -webkit-animation: 1s blink ease infinite;
-  -moz-animation: 1s blink ease infinite;
-  -ms-animation: 1s blink ease infinite;
-  -o-animation: 1s blink ease infinite;
-  animation: 1s blink ease infinite;
-  
+	-webkit-animation: 1s blink ease infinite;
+	-moz-animation: 1s blink ease infinite;
+	-ms-animation: 1s blink ease infinite;
+	-o-animation: 1s blink ease infinite;
+	animation: 1s blink ease infinite;
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes reverse-spin {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+	from {
+		transform: rotate(360deg);
+	}
+	to {
+		transform: rotate(0deg);
+	}
 }
 
 @keyframes blink {
-  from, to {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+	from,
+	to {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
 }
 
 @-moz-keyframes blink {
-  from, to {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+	from,
+	to {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
 }
 
 @-webkit-keyframes blink {
-  from, to {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+	from,
+	to {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
 }
 
 @-ms-keyframes blink {
-  from, to {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+	from,
+	to {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
 }
 
 @-o-keyframes blink {
-  from, to {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+	from,
+	to {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
 }
 
 /* 2022 page */
@@ -271,132 +274,132 @@
 /*      ----------|---------- */
 /* -----|---------|------ */
 .home-banner-2022 {
-  background-image: url('/img/home/heart.svg');
-  background-position: center 85%;
-  background-repeat: no-repeat;
-  background-size: 300px;
+	background-image: url('/img/home/heart.svg');
+	background-position: center 85%;
+	background-repeat: no-repeat;
+	background-size: 300px;
 }
-.home-writing{
-  height: 50px;
-  margin-bottom: 50px;
-  width: 999999px;
-  transform: translateX(-200vw);
-  background-repeat: repeat-x;
-  background-position-x: left;
-  background-size: contain;
-  transition: 10ms linear;
-  -webkit-transition: 10ms linear;
-  will-change: transform; 
+.home-writing {
+	height: 50px;
+	margin-bottom: 50px;
+	width: 999999px;
+	transform: translateX(-200vw);
+	background-repeat: repeat-x;
+	background-position-x: left;
+	background-size: contain;
+	transition: 10ms linear;
+	-webkit-transition: 10ms linear;
+	will-change: transform;
 }
-.home-top-writing{
-  background-image: url('/img/home/top_write.svg');
+.home-top-writing {
+	background-image: url('/img/home/top_write.svg');
 }
-.home-bottom-writing{
-  background-image: url('/img/home/bottom_write.svg');
+.home-bottom-writing {
+	background-image: url('/img/home/bottom_write.svg');
 }
 
 @screen md {
-  .white-dot{
-    display: block;
-  }
-  .white-circle{
-    display: block;
-  }
-  .home-writing{
-    height: 100px;
-    margin-bottom: 60px;
-  }
-  .home-banner-2022{
-    background-position: 90%;
-    background-size: 500px;
-  }
-  .-one {
-    transform: rotate(7.03deg);
-  }
-  .-two {
-    transform: rotate(-9.54deg);
-  }
-  .-three {
-    transform: rotate(3.5deg);
-  }
-  .direction-block-item{
-    padding: 40px;
-    font-size: 54px;
-  }
+	.white-dot {
+		display: block;
+	}
+	.white-circle {
+		display: block;
+	}
+	.home-writing {
+		height: 100px;
+		margin-bottom: 60px;
+	}
+	.home-banner-2022 {
+		background-position: 90%;
+		background-size: 500px;
+	}
+	.-one {
+		transform: rotate(7.03deg);
+	}
+	.-two {
+		transform: rotate(-9.54deg);
+	}
+	.-three {
+		transform: rotate(3.5deg);
+	}
+	.direction-block-item {
+		padding: 40px;
+		font-size: 54px;
+	}
 
-  .landing-map-home::before {
-    width: 1437px;
-    height: 1668px;
-    right: -500px;
-  }
+	.landing-map-home::before {
+		width: 1437px;
+		height: 1668px;
+		right: -500px;
+	}
 
-  .blue-planet-1{
-    top: 20%;
-    right: 20%;
-  }
-  
-  .blue-planet-2{
-    top: 80vh;
-    right: 10%;
-  }
+	.blue-planet-1 {
+		top: 20%;
+		right: 20%;
+	}
 
-  .blue-star {
-    left: 50%;
-    top: 120px;
-  }
+	.blue-planet-2 {
+		top: 80vh;
+		right: 10%;
+	}
 
-  .blue-moon {
-    right: 350%;
-    bottom: calc(50% - 70px);
-  }
-  
-  .sun{
-    width: 280px;
-    top: 25%;
-    right: 180px;
-  }
+	.blue-star {
+		left: 50%;
+		top: 120px;
+	}
 
-  .moon {
-    width: 250px;
-    left: 5%;
-    top: 80px;
-  }
-  
-  .red-planet{
-    top: 40%;
-    left: 50%;
-  }
-  
-  .purple-planet{
-    right: 30%;
-    bottom: 30%;
-  }
+	.blue-moon {
+		right: 350%;
+		bottom: calc(50% - 70px);
+	}
 
-  .orange-planet{
-    top: 50%;
-    left: 20%;
-  }
+	.sun {
+		width: 280px;
+		top: 25%;
+		right: 180px;
+	}
 
-  .white-star {
-    right: 10%;
-    bottom: 30%;
-  }
+	.moon {
+		width: 250px;
+		left: 5%;
+		top: 80px;
+	}
+
+	.red-planet {
+		top: 40%;
+		left: 50%;
+	}
+
+	.purple-planet {
+		right: 30%;
+		bottom: 30%;
+	}
+
+	.orange-planet {
+		top: 50%;
+		left: 20%;
+	}
+
+	.white-star {
+		right: 10%;
+		bottom: 30%;
+	}
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 0.2;
-  }
-  
-  25% {
-    opacity: 1;
-  }
+	0% {
+		opacity: 0.2;
+	}
 
-  90% {
-    opacity: 1;
-  }
+	25% {
+		opacity: 1;
+	}
 
-  100% {
-    opacity: 0.2;
-  }
+	90% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0.2;
+	}
 }
