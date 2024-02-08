@@ -1,7 +1,7 @@
 ---
 import type { TypeComponentCTASkeleton } from '@lib/generated/contentful'
 import Picture from '../Picture.astro'
-import type { Asset, Entry } from '@lib/types'
+import type { Entry } from '@lib/types'
 
 interface Props extends Entry<TypeComponentCTASkeleton> {}
 
@@ -18,7 +18,7 @@ const url = externalURL || page?.fields.slug
 		<a
 			target={target}
 			href={url}
-			class="-mx-4 flex cursor-pointer flex-col gap-x-8 gap-y-4 bg-tedGray px-4 py-4 no-underline lg:m-0 lg:flex-row lg:rounded-lg lg:p-8"
+			class="-mx-4 flex cursor-pointer flex-col gap-x-8  gap-y-4  bg-tedGray px-4 py-4 no-underline lg:m-0 lg:flex-row lg:rounded-lg lg:p-8"
 		>
 			<Picture
 				{...image!}
