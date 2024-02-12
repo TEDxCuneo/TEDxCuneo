@@ -1,19 +1,19 @@
 ---
-import Picture from '@components/Picture.astro'
-import type { TypeSpeakerSkeleton } from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
+import Picture from '@components/Picture.astro';
+import type { TypeSpeakerSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
 
 interface Props extends Entry<TypeSpeakerSkeleton> {
-	class?: string
+	class?: string;
 }
 
 const {
 	class: className = '',
 	fields: { firstName, lastName, job, image, page, talkTitle },
-} = Astro.props
+} = Astro.props;
 
-const clickable = page ? true : false
-const WrapperHtmlElement = clickable ? 'a' : 'div'
+const clickable = !!page;
+const WrapperHtmlElement = clickable ? 'a' : 'div';
 ---
 
 <WrapperHtmlElement
@@ -22,7 +22,7 @@ const WrapperHtmlElement = clickable ? 'a' : 'div'
 	class:list={[className, clickable && ['md:hover:scale-105', 'cursor-pointer']]}
 >
 	<div class="mb-6">
-		<Picture {...image!} class="w-full" alt={firstName + ' ' + lastName} width={500} height={500} />
+		<Picture {...image!} class="w-full" alt={`${firstName} ${lastName}`} width={500} height={500} />
 	</div>
 	<div class="px-4 pb-4">
 		{

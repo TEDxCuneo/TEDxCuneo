@@ -1,22 +1,23 @@
 ---
+import Speaker from '@components/dynamic/SpeakerCard.astro';
+import Picture from '@components/Picture.astro';
 import {
 	isTypePartner,
 	isTypeSpeaker,
 	isTypeTeamMember,
 	type TypeComponentCarouselSkeleton,
-} from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
-import Speaker from '@components/dynamic/SpeakerCard.astro'
-import Picture from '@components/Picture.astro'
-import Partner from './Partner.astro'
-import TeamMember from './TeamMember.astro'
+} from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import Partner from './Partner.astro';
+import TeamMember from './TeamMember.astro';
 
 interface Props extends Entry<TypeComponentCarouselSkeleton> {}
 
 const {
 	fields: { type, title, cards, images, showNavigation },
 	sys: { id },
-} = Astro.props
+} = Astro.props;
 ---
 
 {title && <h2 class="mb-6">{title}</h2>}

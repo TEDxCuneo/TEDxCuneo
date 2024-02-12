@@ -1,18 +1,19 @@
 ---
-import type { Entry } from '@lib/types'
-import type { TypePageSkeleton } from '@lib/generated/contentful'
-import WithNavigation from './abstract/WithNavigation.astro'
-import DynamicComponenList from '@components/DynamicComponenList.astro'
+import DynamicComponenList from '@components/DynamicComponenList.astro';
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import WithNavigation from './abstract/WithNavigation.astro';
 
 interface Props extends Entry<TypePageSkeleton> {}
 
-const page = Astro.props
+const page = Astro.props;
 ---
 
 <WithNavigation {...page}>
 	<div
 		style="background-image: url('/img/partnership_hero.jpg')"
-		class="z-1 absolute left-0 right-0 top-0 h-550 w-full bg-cover bg-center bg-no-repeat sm:h-600 md:h-800"
+		class="z-1 absolute inset-x-0 top-0 h-550 w-full bg-cover bg-center bg-no-repeat sm:h-600 md:h-800"
 		slot="before-container"
 	>
 	</div>

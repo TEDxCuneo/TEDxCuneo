@@ -1,11 +1,11 @@
 ---
-import { BLOCKS, INLINES } from '@contentful/rich-text-types'
-import { documentToHtmlString, type Options } from '@contentful/rich-text-html-renderer'
-import type { TypeComponentRichText } from '@lib/generated/contentful'
-import type { ChainModifier } from '@lib/types'
+import { documentToHtmlString, type Options } from '@contentful/rich-text-html-renderer';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import type { TypeComponentRichText } from '@lib/generated/contentful';
+import type { ChainModifier } from '@lib/types';
 
 // check if first level domain is tedxcuneo.com
-const ourHostRegex = /^https?:\/\/(www\.)?tedxcuneo\.com/
+const ourHostRegex = /^https?:\/\/(www\.)?tedxcuneo\.com/;
 
 interface Props extends TypeComponentRichText<ChainModifier, string> {}
 
@@ -13,43 +13,35 @@ const options: Partial<Options> = {
 	renderMark: {},
 	renderNode: {
 		[BLOCKS.PARAGRAPH]: (node, next) => `<p>${next(node.content).replace(/\n/g, '<br/>')}</p>`,
-		[BLOCKS.TABLE]: (node, next) => {
-			return `<div class="overflow-x-auto">
+		[BLOCKS.TABLE]: (node, next) => `<div class="overflow-x-auto">
           <table class="table-auto overflow-scroll w-full border-collapse overflow-x-auto">${next(
 						node.content,
 					)}</table>
-        </div>`
-		},
-		[BLOCKS.TABLE_CELL]: (node, next) => {
-			return `<td class="px-4 py-2">${next(node.content)}</td>`
-		},
-		[BLOCKS.TABLE_HEADER_CELL]: (node, next) => {
-			return `<td class="bo px-4 py-2">${next(node.content)}</td>`
-		},
+        </div>`,
+		[BLOCKS.TABLE_CELL]: (node, next) => `<td class="px-4 py-2">${next(node.content)}</td>`,
+		[BLOCKS.TABLE_HEADER_CELL]: (node, next) =>
+			`<td class="bo px-4 py-2">${next(node.content)}</td>`,
 		[BLOCKS.EMBEDDED_ASSET]: ({
 			data: {
 				target: {
 					fields: { title, file },
 				},
 			},
-		}) => {
-			return `<picture>
+		}) => `<picture>
         <source srcset="${file?.url}?fm=webp&q=80&w=1200&h=800" type="image/webp">
         <source srcset="${file?.url}?fm=jpg&q=80&w=1200&h=800" type="image/jpeg">
         <img src="${file?.url}?fm=jpg&q=80&w=1200&h=800" alt="${title}" loading="lazy">
-      </picture>`
-		},
-		[INLINES.HYPERLINK]: ({ data: { uri }, content }, next) => {
-			return `<a href="${uri}" target="${
+      </picture>`,
+		[INLINES.HYPERLINK]: ({ data: { uri }, content }, next) =>
+			`<a href="${uri}" target="${
 				ourHostRegex.test(uri) ? '_self' : '_blank'
-			}" class="link-underline link-underline--fixed">${next(content)}</a>`
-		},
+			}" class="link-underline link-underline--fixed">${next(content)}</a>`,
 	},
-}
+};
 
 const {
 	fields: { content },
-} = Astro.props
+} = Astro.props;
 ---
 
 <div

@@ -1,63 +1,61 @@
 ---
-import type { TypeWebsiteSkeleton } from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
+import type { TypeWebsiteSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
 
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
 const {
 	fields: { menuPages, hamburgerPages: rawHamburgerPages },
-} = Astro.props
+} = Astro.props;
 
-const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, '')
+const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, '');
 
 const mapPages = (pages: Entry<TypeWebsiteSkeleton>['fields']['menuPages']) =>
 	pages
 		.filter((page) => page?.fields?.slug !== undefined)
-		.map((page) => {
-			return {
-				title: page!.fields.navbarLabel ?? page!.fields.title,
-				slug: page!.fields.slug.startsWith('/') ? `${page!.fields.slug}` : `/${page!.fields.slug}`,
-				active: currentPath === page!.fields.slug.replace(/^\/|\/$/g, ''), //ignore starting or trailing slashes
-			}
-		})
-		.filter((page) => page.title && page.slug !== undefined)
+		.map((page) => ({
+			title: page!.fields.navbarLabel ?? page!.fields.title,
+			slug: page!.fields.slug.startsWith('/') ? `${page!.fields.slug}` : `/${page!.fields.slug}`,
+			active: currentPath === page!.fields.slug.replace(/^\/|\/$/g, ''), // ignore starting or trailing slashes
+		}))
+		.filter((page) => page.title && page.slug !== undefined);
 
-const headerPages = mapPages(menuPages)
-const hamburgerPages = mapPages(rawHamburgerPages ?? [])
+const headerPages = mapPages(menuPages);
+const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 ---
 
 <script>
 	// Init
-	let isNavbarOpen = false
-	const menuButton = document.getElementById('menuButton')!
-	const nav = document.getElementById('nav')!
-	menuButton.addEventListener('click', toggleNavbar)
+	let isNavbarOpen = false;
+	const menuButton = document.getElementById('menuButton')!;
+	const nav = document.getElementById('nav')!;
+	menuButton.addEventListener('click', toggleNavbar);
 
-	assignNavbarState()
+	assignNavbarState();
 
 	// Utils
 	function toggleNavbar() {
-		isNavbarOpen = !isNavbarOpen
-		assignNavbarState()
+		isNavbarOpen = !isNavbarOpen;
+		assignNavbarState();
 	}
 
 	function assignNavbarState() {
 		if (isNavbarOpen) {
-			menuButton.classList.add('open')
-			nav.classList.add('open')
+			menuButton.classList.add('open');
+			nav.classList.add('open');
 			// remove scrolling
-			document.body.style.overflowY = 'hidden'
+			document.body.style.overflowY = 'hidden';
 			// set aria attributes
-			menuButton.setAttribute('aria-expanded', 'true')
-			nav.setAttribute('aria-hidden', 'false')
+			menuButton.setAttribute('aria-expanded', 'true');
+			nav.setAttribute('aria-hidden', 'false');
 		} else {
-			menuButton.classList.remove('open')
-			nav.classList.remove('open')
+			menuButton.classList.remove('open');
+			nav.classList.remove('open');
 			// restore scrolling
-			document.body.style.overflowY = 'auto'
+			document.body.style.overflowY = 'auto';
 			// set aria attributes
-			menuButton.setAttribute('aria-expanded', 'false')
-			nav.setAttribute('aria-hidden', 'true')
+			menuButton.setAttribute('aria-expanded', 'false');
+			nav.setAttribute('aria-hidden', 'true');
 		}
 	}
 </script>
@@ -103,7 +101,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? [])
 	</div>
 	<!-- Full page navigation -->
 	<nav
-		class="full-page-nav fixed bottom-0 left-0 right-0 top-[0] z-10 flex flex-col justify-end bg-tedBlack pt-4"
+		class="full-page-nav fixed inset-x-0 bottom-0 top-[0] z-10 flex flex-col justify-end bg-tedBlack pt-4"
 		id="nav"
 		aria-label="Main full page navigation"
 		aria-hidden="true"

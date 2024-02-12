@@ -1,26 +1,25 @@
 ---
-import type { TypePartnerSkeleton } from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
+import type { TypePartnerSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
 
 interface Props extends Entry<TypePartnerSkeleton> {
-	class?: string
+	class?: string;
 }
 
 const {
 	class: className = '',
 	fields: { name, url, logo },
-} = Astro.props
+} = Astro.props;
 
-const clickable = url ? true : false
+const clickable = !!url;
 
-const WrapperHtmlElement = clickable ? 'a' : 'div'
+const WrapperHtmlElement = clickable ? 'a' : 'div';
 
-const imageStyle =
-	logo && logo.fields.file && logo.fields.file.details.image
-		? logo.fields.file.details.image?.width / logo.fields.file.details.image?.height > 1.2
-			? 'max-width: 70%; max-height: 70%;'
-			: 'max-height: 80%;'
-		: ''
+const imageStyle = logo?.fields.file?.details.image
+	? logo.fields.file.details.image?.width / logo.fields.file.details.image?.height > 1.2
+		? 'max-width: 70%; max-height: 70%;'
+		: 'max-height: 80%;'
+	: '';
 ---
 
 <WrapperHtmlElement
@@ -31,12 +30,12 @@ const imageStyle =
 	class:list={className}
 >
 	{
-		logo && logo.fields.file && (
+		logo?.fields.file && (
 			<img
 				src={logo.fields.file.url}
-				alt={name + ' logo'}
+				alt={`${name} logo`}
 				style={imageStyle}
-				class="absolute bottom-0 left-0 right-0 top-0 m-auto p-2"
+				class="absolute inset-0 m-auto p-2"
 			/>
 		)
 	}

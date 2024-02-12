@@ -1,5 +1,5 @@
-import type { TypePageSkeleton } from './generated/contentful'
-import type { Entry } from './types'
+import type { TypePageSkeleton } from './generated/contentful';
+import type { Entry } from './types';
 
 /**
  * Formats a date as a string in the format "HH:MM:SS"
@@ -18,8 +18,8 @@ export function formatTimestamp(date: Date): string {
 	})}:${date.getSeconds().toLocaleString('en-US', {
 		minimumIntegerDigits: 2,
 		useGrouping: false,
-	})}`
-	return ts
+	})}`;
+	return ts;
 }
 
 /**
@@ -67,4 +67,4 @@ export const fakePage: Entry<TypePageSkeleton> = {
 		noIndex: true,
 		noFollow: true,
 	},
-}
+};

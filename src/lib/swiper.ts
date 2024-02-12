@@ -1,10 +1,11 @@
-import Swiper from 'swiper'
-import 'swiper/css'
+import 'swiper/css';
 
-document.addEventListener('DOMContentLoaded', function () {
-	const carousels = document.getElementsByClassName('swiper')
-	for (const carousel of carousels) {
-		const title = carousel.getAttribute('data-title')
+import Swiper from 'swiper';
+
+document.addEventListener('DOMContentLoaded', () => {
+	const carousels = document.getElementsByClassName('swiper');
+	Array.from(carousels).forEach((carousel) => {
+		const title = carousel.getAttribute('data-title');
 		const swiper = new Swiper(`#${carousel.id}`, {
 			loop: false,
 			spaceBetween: 15,
@@ -28,20 +29,20 @@ document.addEventListener('DOMContentLoaded', function () {
 					spaceBetween: 20,
 				},
 			},
-		})
-		const prevButton = carousel.getElementsByClassName('swiper-button-prev')
+		});
+		const prevButton = carousel.getElementsByClassName('swiper-button-prev');
 		if (prevButton.length > 0) {
 			prevButton[0].addEventListener('click', () => {
-				swiper.slidePrev()
-			})
+				swiper.slidePrev();
+			});
 		}
 
-		const nextButton = carousel.getElementsByClassName('swiper-button-next')
+		const nextButton = carousel.getElementsByClassName('swiper-button-next');
 
 		if (nextButton.length > 0) {
 			nextButton[0].addEventListener('click', () => {
-				swiper.slideNext()
-			})
+				swiper.slideNext();
+			});
 		}
-	}
-})
+	});
+});

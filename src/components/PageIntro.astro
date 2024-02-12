@@ -1,18 +1,19 @@
 ---
-import type { TypePageSkeleton } from '@lib/generated/contentful'
-import type { Entry } from 'contentful'
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from 'contentful';
+
 interface Props {
-	previousPage?: Entry<TypePageSkeleton>
-	previousPageLabel?: string
-	title: string
-	intro?: string
-	pageName?: string
+	previousPage?: Entry<TypePageSkeleton>;
+	previousPageLabel?: string;
+	title: string;
+	intro?: string;
+	pageName?: string;
 }
 
-const { title, intro, pageName, previousPageLabel, previousPage } = Astro.props
+const { title, intro, pageName, previousPageLabel, previousPage } = Astro.props;
 
-const hasPreviousPage = previousPage && previousPageLabel
-const previousPageSlug = previousPage?.fields?.slug as string
+const hasPreviousPage = previousPage && previousPageLabel;
+const previousPageSlug = previousPage?.fields?.slug as string;
 ---
 
 <section class="mt-14 md:mt-16">

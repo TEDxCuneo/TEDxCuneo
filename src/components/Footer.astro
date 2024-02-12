@@ -1,14 +1,14 @@
 ---
-import type { TypeWebsiteSkeleton } from '@lib/generated/contentful'
-import type { Entry, Link } from '@lib/types'
+import type { TypeWebsiteSkeleton } from '@lib/generated/contentful';
+import type { Entry, Link } from '@lib/types';
 
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
 const {
 	fields: { footerPages, linkedin, instagram, facebook },
-} = Astro.props
+} = Astro.props;
 
-const now = new Date()
+const now = new Date();
 
 const links: Link[] = [
 	{
@@ -16,7 +16,7 @@ const links: Link[] = [
 		url: 'https://github.com/TEDxCuneo/TEDxCuneo',
 		target: '_blank',
 	},
-]
+];
 
 const social: Link[] = [
 	{
@@ -34,23 +34,23 @@ const social: Link[] = [
 		url: facebook ?? 'https://www.facebook.com/TEDxCuneo/',
 		target: '_blank',
 	},
-]
+];
 
 if (footerPages) {
 	footerPages
 		.filter((page) => page && page.fields.slug)
 		.map((page) => ({
-			label: (page!.fields.navbarLabel ?? page!.fields.title) + ' ↗',
+			label: `${page!.fields.navbarLabel ?? page!.fields.title} ↗`,
 			url: page!.fields.slug.startsWith('/') ? `${page!.fields.slug}` : `/${page!.fields.slug}`,
 			target: '_self',
 		}))
 		.reverse()
-		.forEach((link) => links.unshift(link))
+		.forEach((link) => links.unshift(link));
 }
 ---
 
 <footer
-	class="grid flex-grow-0 grid-cols-1 gap-x-10 gap-y-10 border-t border-tedWhite py-8 md:min-h-280 md:grid-cols-3"
+	class="grid grow-0 grid-cols-1 gap-10 border-t border-tedWhite py-8 md:min-h-280 md:grid-cols-3"
 >
 	<div class="flex h-full flex-col justify-between">
 		<img

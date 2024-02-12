@@ -1,18 +1,18 @@
 ---
-import Picture from '@components/Picture.astro'
-import type { TypeTeamMemberSkeleton } from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
+import Picture from '@components/Picture.astro';
+import type { TypeTeamMemberSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
 
 interface Props extends Entry<TypeTeamMemberSkeleton> {
-	class?: string
-	lazy?: boolean
+	class?: string;
+	lazy?: boolean;
 }
 
 const {
 	class: className = '',
 	lazy = true,
 	fields: { firstName, lastName, image, link, linkLabel, role },
-} = Astro.props
+} = Astro.props;
 ---
 
 <div class:list={className}>

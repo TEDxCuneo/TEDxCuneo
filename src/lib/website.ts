@@ -1,5 +1,5 @@
-import contentful from './contentful'
-import type { TypeWebsiteSkeleton } from './generated/contentful'
+import contentful from './contentful';
+import type { TypeWebsiteSkeleton } from './generated/contentful';
 
 // Get website settings
 const websiteSettings = (
@@ -8,6 +8,6 @@ const websiteSettings = (
 		'fields.active': 'Si', // workaround to make Website a singleton
 		include: 1,
 	})
-).items[0]
+).items[0];
 
-export default websiteSettings
+export default websiteSettings;

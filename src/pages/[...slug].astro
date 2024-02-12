@@ -1,48 +1,48 @@
 ---
-import contentful from '@lib/contentful'
-import type { TypePageSkeleton } from '@lib/generated/contentful/index'
-import Homepage from 'src/layouts/Homepage.astro'
-import Generic from 'src/layouts/Generic.astro'
-import type { Entry } from '@lib/types'
-import Showcase from 'src/layouts/Showcase.astro'
-import Partnership from 'src/layouts/Partnership.astro'
+import contentful from '@lib/contentful';
+import type { TypePageSkeleton } from '@lib/generated/contentful/index';
+import type { Entry } from '@lib/types';
+import Generic from 'src/layouts/Generic.astro';
+import Homepage from 'src/layouts/Homepage.astro';
+import Partnership from 'src/layouts/Partnership.astro';
+import Showcase from 'src/layouts/Showcase.astro';
 
 export async function getStaticPaths() {
 	const pages = await contentful.getEntries<TypePageSkeleton>({
 		content_type: 'page',
 		include: 10, // max include depth
-	})
+	});
 
 	return pages.items.map((page) => {
-		const slug = page.fields.slug.startsWith('/') ? page.fields.slug : `/${page.fields.slug}`
+		const slug = page.fields.slug.startsWith('/') ? page.fields.slug : `/${page.fields.slug}`;
 		return {
 			params: { slug: slug === '/' ? undefined : slug },
 			props: {
-				page: page,
+				page,
 			},
-		}
-	})
+		};
+	});
 }
 
 const getLayout = (page: Entry<TypePageSkeleton>) => {
 	switch (page.fields.layout) {
 		case 'Generico':
-			return Generic
+			return Generic;
 		case 'Homepage':
-			return Homepage
+			return Homepage;
 		case 'Evento 2023':
-			return Generic
+			return Generic;
 		case 'Showcase':
-			return Showcase
+			return Showcase;
 		case 'Partnership':
-			return Partnership
+			return Partnership;
 		default:
-			return Generic
+			return Generic;
 	}
-}
+};
 
-const { page } = Astro.props
-const Layout = getLayout(page)
+const { page } = Astro.props;
+const Layout = getLayout(page);
 ---
 
 <Layout {...page} />

@@ -1,11 +1,11 @@
 ---
-import type { TypePageSkeleton } from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
-import Head from '@components/Head.astro'
+import Head from '@components/Head.astro';
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
 
 interface Props extends Entry<TypePageSkeleton> {}
 
-const page = Astro.props
+const page = Astro.props;
 ---
 
 <!doctype html>

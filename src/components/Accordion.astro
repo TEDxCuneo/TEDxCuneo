@@ -4,19 +4,19 @@
  */
 
 interface Props {
-	title?: string
+	title?: string;
 }
 
-const { title } = Astro.props
+const { title } = Astro.props;
 ---
 
 <script>
-	const handles = document.getElementsByClassName('handle')
+	const handles = document.getElementsByClassName('handle');
 	for (const handle of handles) {
 		handle.addEventListener('click', () => {
-			handle.nextElementSibling!.classList.toggle('open')
-			handle.classList.toggle('open')
-		})
+			handle.nextElementSibling!.classList.toggle('open');
+			handle.classList.toggle('open');
+		});
 	}
 </script>
 

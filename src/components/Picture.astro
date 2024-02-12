@@ -1,13 +1,13 @@
 ---
-import type { Asset } from '@lib/types'
+import type { Asset } from '@lib/types';
 
 interface Props extends Asset {
-	width: number
-	class?: string
-	alt?: string
-	height?: number
-	lazy?: boolean
-	crop?: 'pad' | 'fill' | 'scale' | 'thumb' | 'crop'
+	width: number;
+	class?: string;
+	alt?: string;
+	height?: number;
+	lazy?: boolean;
+	crop?: 'pad' | 'fill' | 'scale' | 'thumb' | 'crop';
 	focusArea?:
 		| 'center'
 		| 'top'
@@ -19,8 +19,8 @@ interface Props extends Asset {
 		| 'bottom_left'
 		| 'top_left'
 		| 'face'
-		| 'faces'
-	quality?: number
+		| 'faces';
+	quality?: number;
 }
 
 const {
@@ -33,13 +33,13 @@ const {
 	class: className = '',
 	focusArea,
 	quality = 75,
-} = Astro.props
+} = Astro.props;
 
-let additionalAttributes = `&q=${quality}`
-additionalAttributes += crop ? `&fit=${crop}` : ''
-additionalAttributes += focusArea ? `&f=${focusArea}` : ''
-const height1x = height ? `&h=${height}` : ''
-const height2x = height ? `&h=${2 * height}` : ''
+let additionalAttributes = `&q=${quality}`;
+additionalAttributes += crop ? `&fit=${crop}` : '';
+additionalAttributes += focusArea ? `&f=${focusArea}` : '';
+const height1x = height ? `&h=${height}` : '';
+const height2x = height ? `&h=${2 * height}` : '';
 ---
 
 {

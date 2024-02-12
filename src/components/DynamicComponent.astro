@@ -1,32 +1,32 @@
 ---
 import {
-	isTypeComponentGrid,
-	isTypeComponentRichText,
-	isTypeTeamMember,
-	isTypeSpeaker,
-	isTypePartner,
 	isTypeComponentAccordion,
-	isTypePage,
-	isTypeComponentVideo,
-	isTypeComponentSpecialSection,
 	isTypeComponentCarousel,
 	isTypeComponentCTA,
-} from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
-import RichText from './dynamic/RichText.astro'
-import Grid from './dynamic/Grid.astro'
-import TeamMember from './dynamic/TeamMember.astro'
-import Speaker from './dynamic/SpeakerCard.astro'
-import Partner from './dynamic/Partner.astro'
-import DynamicAccordion from './dynamic/DynamicAccordion.astro'
-import Video from './dynamic/Video.astro'
-import Carousel from './dynamic/Carousel.astro'
-import SpecialSection from './dynamic/SpecialSection.astro'
-import CallToAction from './dynamic/CallToAction.astro'
+	isTypeComponentGrid,
+	isTypeComponentRichText,
+	isTypeComponentSpecialSection,
+	isTypeComponentVideo,
+	isTypePartner,
+	isTypeSpeaker,
+	isTypeTeamMember,
+} from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import CallToAction from './dynamic/CallToAction.astro';
+import Carousel from './dynamic/Carousel.astro';
+import DynamicAccordion from './dynamic/DynamicAccordion.astro';
+import Grid from './dynamic/Grid.astro';
+import Partner from './dynamic/Partner.astro';
+import RichText from './dynamic/RichText.astro';
+import Speaker from './dynamic/SpeakerCard.astro';
+import SpecialSection from './dynamic/SpecialSection.astro';
+import TeamMember from './dynamic/TeamMember.astro';
+import Video from './dynamic/Video.astro';
 
 interface Props extends Entry<any> {} // allow any since we use guards to check the type
 
-const component = Astro.props
+const component = Astro.props;
 ---
 
 {isTypeComponentRichText(component) && <RichText {...component} />}

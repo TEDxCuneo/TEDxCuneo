@@ -1,14 +1,14 @@
 ---
-import NewsletterForm from '@components/NewsletterForm.astro'
-import PartnerForm from '@components/PartnerForm.astro'
-import type { TypeComponentSpecialSectionSkeleton } from '@lib/generated/contentful'
-import type { Entry } from '@lib/types'
+import NewsletterForm from '@components/NewsletterForm.astro';
+import PartnerForm from '@components/PartnerForm.astro';
+import type { TypeComponentSpecialSectionSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
 
 interface Props extends Entry<TypeComponentSpecialSectionSkeleton> {}
 
 const {
 	fields: { section },
-} = Astro.props
+} = Astro.props;
 ---
 
 {section === 'Newsletter form' && <NewsletterForm />}
