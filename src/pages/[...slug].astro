@@ -2,6 +2,7 @@
 import contentful from '@lib/contentful';
 import type { TypePageSkeleton } from '@lib/generated/contentful/index';
 import type { Entry } from '@lib/types';
+import Extraordinario from 'src/layouts/Extraordinario.astro';
 import Generic from 'src/layouts/Generic.astro';
 import Homepage from 'src/layouts/Homepage.astro';
 import Partnership from 'src/layouts/Partnership.astro';
@@ -31,7 +32,7 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 		case 'Homepage':
 			return Homepage;
 		case 'Evento 2023':
-			return Generic;
+			return Extraordinario;
 		case 'Showcase':
 			return Showcase;
 		case 'Partnership':

@@ -1,10 +1,4 @@
-import type {
-  ChainModifiers,
-  Entry,
-  EntryFieldTypes,
-  EntrySkeletonType,
-  LocaleCode,
-} from "contentful";
+import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 
 /**
  * Fields type definition for content type 'TypeComponentRichText'
@@ -13,18 +7,18 @@ import type {
  * @memberof TypeComponentRichText
  */
 export interface TypeComponentRichTextFields {
-  /**
-   * Field type definition for field 'internalTitle' (Titolo interno)
-   * @name Titolo interno
-   * @localized false
-   */
-  internalTitle: EntryFieldTypes.Symbol;
-  /**
-   * Field type definition for field 'content' (Contenuto)
-   * @name Contenuto
-   * @localized false
-   */
-  content?: EntryFieldTypes.RichText;
+    /**
+     * Field type definition for field 'internalTitle' (Titolo interno)
+     * @name Titolo interno
+     * @localized false
+     */
+    internalTitle: EntryFieldTypes.Symbol;
+    /**
+     * Field type definition for field 'content' (Contenuto)
+     * @name Contenuto
+     * @localized false
+     */
+    content?: EntryFieldTypes.RichText;
 }
 
 /**
@@ -35,10 +29,7 @@ export interface TypeComponentRichTextFields {
  * @since 2023-11-27T21:28:54.496Z
  * @version 9
  */
-export type TypeComponentRichTextSkeleton = EntrySkeletonType<
-  TypeComponentRichTextFields,
-  "componentRichText"
->;
+export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichTextFields, "componentRichText">;
 /**
  * Entry type definition for content type 'componentRichText' (Componente: Testo libero)
  * @name TypeComponentRichText
@@ -47,16 +38,8 @@ export type TypeComponentRichTextSkeleton = EntrySkeletonType<
  * @since 2023-11-27T21:28:54.496Z
  * @version 9
  */
-export type TypeComponentRichText<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
-> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
+export type TypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
 
-export function isTypeComponentRichText<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeComponentRichText<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "componentRichText";
+export function isTypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentRichText<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'componentRichText'
 }

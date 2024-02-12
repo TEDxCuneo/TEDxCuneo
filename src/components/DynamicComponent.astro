@@ -1,6 +1,7 @@
 ---
 import {
 	isTypeComponentAccordion,
+	isTypeComponentCard,
 	isTypeComponentCarousel,
 	isTypeComponentCTA,
 	isTypeComponentGrid,
@@ -14,6 +15,7 @@ import {
 import type { Entry } from '@lib/types';
 
 import CallToAction from './dynamic/CallToAction.astro';
+import Card from './dynamic/Card.astro';
 import Carousel from './dynamic/Carousel.astro';
 import DynamicAccordion from './dynamic/DynamicAccordion.astro';
 import Grid from './dynamic/Grid.astro';
@@ -40,3 +42,4 @@ const component = Astro.props;
 {isTypeComponentCarousel(component) && <Carousel {...component} />}
 {isTypeComponentSpecialSection(component) && <SpecialSection {...component} />}
 {isTypeComponentCTA(component) && <CallToAction {...component} />}
+{isTypeComponentCard(component) && <Card {...component} />}

@@ -1,0 +1,30 @@
+---
+import DynamicComponenList from '@components/DynamicComponenList.astro';
+import PageIntro from '@components/PageIntro.astro';
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import WithNavigation from './abstract/WithNavigation.astro';
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+/**
+ * Extraordinario layout
+ */
+---
+
+<WithNavigation {...page}>
+	<PageIntro {...page.fields} withMargin={false} />
+	<h3 class="mb-20 mt-12 text-tedDarkWhite md:mb-16">6 Maggio 2023</h3>
+	<picture>
+		<source media="(min-width:650px)" srcset="/img/extraordinario/banner.svg" />
+		<img
+			src="/img/extraordinario/banner_mobile.svg"
+			alt="banner extraordinario"
+			class="mb-20 w-full md:mb-28"
+		/>
+	</picture>
+	<DynamicComponenList components={page.fields.content} />
+</WithNavigation>

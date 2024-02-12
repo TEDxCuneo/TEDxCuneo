@@ -2,6 +2,7 @@
 import Speaker from '@components/dynamic/SpeakerCard.astro';
 import Picture from '@components/Picture.astro';
 import {
+	isTypeComponentCard,
 	isTypePartner,
 	isTypeSpeaker,
 	isTypeTeamMember,
@@ -9,6 +10,7 @@ import {
 } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
 
+import Card from './Card.astro';
 import Partner from './Partner.astro';
 import TeamMember from './TeamMember.astro';
 
@@ -50,6 +52,9 @@ const {
 												lazy={false}
 												class="swiper-slide flex-column flex !min-w-[270px] md:!min-w-[320px]"
 											/>
+										)}
+										{isTypeComponentCard(c) && (
+											<Card {...c} class="swiper-slide !min-w-[280px] max-w-[280px]" />
 										)}
 									</>
 								),
