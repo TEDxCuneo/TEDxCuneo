@@ -5,7 +5,7 @@ import type { TypeComponentRichText } from '@lib/generated/contentful';
 import type { ChainModifier } from '@lib/types';
 
 // check if first level domain is tedxcuneo.com
-const ourHostRegex = /^https?:\/\/(www\.)?tedxcuneo\.com/;
+const ourHostRegex = /^https?:\/\/(?:www\.)?tedxcuneo\.com/;
 
 interface Props extends TypeComponentRichText<ChainModifier, string> {}
 

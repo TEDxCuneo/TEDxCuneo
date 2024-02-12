@@ -11,7 +11,7 @@ const {
 } = Astro.props;
 
 const target = externalURL ? '_blank' : '_self';
-const url = externalURL || page?.fields.slug;
+const url = externalURL ?? page?.fields.slug;
 ---
 
 {

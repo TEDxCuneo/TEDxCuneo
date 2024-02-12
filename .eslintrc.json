@@ -1,8 +1,6 @@
 {
 	"root": true,
 	"extends": [
-		"plugin:astro/recommended",
-		"plugin:astro/jsx-a11y-recommended",
 		"airbnb-base",
 		"airbnb-typescript/base",
 		"plugin:@typescript-eslint/strict",
@@ -10,6 +8,8 @@
 		"plugin:eslint-comments/recommended",
 		"plugin:regexp/recommended",
 		"plugin:tailwindcss/recommended",
+		"plugin:astro/recommended",
+		"plugin:astro/jsx-a11y-recommended",
 		"prettier"
 	],
 	"plugins": ["simple-import-sort"],
@@ -58,7 +58,8 @@
 		"import/no-extraneous-dependencies": "off",
 		"import/prefer-default-export": "off",
 		"tailwindcss/classnames-order": "off", // Enforced by Prettier
-		"tailwindcss/no-custom-classname": "off" // Avoid distractions while typing
+		"tailwindcss/no-custom-classname": "off", // Avoid distractions while typing
+		"@typescript-eslint/no-non-null-assertion": "off" // Allow non-null assertions
 	},
 
 	"overrides": [
@@ -66,11 +67,10 @@
 			"files": "*.astro",
 			"parser": "astro-eslint-parser",
 			"parserOptions": {
-				"parser": "@typescript-eslint/parser"
+				"parser": "@typescript-eslint/parser",
+				"extraFileExtensions": [".astro"]
 			},
-			"rules": {
-				"import/no-unresolved": "off"
-			}
+			"rules": {}
 		}
 	]
 }

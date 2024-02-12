@@ -1,5 +1,7 @@
 {
-  "cSpell.words": [
-    "xxsm"
-  ]
+	"cSpell.words": ["xxsm"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"]
 }

@@ -15,11 +15,14 @@ const clickable = !!url;
 
 const WrapperHtmlElement = clickable ? 'a' : 'div';
 
-const imageStyle = logo?.fields.file?.details.image
-	? logo.fields.file.details.image?.width / logo.fields.file.details.image?.height > 1.2
-		? 'max-width: 70%; max-height: 70%;'
-		: 'max-height: 80%;'
-	: '';
+let imageStyle = '';
+
+if (logo?.fields.file?.details.image?.width && logo.fields.file.details.image?.height) {
+	imageStyle =
+		logo.fields.file.details.image.width / logo.fields.file.details.image.height > 1.2
+			? 'max-width: 70%; max-height: 70%;'
+			: 'max-height: 80%;';
+}
 ---
 
 <WrapperHtmlElement
