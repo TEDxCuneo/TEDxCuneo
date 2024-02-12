@@ -14,6 +14,7 @@
 	],
 	"plugins": ["simple-import-sort"],
 	"ignorePatterns": [
+		".vscode/**",
 		"src/lib/generated/**",
 		"dist/**",
 		"node_modules/**",
