@@ -1,6 +1,7 @@
 ---
 import type { TypePageSkeleton } from '@lib/generated/contentful';
-import type { Entry } from 'contentful';
+import type { Entry } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 
 interface Props {
 	previousPage?: Entry<TypePageSkeleton>;
@@ -14,14 +15,17 @@ interface Props {
 const { title, intro, pageName, previousPageLabel, previousPage, withMargin = true } = Astro.props;
 
 const hasPreviousPage = previousPage && previousPageLabel;
-const previousPageSlug = previousPage?.fields?.slug as string;
+const previousPageSlug = previousPage?.fields?.slug;
 ---
 
 <section class={`mt-14 md:mt-16 ${withMargin ? 'mb-28' : ''}`}>
 	{
 		hasPreviousPage && (
 			<p class="mb-6">
-				<a href={previousPageSlug} class="link-underline link-underline--fixed no-underline">
+				<a
+					href={prependSlash(previousPageSlug!)}
+					class="link-underline link-underline--fixed no-underline"
+				>
 					← {previousPageLabel}
 				</a>
 			</p>

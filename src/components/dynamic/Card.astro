@@ -23,7 +23,7 @@ const WrapperHtmlElement = clickable ? 'a' : 'div';
 			class="flex h-auto select-none flex-col self-stretch overflow-hidden rounded-lg bg-tedGray no-underline shadow transition delay-100 duration-200 ease-in-out"
 			class:list={[className, clickable && ['md:hover:scale-105', 'cursor-pointer']]}
 		>
-			<div class="mb-6">
+			<div class="">
 				<Picture
 					{...image}
 					class="w-full"
@@ -32,13 +32,13 @@ const WrapperHtmlElement = clickable ? 'a' : 'div';
 					height={500}
 				/>
 			</div>
-			<div class="px-4 pb-4">
+			<div class="p-[10px] md:p-4">
 				<p class="mb-2 text-tedDarkWhite">{kicker}</p>
-				<h3 class="mb-2">{title}</h3>
+				<h3 class="break-words">{title}</h3>
 			</div>
 			{clickable && (
-				<p class="mt-4 w-full pb-4 text-center">
-					<span class="link-underline link-underline--fixed">{actionLabel} →</span>
+				<p class="w-full pb-4 text-center">
+					<span class="link-underline link-underline--fixed">{actionLabel}</span>
 				</p>
 			)}
 		</WrapperHtmlElement>

@@ -1,6 +1,7 @@
 ---
 import type { TypeWebsiteSkeleton } from '@lib/generated/contentful';
 import type { Entry, Link } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
@@ -41,7 +42,7 @@ if (footerPages) {
 		.filter((page) => page && page.fields.slug)
 		.map((page) => ({
 			label: `${page!.fields.navbarLabel ?? page!.fields.title} ↗`,
-			url: page!.fields.slug.startsWith('/') ? `${page!.fields.slug}` : `/${page!.fields.slug}`,
+			url: prependSlash(page!.fields.slug),
 			target: '_self',
 		}))
 		.reverse()

@@ -2,11 +2,13 @@
 import contentful from '@lib/contentful';
 import type { TypePageSkeleton } from '@lib/generated/contentful/index';
 import type { Entry } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 import Extraordinario from 'src/layouts/Extraordinario.astro';
 import Generic from 'src/layouts/Generic.astro';
 import Homepage from 'src/layouts/Homepage.astro';
 import Partnership from 'src/layouts/Partnership.astro';
 import Showcase from 'src/layouts/Showcase.astro';
+import Ubuntu from 'src/layouts/Ubuntu.astro';
 
 export async function getStaticPaths() {
 	const pages = await contentful.getEntries<TypePageSkeleton>({
@@ -15,7 +17,7 @@ export async function getStaticPaths() {
 	});
 
 	return pages.items.map((page) => {
-		const slug = page.fields.slug.startsWith('/') ? page.fields.slug : `/${page.fields.slug}`;
+		const slug = prependSlash(page.fields.slug);
 		return {
 			params: { slug: slug === '/' ? undefined : slug },
 			props: {
@@ -37,6 +39,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return Showcase;
 		case 'Partnership':
 			return Partnership;
+		case 'Evento 2022':
+			return Ubuntu;
 		default:
 			return Generic;
 	}

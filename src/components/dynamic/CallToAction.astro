@@ -1,6 +1,7 @@
 ---
 import type { TypeComponentCTASkeleton } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 
 import Picture from '../Picture.astro';
 
@@ -13,8 +14,8 @@ const {
 const target = externalURL ? '_blank' : '_self';
 let url = page?.fields.slug ?? externalURL;
 
-if (url && !url.startsWith('http') && !url.startsWith('/')) {
-	url = `/${url}`;
+if (url && !url.startsWith('http')) {
+	url = prependSlash(url);
 }
 ---
 

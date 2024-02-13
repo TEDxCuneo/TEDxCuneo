@@ -68,3 +68,13 @@ export const fakePage: Entry<TypePageSkeleton> = {
 		noFollow: true,
 	},
 };
+
+/**
+ * Prepends a slash to a path if it doesn't already have one
+ *
+ * @param path The path to prepend a slash to
+ * @returns The path with a slash prepended if it doesn't already have one
+ */
+export function prependSlash(path: string): string {
+	return path.startsWith('/') ? path : `/${path}`;
+}

@@ -1,6 +1,7 @@
 ---
 import type { TypeWebsiteSkeleton } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
@@ -15,7 +16,7 @@ const mapPages = (pages: Entry<TypeWebsiteSkeleton>['fields']['menuPages']) =>
 		.filter((page) => page?.fields?.slug !== undefined)
 		.map((page) => ({
 			title: page!.fields.navbarLabel ?? page!.fields.title,
-			slug: page!.fields.slug.startsWith('/') ? `${page!.fields.slug}` : `/${page!.fields.slug}`,
+			slug: prependSlash(page!.fields.slug),
 			active: currentPath === page!.fields.slug.replace(/^\/|\/$/g, ''), // ignore starting or trailing slashes
 		}))
 		.filter((page) => page.title && page.slug !== undefined);
