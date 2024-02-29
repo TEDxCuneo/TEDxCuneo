@@ -4,6 +4,7 @@ import type { TypePageSkeleton } from '@lib/generated/contentful/index';
 import type { Entry } from '@lib/types';
 import { prependSlash } from '@lib/utils';
 import Extraordinario from 'src/layouts/Extraordinario.astro';
+import Festinalente from 'src/layouts/Festinalente.astro';
 import Generic from 'src/layouts/Generic.astro';
 import Homepage from 'src/layouts/Homepage.astro';
 import Partnership from 'src/layouts/Partnership.astro';
@@ -41,6 +42,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return Partnership;
 		case 'Evento 2022':
 			return Ubuntu;
+		case 'Evento 2021':
+			return Festinalente;
 		default:
 			return Generic;
 	}
