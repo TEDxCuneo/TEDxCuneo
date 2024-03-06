@@ -3,6 +3,7 @@ import { documentToHtmlString, type Options } from '@contentful/rich-text-html-r
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import type { TypeComponentRichText } from '@lib/generated/contentful';
 import type { ChainModifier } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 
 // check if first level domain is tedxcuneo.com
 const ourHostRegex = /^https?:\/\/(?:www\.)?tedxcuneo\.com/;
@@ -36,6 +37,10 @@ const options: Partial<Options> = {
 			`<a href="${uri}" target="${
 				ourHostRegex.test(uri) ? '_self' : '_blank'
 			}" class="link-underline link-underline--fixed">${next(content)}</a>`,
+		[INLINES.ENTRY_HYPERLINK]: ({ data: { target }, content }, next) => {
+			const url = target.fields.slug;
+			return `<a href="${prependSlash(url)}" class="link-underline link-underline--fixed">${next(content)}</a>`;
+		},
 	},
 };
 

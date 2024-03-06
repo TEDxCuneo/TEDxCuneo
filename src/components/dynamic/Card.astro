@@ -32,15 +32,17 @@ const WrapperHtmlElement = clickable ? 'a' : 'div';
 					height={500}
 				/>
 			</div>
-			<div class="p-[10px] md:p-4">
-				<p class="mb-2 text-tedDarkWhite">{kicker}</p>
-				<h3 class="break-words">{title}</h3>
+			<div class="flex h-full flex-col justify-between p-[10px] md:p-4">
+				<div>
+					<p class="mb-2 text-tedDarkWhite">{kicker}</p>
+					<h3 class="break-words">{title}</h3>
+				</div>
+				{clickable && (
+					<p class="mt-4 w-full text-center">
+						<span class="link-underline link-underline--fixed">{actionLabel}</span>
+					</p>
+				)}
 			</div>
-			{clickable && (
-				<p class="w-full pb-4 text-center">
-					<span class="link-underline link-underline--fixed">{actionLabel}</span>
-				</p>
-			)}
 		</WrapperHtmlElement>
 	)
 }
