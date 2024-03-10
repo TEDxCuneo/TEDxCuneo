@@ -1,15 +1,16 @@
 ---
+import Extraordinario from '@layouts/Extraordinario.astro';
+import Festinalente from '@layouts/Festinalente.astro';
+import Generic from '@layouts/Generic.astro';
+import Homepage from '@layouts/Homepage.astro';
+import Partner from '@layouts/Partner.astro';
+import Partnership from '@layouts/Partnership.astro';
+import Showcase from '@layouts/Showcase.astro';
+import Ubuntu from '@layouts/Ubuntu.astro';
 import contentful from '@lib/contentful';
 import type { TypePageSkeleton } from '@lib/generated/contentful/index';
 import type { Entry } from '@lib/types';
 import { prependSlash } from '@lib/utils';
-import Extraordinario from 'src/layouts/Extraordinario.astro';
-import Festinalente from 'src/layouts/Festinalente.astro';
-import Generic from 'src/layouts/Generic.astro';
-import Homepage from 'src/layouts/Homepage.astro';
-import Partnership from 'src/layouts/Partnership.astro';
-import Showcase from 'src/layouts/Showcase.astro';
-import Ubuntu from 'src/layouts/Ubuntu.astro';
 
 export async function getStaticPaths() {
 	const pages = await contentful.getEntries<TypePageSkeleton>({
@@ -44,6 +45,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return Ubuntu;
 		case 'Evento 2021':
 			return Festinalente;
+		case 'Partner':
+			return Partner;
 		default:
 			return Generic;
 	}

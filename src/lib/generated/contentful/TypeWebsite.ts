@@ -39,6 +39,12 @@ export interface TypeWebsiteFields {
      */
     facebook?: EntryFieldTypes.Symbol;
     /**
+     * Field type definition for field 'email' (Email)
+     * @name Email
+     * @localized false
+     */
+    email?: EntryFieldTypes.Symbol;
+    /**
      * Field type definition for field 'menuPages' (Pagine nel menù)
      * @name Pagine nel menù
      * @localized false
@@ -65,7 +71,7 @@ export interface TypeWebsiteFields {
  * @type {TypeWebsiteSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 17
+ * @version 19
  */
 export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website">;
 /**
@@ -74,7 +80,7 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @type {TypeWebsite}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 17
+ * @version 19
  */
 export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
 

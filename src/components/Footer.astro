@@ -6,7 +6,7 @@ import { prependSlash } from '@lib/utils';
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
 const {
-	fields: { footerPages, linkedin, instagram, facebook },
+	fields: { footerPages, linkedin, instagram, facebook, email },
 } = Astro.props;
 
 const now = new Date();
@@ -68,20 +68,29 @@ if (footerPages) {
 	</div>
 
 	<div class="flex flex-col justify-between">
-		<div class="mb-4 inline-flex flex-col gap-2 xl:mb-6 xl:flex-row">
-			{
-				social.map((link) => (
-					<p>
-						<a
-							class="link-underline link-underline--fixed"
-							href={link.url}
-							target={link.target ?? '_blank'}
-						>
-							{link.label}
-						</a>
-					</p>
-				))
-			}
+		<div>
+			<div class="mb-4 flex flex-col gap-2 md:inline-flex xl:mb-6 xl:flex-row">
+				{
+					social.map((link) => (
+						<p>
+							<a
+								class="link-underline link-underline--fixed"
+								href={link.url}
+								target={link.target ?? '_blank'}
+							>
+								{link.label}
+							</a>
+						</p>
+					))
+				}
+			</div>
+			<div class="mb-4 flex flex-col gap-2 md:inline-flex xl:mb-6 xl:flex-row">
+				<p>
+					<a href={`mailto:${email}`} class="link-underline link-underline--fixed">
+						{email}
+					</a>
+				</p>
+			</div>
 		</div>
 		<p class="">
 			Associazione Anima Silvae
