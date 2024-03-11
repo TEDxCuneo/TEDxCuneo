@@ -1,5 +1,6 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeComponentCardSkeleton } from "./TypeComponentCard";
+import type { TypePageSkeleton } from "./TypePage";
 import type { TypePartnerSkeleton } from "./TypePartner";
 import type { TypeSpeakerSkeleton } from "./TypeSpeaker";
 import type { TypeTeamMemberSkeleton } from "./TypeTeamMember";
@@ -31,6 +32,19 @@ export interface TypeComponentCarouselFields {
      */
     type: EntryFieldTypes.Symbol<"Card" | "Immagini">;
     /**
+     * Field type definition for field 'ctaPage' (Pagina CTA)
+     * @name Pagina CTA
+     * @localized false
+     */
+    ctaPage?: EntryFieldTypes.EntryLink<TypePageSkeleton>;
+    /**
+     * Field type definition for field 'ctaText' (Testo CTA)
+     * @name Testo CTA
+     * @localized false
+     * @summary [Opzionale] Testo CTA mostrato a destra del titolo del carosello
+     */
+    ctaText?: EntryFieldTypes.Symbol;
+    /**
      * Field type definition for field 'showNavigation' (Mostra freccie navigatione)
      * @name Mostra freccie navigatione
      * @localized false
@@ -56,7 +70,7 @@ export interface TypeComponentCarouselFields {
  * @type {TypeComponentCarouselSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T18:36:19.750Z
- * @version 13
+ * @version 15
  */
 export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarouselFields, "componentCarousel">;
 /**
@@ -65,7 +79,7 @@ export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarou
  * @type {TypeComponentCarousel}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T18:36:19.750Z
- * @version 13
+ * @version 15
  */
 export type TypeComponentCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentCarouselSkeleton, Modifiers, Locales>;
 

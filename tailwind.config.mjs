@@ -101,7 +101,8 @@ export default {
 			}),
 			screens: {
 				xxsm: '350px',
-				xsm: '400px',
+				xsm: '420px',
+				xlg: '1200px',
 			},
 			animation: {
 				'spin-slow': 'spin 6s linear infinite',

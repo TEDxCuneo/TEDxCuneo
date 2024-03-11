@@ -1,0 +1,21 @@
+---
+import DynamicComponenList from '@components/DynamicComponenList.astro';
+import PageIntro from '@components/PageIntro.astro';
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import WithNavigation from './abstract/WithNavigation.astro';
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+/**
+ * Extraordinario layout
+ */
+---
+
+<WithNavigation {...page}>
+	<PageIntro {...page.fields} withMargin={false} />
+	<DynamicComponenList components={page.fields.content} />
+</WithNavigation>

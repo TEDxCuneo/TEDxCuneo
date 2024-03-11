@@ -9,14 +9,18 @@ import website from '@lib/website';
 
 import Base from './Base.astro';
 
-interface Props extends Entry<TypePageSkeleton> {}
+interface Props extends Entry<TypePageSkeleton> {
+	className?: string;
+}
 
 const page = Astro.props;
 ---
 
-<Base {...page}>
+<Base {...page} className={page.className}>
 	<slot name="before-container" />
-	<div class="container relative flex min-h-screen flex-col overflow-x-hidden">
+	<div
+		class="container relative flex min-h-screen flex-col overflow-x-hidden md:overflow-x-visible"
+	>
 		<Header {...website} />
 		<main class="relative flex flex-1 flex-col">
 			<slot />
