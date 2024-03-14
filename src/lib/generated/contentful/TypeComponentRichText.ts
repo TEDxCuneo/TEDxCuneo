@@ -14,6 +14,13 @@ export interface TypeComponentRichTextFields {
      */
     internalTitle: EntryFieldTypes.Symbol;
     /**
+     * Field type definition for field 'noMargin' (Rimuovi margini paragrafi)
+     * @name Rimuovi margini paragrafi
+     * @localized false
+     * @summary Quando selezionato, non ci sarò spaziatura tra paragrafi. Usare per blocchi di testo speciali, in cui si inseriscono appositi spazi andando a capo.
+     */
+    noMargin: EntryFieldTypes.Boolean;
+    /**
      * Field type definition for field 'content' (Contenuto)
      * @name Contenuto
      * @localized false
@@ -27,7 +34,7 @@ export interface TypeComponentRichTextFields {
  * @type {TypeComponentRichTextSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:28:54.496Z
- * @version 11
+ * @version 13
  */
 export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichTextFields, "componentRichText">;
 /**
@@ -36,7 +43,7 @@ export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichT
  * @type {TypeComponentRichText}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:28:54.496Z
- * @version 11
+ * @version 13
  */
 export type TypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
 

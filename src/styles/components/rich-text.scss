@@ -58,4 +58,15 @@
 			}
 		}
 	}
+	&--no-margin {
+		* {
+			margin-top: 0 !important;
+			margin-bottom: 0 !important;
+		}
+		*:empty::before {
+			content: ' ';
+			white-space: pre;
+			min-height: 22px;
+		}
+	}
 }

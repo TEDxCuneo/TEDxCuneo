@@ -1,0 +1,31 @@
+---
+import type { TypeComponentCTASkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+import { prependSlash } from '@lib/utils';
+
+interface Props extends Entry<TypeComponentCTASkeleton> {}
+
+const {
+	fields: { title, actionLabel, externalURL, page },
+} = Astro.props;
+
+const target = externalURL ? '_blank' : '_self';
+let url = page?.fields.slug ?? externalURL;
+
+if (url && !url.startsWith('http')) {
+	url = prependSlash(url);
+}
+---
+
+{
+	url && (
+		<div class="-mx-4 flex flex-col gap-y-[45px] bg-tedWhite/[6%] p-4 py-[60px] no-underline md:rounded-lg md:py-[90px] lg:m-0 lg:p-8">
+			<h2 class="m-auto max-w-[575px] text-center ">{title}</h2>
+			<h1 class="text-center lg:mb-6">
+				<a target={target} href={url} class="link-underline link-underline--fixed no-underline ">
+					{actionLabel}
+				</a>
+			</h1>
+		</div>
+	)
+}

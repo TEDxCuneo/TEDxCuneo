@@ -45,11 +45,11 @@ const options: Partial<Options> = {
 };
 
 const {
-	fields: { content },
+	fields: { content, noMargin },
 } = Astro.props;
 ---
 
 <div
-	class="rich-text mx-auto w-full"
+	class:list={['rich-text mx-auto w-full', { 'rich-text--no-margin': noMargin }]}
 	set:html={content ? documentToHtmlString(content, options) : ''}
 />

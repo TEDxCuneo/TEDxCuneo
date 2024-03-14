@@ -9,6 +9,7 @@ import {
 	type TypeComponentCarouselSkeleton,
 } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
+import { prependSlash } from '@lib/utils';
 
 import Card from './Card.astro';
 import Partner from './Partner.astro';
@@ -17,12 +18,26 @@ import TeamMember from './TeamMember.astro';
 interface Props extends Entry<TypeComponentCarouselSkeleton> {}
 
 const {
-	fields: { type, title, cards, images, showNavigation },
+	fields: { type, title, cards, images, showNavigation, ctaPage, ctaText },
 	sys: { id },
 } = Astro.props;
+
+const ctaUrl = ctaPage?.fields?.slug ? prependSlash(ctaPage.fields.slug) : undefined;
+const hasCta = ctaPage && ctaText;
 ---
 
-{title && <h2 class="mb-6">{title}</h2>}
+<div class="mb-6 flex flex-col justify-between gap-y-2 md:flex-row md:items-end">
+	{title && <h2 class="">{title}</h2>}
+	{
+		hasCta && (
+			<h3>
+				<a href={ctaUrl} class="link-underline link-underline--fixed no-underline">
+					{ctaText}
+				</a>
+			</h3>
+		)
+	}
+</div>
 <div class="relative mx-auto flex w-full flex-col">
 	<div class="swiper w-full" id={`swiper-${id}`} style="overflow: visible" data-title={title}>
 		<div class="swiper-wrapper flex items-stretch">
