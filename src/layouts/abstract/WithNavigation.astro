@@ -18,9 +18,7 @@ const page = Astro.props;
 
 <Base {...page} className={page.className}>
 	<slot name="before-container" />
-	<div
-		class="container relative flex min-h-screen flex-col overflow-x-hidden md:overflow-x-visible"
-	>
+	<div class="container relative flex min-h-screen flex-col overflow-x-hidden">
 		<Header {...website} />
 		<main class="relative flex flex-1 flex-col">
 			<slot />

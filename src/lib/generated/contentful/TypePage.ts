@@ -33,7 +33,7 @@ export interface TypePageFields {
      * @localized false
      * @summary Il layout con cui renderizzare la pagina.
      */
-    layout: EntryFieldTypes.Symbol<"Evento 2021" | "Evento 2022" | "Evento 2023" | "Evento 2024" | "Generico" | "Homepage Metamorfosi" | "Homepage" | "Partner" | "Partnership" | "Showcase">;
+    layout: EntryFieldTypes.Symbol<"Biglietti" | "Evento 2021" | "Evento 2022" | "Evento 2023" | "Evento 2024" | "Generico" | "Homepage Metamorfosi" | "Homepage" | "Partner" | "Partnership" | "Showcase">;
     /**
      * Field type definition for field 'previousPage' (Pagina precedente)
      * @name Pagina precedente
@@ -139,7 +139,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 81
+ * @version 83
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -148,7 +148,7 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 81
+ * @version 83
  */
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
 

@@ -8,6 +8,7 @@ import Metamorfosi from '@layouts/Metamorfosi.astro';
 import Partner from '@layouts/Partner.astro';
 import Partnership from '@layouts/Partnership.astro';
 import Showcase from '@layouts/Showcase.astro';
+import Tickets from '@layouts/Tickets.astro';
 import Ubuntu from '@layouts/Ubuntu.astro';
 import contentful from '@lib/contentful';
 import type { TypePageSkeleton } from '@lib/generated/contentful/index';
@@ -53,6 +54,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return Partner;
 		case 'Homepage Metamorfosi':
 			return HomepageMetamorfosi;
+		case 'Biglietti':
+			return Tickets;
 		default:
 			return Generic;
 	}

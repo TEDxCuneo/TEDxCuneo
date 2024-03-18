@@ -11,12 +11,16 @@ interface Props extends Entry<TypePageSkeleton> {}
 const page = Astro.props;
 
 /**
- * Extraordinario layout
+ * Generic layout shows basic page intro, then renders children
  */
 ---
 
 <WithNavigation {...page}>
-	<PageIntro {...page.fields} withMargin={false} />
-	<img src="/img/metamorfosi/banner.png" alt="Metamorfosi" class="mb-24 mt-12 w-full" />
+	<PageIntro {...page.fields} />
+	<img
+		src="/img/metamorfosi/blob1.png"
+		alt="metamorfosi"
+		class="absolute right-[-60px] top-[90px] hidden w-[530px] lg:block"
+	/>
 	<DynamicComponenList components={page.fields.content} />
 </WithNavigation>
