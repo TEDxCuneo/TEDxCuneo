@@ -2,7 +2,7 @@ import 'swiper/css';
 
 import Swiper from 'swiper';
 
-document.addEventListener('DOMContentLoaded', () => {
+const initializeSwiper = (): void => {
 	const carousels = document.getElementsByClassName('swiper');
 	Array.from(carousels).forEach((carousel) => {
 		const title = carousel.getAttribute('data-title');
@@ -45,4 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		}
 	});
+};
+
+document.addEventListener('astro:page-load', () => {
+	initializeSwiper();
 });

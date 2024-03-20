@@ -11,13 +11,16 @@ const { title } = Astro.props;
 ---
 
 <script>
-	const handles = document.getElementsByClassName('handle');
-	for (const handle of handles) {
-		handle.addEventListener('click', () => {
-			handle.nextElementSibling!.classList.toggle('open');
-			handle.classList.toggle('open');
-		});
-	}
+	const initialize = () => {
+		const handles = document.getElementsByClassName('handle');
+		for (const handle of handles) {
+			handle.addEventListener('click', () => {
+				handle.nextElementSibling!.classList.toggle('open');
+				handle.classList.toggle('open');
+			});
+		}
+	};
+	document.addEventListener('astro:page-load', initialize);
 </script>
 
 <section class="accordion mb-8" aria-expanded="false" role="button">
@@ -26,7 +29,7 @@ const { title } = Astro.props;
 	>
 		<h2>{title ?? 'Accordion'}</h2>
 		<div
-			class="plus-icon relative mr-2 inline-block h-4 w-4"
+			class="plus-icon relative mr-2 inline-block size-4"
 			role="button"
 			aria-label="Toggle accordion"
 		>

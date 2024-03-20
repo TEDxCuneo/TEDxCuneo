@@ -26,44 +26,50 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 ---
 
 <script>
-	// Init
-	let isNavbarOpen = false;
-	const menuButton = document.getElementById('menuButton')!;
-	const nav = document.getElementById('nav')!;
-	menuButton.addEventListener('click', toggleNavbar);
+	const initializeNavbar = () => {
+		let isNavbarOpen = false;
+		const menuButton = document.getElementById('menuButton')!;
+		const nav = document.getElementById('nav')!;
 
-	assignNavbarState();
+		const assignNavbarState = () => {
+			if (isNavbarOpen) {
+				menuButton.classList.add('open');
+				nav.classList.add('open');
+				// remove scrolling
+				document.body.style.overflowY = 'hidden';
+				// set aria attributes
+				menuButton.setAttribute('aria-expanded', 'true');
+				nav.setAttribute('aria-hidden', 'false');
+			} else {
+				menuButton.classList.remove('open');
+				nav.classList.remove('open');
+				// restore scrolling
+				document.body.style.overflowY = 'auto';
+				// set aria attributes
+				menuButton.setAttribute('aria-expanded', 'false');
+				nav.setAttribute('aria-hidden', 'true');
+			}
+		};
 
-	// Utils
-	function toggleNavbar() {
-		isNavbarOpen = !isNavbarOpen;
+		const toggleNavbar = () => {
+			isNavbarOpen = !isNavbarOpen;
+			assignNavbarState();
+		};
+
+		menuButton.addEventListener('click', toggleNavbar);
+
 		assignNavbarState();
-	}
+	};
 
-	function assignNavbarState() {
-		if (isNavbarOpen) {
-			menuButton.classList.add('open');
-			nav.classList.add('open');
-			// remove scrolling
-			document.body.style.overflowY = 'hidden';
-			// set aria attributes
-			menuButton.setAttribute('aria-expanded', 'true');
-			nav.setAttribute('aria-hidden', 'false');
-		} else {
-			menuButton.classList.remove('open');
-			nav.classList.remove('open');
-			// restore scrolling
-			document.body.style.overflowY = 'auto';
-			// set aria attributes
-			menuButton.setAttribute('aria-expanded', 'false');
-			nav.setAttribute('aria-hidden', 'true');
-		}
-	}
+	// Close navbar when page changes
+	document.addEventListener('astro:page-load', () => {
+		initializeNavbar();
+	});
 </script>
 
 <header class="z-20 flex flex-row items-end justify-between" aria-label="Header">
 	<!-- Logo -->
-	<div class="flex-0 xlg:w-52 xlg:mr-4 z-[105] w-40">
+	<div class="flex-0 z-[105] w-40 xlg:mr-4 xlg:w-52">
 		<a href="/">
 			<img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
 		</a>
@@ -73,7 +79,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 		<nav
 			role="navigation"
 			aria-label="Main desktop navigation"
-			class="desktop-navigation xlg:flex hidden flex-row items-baseline gap-x-6"
+			class="desktop-navigation hidden flex-row items-baseline gap-x-6 xlg:flex"
 		>
 			{
 				headerPages.map((page) => (
@@ -89,7 +95,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 		</nav>
 		<!-- Hamburger button -->
 		<button
-			class="icon xlg:p-[6px] z-[110] flex cursor-pointer flex-col gap-y-[6px] transition-transform duration-300 ease-in-out"
+			class="icon z-[110] flex cursor-pointer flex-col gap-y-[6px] transition-transform duration-300 ease-in-out xlg:p-[6px]"
 			id="menuButton"
 			name="menu"
 			aria-label="Menu"
@@ -102,7 +108,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 	</div>
 	<!-- Full page navigation -->
 	<nav
-		class="full-page-nav fixed inset-x-0 bottom-0 top-[0] z-[100] flex flex-col justify-end bg-tedBlack pt-4"
+		class="full-page-nav fixed inset-0 z-[100] flex flex-col justify-end bg-tedBlack pt-4"
 		id="nav"
 		aria-label="Main full page navigation"
 		aria-hidden="true"
