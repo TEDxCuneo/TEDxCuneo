@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+	@import './base/global.scss';
 	@import './base/typography.scss';
 	@import './base/container.scss';
 }

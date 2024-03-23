@@ -2,6 +2,7 @@
 import type { TypePageSkeleton } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
+import { fade } from 'astro/virtual-modules/transitions.js';
 
 import FontLoader from './FontLoader.astro';
 import GoogleTagManager from './GoogleTagManager.astro';
@@ -58,6 +59,6 @@ const keywords = page.fields.keywords?.join(', ') ?? 'TEDxCuneo, TEDx, Cuneo';
 	<meta name="og:image:height" content="630" />
 	<meta name="robots" content={robots} />
 	<FontLoader />
-	<ViewTransitions />
+	<ViewTransitions transition:animate="fade" />
 	{PROD && <GoogleTagManager />}
 </head>

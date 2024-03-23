@@ -5,6 +5,7 @@ import Generic from '@layouts/Generic.astro';
 import Homepage from '@layouts/Homepage.astro';
 import HomepageMetamorfosi from '@layouts/HomepageMetamorfosi.astro';
 import Metamorfosi from '@layouts/Metamorfosi.astro';
+import OpenPositions from '@layouts/OpenPositions.astro';
 import Partner from '@layouts/Partner.astro';
 import Partnership from '@layouts/Partnership.astro';
 import Showcase from '@layouts/Showcase.astro';
@@ -34,8 +35,6 @@ export async function getStaticPaths() {
 
 const getLayout = (page: Entry<TypePageSkeleton>) => {
 	switch (page.fields.layout) {
-		case 'Generico':
-			return Generic;
 		case 'Homepage':
 			return Homepage;
 		case 'Evento 2023':
@@ -56,6 +55,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return HomepageMetamorfosi;
 		case 'Biglietti':
 			return Tickets;
+		case 'Entra nel team':
+			return OpenPositions;
 		default:
 			return Generic;
 	}
