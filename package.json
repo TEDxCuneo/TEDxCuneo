@@ -1,7 +1,7 @@
 {
 	"name": "tedxcuneo",
 	"type": "module",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"scripts": {
 		"prepare": "husky",
 		"cf-codegen": "eval $(grep '^CONTENTFUL_SPACE_ID' .env) && eval $(grep '^CONTENTFUL_MGMT_TOKEN' .env) && cf-content-types-generator -s ${CONTENTFUL_SPACE_ID} -t ${CONTENTFUL_MGMT_TOKEN} --typeguard -o src/lib/generated/contentful -p  --v10 --jsdoc --preserve",
