@@ -1,7 +1,7 @@
 ---
 import { documentToHtmlString, type Options } from '@contentful/rich-text-html-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
-import type { TypeComponentRichText } from '@lib/generated/contentful';
+import { isTypeButton, type TypeComponentRichText } from '@lib/generated/contentful';
 import type { ChainModifier } from '@lib/types';
 import { prependSlash } from '@lib/utils';
 
@@ -40,6 +40,17 @@ const options: Partial<Options> = {
 		[INLINES.ENTRY_HYPERLINK]: ({ data: { target }, content }, next) => {
 			const url = target.fields.slug;
 			return `<a href="${prependSlash(url)}" class="link-underline link-underline--fixed">${next(content)}</a>`;
+		},
+		[BLOCKS.EMBEDDED_ENTRY]: ({ data: { target } }) => {
+			if (isTypeButton<ChainModifier, string>(target)) {
+				const { label, variant, url, page } = target.fields;
+				const href = url ?? page?.fields.slug;
+				if (!label || !href) return '';
+				const variantClass = variant === 'Rosso' ? 'button--red' : 'button--white';
+				const targetType = url ?? ourHostRegex.test(href) ? '_blank' : '_self';
+				return `<a href="${href}" target="${targetType}" class="button ${variantClass}">${label}</a>`;
+			}
+			return '';
 		},
 	},
 };

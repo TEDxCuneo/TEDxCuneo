@@ -1,3 +1,5 @@
+export { isTypeButton } from "./TypeButton";
+export type { TypeButton, TypeButtonFields, TypeButtonSkeleton } from "./TypeButton";
 export { isTypeComponentAccordion } from "./TypeComponentAccordion";
 export type { TypeComponentAccordion, TypeComponentAccordionFields, TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
 export { isTypeComponentCTA } from "./TypeComponentCTA";
