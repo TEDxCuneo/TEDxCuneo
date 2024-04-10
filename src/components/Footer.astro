@@ -6,10 +6,8 @@ import { prependSlash } from '@lib/utils';
 interface Props extends Entry<TypeWebsiteSkeleton> {}
 
 const {
-	fields: { footerPages, linkedin, instagram, facebook, email },
+	fields: { footerPages, linkedin, instagram, facebook, email, copyrightText, associationText },
 } = Astro.props;
-
-const now = new Date();
 
 const links: Link[] = [
 	{
@@ -60,9 +58,8 @@ if (footerPages) {
 			alt="Logo TEDxCuneo svg"
 		/>
 		<div>
-			<p class="text-tedDarkWhite">
-				© {now.getFullYear()} TEDxCuneo - This independent TED event is operated under license from
-				TED.
+			<p class="whitespace-pre-line text-tedDarkWhite">
+				{copyrightText}
 			</p>
 		</div>
 	</div>
@@ -92,10 +89,8 @@ if (footerPages) {
 				</p>
 			</div>
 		</div>
-		<p class="">
-			Associazione Anima Silvae
-			<br />
-			Via Luigi Teresio Cavallo 7/B - Cuneo CF 96100380045
+		<p class="whitespace-pre-line">
+			{associationText}
 		</p>
 	</div>
 

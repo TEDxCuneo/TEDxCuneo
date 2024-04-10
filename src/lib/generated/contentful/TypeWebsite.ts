@@ -63,6 +63,18 @@ export interface TypeWebsiteFields {
      * @localized false
      */
     footerPages?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePageSkeleton>>;
+    /**
+     * Field type definition for field 'copyrightText' (Testo copyright)
+     * @name Testo copyright
+     * @localized false
+     */
+    copyrightText?: EntryFieldTypes.Text;
+    /**
+     * Field type definition for field 'associationText' (Testo associazione)
+     * @name Testo associazione
+     * @localized false
+     */
+    associationText?: EntryFieldTypes.Text;
 }
 
 /**
@@ -71,7 +83,7 @@ export interface TypeWebsiteFields {
  * @type {TypeWebsiteSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 19
+ * @version 21
  */
 export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website">;
 /**
@@ -80,7 +92,7 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @type {TypeWebsite}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 19
+ * @version 21
  */
 export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
 
