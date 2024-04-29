@@ -18,12 +18,12 @@ export interface TypeComponentVideoFields {
      * @name Sorgente
      * @localized false
      */
-    source: EntryFieldTypes.Symbol<"vimeo" | "youtube">;
+    source: EntryFieldTypes.Symbol<"TopIX" | "vimeo" | "youtube">;
     /**
      * Field type definition for field 'id' (ID video)
      * @name ID video
      * @localized false
-     * @summary L'ID del video (e.g. 8ShQfjJ4d_Y per Youtube o 822956892?h=cbc5dbedfd per Vimeo)
+     * @summary L'ID del video (e.g. 8ShQfjJ4d_Y per Youtube, 822956892?h=cbc5dbedfd per Vimeo e l'intero URL per TopIX)
      */
     id: EntryFieldTypes.Symbol;
     /**
@@ -48,7 +48,7 @@ export interface TypeComponentVideoFields {
  * @type {TypeComponentVideoSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T16:30:22.025Z
- * @version 3
+ * @version 5
  */
 export type TypeComponentVideoSkeleton = EntrySkeletonType<TypeComponentVideoFields, "componentVideo">;
 /**
@@ -57,7 +57,7 @@ export type TypeComponentVideoSkeleton = EntrySkeletonType<TypeComponentVideoFie
  * @type {TypeComponentVideo}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2024-01-04T16:30:22.025Z
- * @version 3
+ * @version 5
  */
 export type TypeComponentVideo<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentVideoSkeleton, Modifiers, Locales>;
 

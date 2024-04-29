@@ -2,6 +2,7 @@
 import DynamicComponenList from '@components/DynamicComponenList.astro';
 import type { TypePageSkeleton } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
+import website from '@lib/website';
 
 import WithNavigation from './abstract/WithNavigation.astro';
 
@@ -16,7 +17,24 @@ const page = Astro.props;
 	>
 		<div class="bubble-wrapper">
 			<img src="/img/metamorfosi/blob1.png" alt="Metamorfosi" class="main-blob" />
-			<img src="/img/metamorfosi/logo.svg" alt="Metamorfosi" class="logo" />
+			<div class="logo">
+				<img src="/img/metamorfosi/logo.svg" alt="Metamorfosi" class="relative inset-0" />
+				{
+					website.fields.livePage?.fields.slug && (
+						<div class="relative bottom-[-40px] right-0 flex items-center justify-end gap-x-[8px]">
+							<svg height="22" width="20" class="blinking">
+								<circle cx="10" cy="11" r="7" fill="#FF2B06" />
+							</svg>
+							<a
+								href="/live"
+								class="link-underline link-underline--fixed text-tedWhite no-underline"
+							>
+								Siamo in diretta&nbsp;↗
+							</a>
+						</div>
+					)
+				}
+			</div>
 			<img src="/img/metamorfosi/blob2.png" alt="Metamorfosi" class="small-bubble" />
 			<img src="/img/metamorfosi/sphere.png" alt="Metamorfosi" class="sphere" />
 		</div>
@@ -65,6 +83,7 @@ const page = Astro.props;
 			top: 260px;
 			left: -40px;
 			height: 200px;
+			width: 200px;
 		}
 	}
 

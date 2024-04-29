@@ -16,6 +16,7 @@
 
 @layer utilities {
 	@import './utilities/link-underline.scss';
+	@import './utilities/blink-animation.scss';
 }
 
 @import 'tickets.scss';

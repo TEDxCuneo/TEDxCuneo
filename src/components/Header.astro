@@ -3,10 +3,13 @@ import type { TypeWebsiteSkeleton } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
 import { prependSlash } from '@lib/utils';
 
-interface Props extends Entry<TypeWebsiteSkeleton> {}
+interface Props extends Entry<TypeWebsiteSkeleton> {
+	nakedNavigation?: boolean;
+}
 
 const {
 	fields: { menuPages, hamburgerPages: rawHamburgerPages },
+	nakedNavigation,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, '');
@@ -74,7 +77,7 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 			<img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
 		</a>
 	</div>
-	<div class="flex flex-row items-end gap-x-6">
+	<div class:list={['flex flex-row items-end gap-x-6', nakedNavigation && 'hidden']}>
 		<!-- Desktop navigation -->
 		<nav
 			role="navigation"

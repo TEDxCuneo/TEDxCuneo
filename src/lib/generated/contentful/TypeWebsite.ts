@@ -45,6 +45,13 @@ export interface TypeWebsiteFields {
      */
     email?: EntryFieldTypes.Symbol;
     /**
+     * Field type definition for field 'livePage' (Pagina live)
+     * @name Pagina live
+     * @localized false
+     * @summary Selezionare la pagina contenente il live streaming dell'evento. Se selezionata, verrà fatto vedere un blink sulla homepage con un link per entrare nello streaming.
+     */
+    livePage?: EntryFieldTypes.EntryLink<TypePageSkeleton>;
+    /**
      * Field type definition for field 'menuPages' (Pagine nel menù)
      * @name Pagine nel menù
      * @localized false
@@ -83,7 +90,7 @@ export interface TypeWebsiteFields {
  * @type {TypeWebsiteSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 21
+ * @version 23
  */
 export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website">;
 /**
@@ -92,7 +99,7 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @type {TypeWebsite}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T20:55:26.267Z
- * @version 21
+ * @version 23
  */
 export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
 

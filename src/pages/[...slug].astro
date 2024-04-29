@@ -4,6 +4,7 @@ import Festinalente from '@layouts/Festinalente.astro';
 import Generic from '@layouts/Generic.astro';
 import Homepage from '@layouts/Homepage.astro';
 import HomepageMetamorfosi from '@layouts/HomepageMetamorfosi.astro';
+import LiveStreaming from '@layouts/LiveStreaming.astro';
 import Metamorfosi from '@layouts/Metamorfosi.astro';
 import OpenPositions from '@layouts/OpenPositions.astro';
 import Partner from '@layouts/Partner.astro';
@@ -57,6 +58,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return Tickets;
 		case 'Entra nel team':
 			return OpenPositions;
+		case 'Live streaming':
+			return LiveStreaming;
 		default:
 			return Generic;
 	}

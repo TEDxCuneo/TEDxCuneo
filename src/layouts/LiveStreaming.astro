@@ -1,0 +1,22 @@
+---
+import DynamicComponenList from '@components/DynamicComponenList.astro';
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import WithNavigation from './abstract/WithNavigation.astro';
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+/**
+ * Live streaming layout
+ */
+---
+
+<WithNavigation {...page} nakedNavigation={true}>
+	<div class="mb-8 mt-12">
+		<h2 class="max-w-660">{page.fields.title}</h2>
+	</div>
+	<DynamicComponenList components={page.fields.content} />
+</WithNavigation>
