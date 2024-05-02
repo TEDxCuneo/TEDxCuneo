@@ -5,11 +5,13 @@ import { prependSlash } from '@lib/utils';
 
 interface Props extends Entry<TypeWebsiteSkeleton> {
 	nakedNavigation?: boolean;
+	liveIndicator?: string;
 }
 
 const {
 	fields: { menuPages, hamburgerPages: rawHamburgerPages },
 	nakedNavigation,
+	liveIndicator,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, '');
@@ -77,6 +79,18 @@ const hamburgerPages = mapPages(rawHamburgerPages ?? []);
 			<img src="/img/tedxcuneo_logo.svg" alt="Logo TEDxCuneo svg" />
 		</a>
 	</div>
+	{
+		liveIndicator && (
+			<div class="flex flex-row items-center gap-[4px]">
+				<>
+					<svg height="22" width="20" class="blinking">
+						<circle cx="10" cy="11" r="7" fill="#FF2B06" />
+					</svg>
+					<h3>{liveIndicator}</h3>
+				</>
+			</div>
+		)
+	}
 	<div class:list={['flex flex-row items-end gap-x-6', nakedNavigation && 'hidden']}>
 		<!-- Desktop navigation -->
 		<nav

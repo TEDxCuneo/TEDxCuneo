@@ -14,9 +14,7 @@ const page = Astro.props;
  */
 ---
 
-<WithNavigation {...page} nakedNavigation={true}>
-	<div class="mb-8 mt-12">
-		<h2 class="max-w-660">{page.fields.title}</h2>
-	</div>
+<WithNavigation {...page} nakedNavigation={true} liveIndicator={page.fields.title}>
+	<div class="my-4"></div>
 	<DynamicComponenList components={page.fields.content} />
 </WithNavigation>

@@ -11,6 +11,7 @@ import Base from './Base.astro';
 
 interface Props extends Entry<TypePageSkeleton> {
 	nakedNavigation?: boolean;
+	liveIndicator?: string;
 	className?: string;
 }
 
@@ -20,7 +21,11 @@ const page = Astro.props;
 <Base {...page} className={page.className}>
 	<slot name="before-container" />
 	<div class="container relative flex min-h-screen flex-col overflow-x-hidden">
-		<Header {...website} nakedNavigation={page.nakedNavigation} />
+		<Header
+			{...website}
+			nakedNavigation={page.nakedNavigation}
+			liveIndicator={page.liveIndicator}
+		/>
 		<main class="relative flex flex-1 flex-col">
 			<slot />
 		</main>
