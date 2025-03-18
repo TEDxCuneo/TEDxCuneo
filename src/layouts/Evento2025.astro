@@ -1,0 +1,37 @@
+---
+import DynamicComponenList from '@components/DynamicComponenList.astro';
+import PageIntro from '@components/PageIntro.astro';
+import type { TypePageSkeleton } from '@lib/generated/contentful';
+import type { Entry } from '@lib/types';
+
+import WithNavigation from './abstract/WithNavigation.astro';
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+
+/**
+ * R-esistenza layout
+ */
+---
+
+<WithNavigation {...page}>
+	<PageIntro {...page.fields} withMargin={false} />
+	<picture>
+		<source
+			src="//images.ctfassets.net/182w8pz5qrgz/PtoM5hzaSsEmv85NpoJXL/74f504acfff823bf5b0d8b592f21719d/cover.jpg?fm=webp&q=80&w=2100&h=1400"
+			type="image/webp"
+		/>
+		<source
+			src="//images.ctfassets.net/182w8pz5qrgz/PtoM5hzaSsEmv85NpoJXL/74f504acfff823bf5b0d8b592f21719d/cover.jpg?fm=jpg&q=80&w=2100&h=1400"
+			type="image/jpeg"
+		/>
+		<img
+			src="//images.ctfassets.net/182w8pz5qrgz/PtoM5hzaSsEmv85NpoJXL/74f504acfff823bf5b0d8b592f21719d/cover.jpg?fm=jpg&q=80&w=2100&h=1400"
+			alt="Intro R-esistenza"
+			loading="lazy"
+			class="mb-24 mt-12 w-full rounded-xl"
+		/>
+	</picture>
+	<DynamicComponenList components={page.fields.content} />
+</WithNavigation>

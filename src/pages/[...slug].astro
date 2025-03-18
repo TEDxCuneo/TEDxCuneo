@@ -1,4 +1,5 @@
 ---
+import Evento2025 from '@layouts/Evento2025.astro';
 import Extraordinario from '@layouts/Extraordinario.astro';
 import Festinalente from '@layouts/Festinalente.astro';
 import Generic from '@layouts/Generic.astro';
@@ -42,6 +43,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
 			return Extraordinario;
 		case 'Evento 2024':
 			return Metamorfosi;
+		case 'Evento2025':
+			return Evento2025;
 		case 'Showcase':
 			return Showcase;
 		case 'Partnership':
