@@ -17,10 +17,5 @@ const page = Astro.props;
 
 <WithNavigation {...page}>
 	<PageIntro {...page.fields} />
-	<img
-		src="/img/metamorfosi/blob1.png"
-		alt="metamorfosi"
-		class="absolute right-[-60px] top-[90px] hidden w-[530px] lg:block"
-	/>
 	<DynamicComponenList components={page.fields.content} />
 </WithNavigation>
