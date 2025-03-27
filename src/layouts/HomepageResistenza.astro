@@ -1,4 +1,5 @@
 ---
+import DraggableImg from '@components/DraggableImg';
 import DynamicComponenList from '@components/DynamicComponenList.astro';
 import type { TypePageSkeleton } from '@lib/generated/contentful';
 import type { Entry } from '@lib/types';
@@ -27,20 +28,23 @@ const page = Astro.props;
 				alt="si muove propoga idee e sentimenti È"
 				class="absolute inset-x-0 top-0 m-auto"
 			/>
-			<img
+			<DraggableImg
+				client:load
 				src="/img/r-esistenza/r-esistenza.svg"
 				alt="resistenza"
-				class="absolute inset-x-0 bottom-0 m-auto cursor-move"
+				className="sticker absolute inset-x-0 bottom-0 m-auto "
 			/>
-			<img
+			<DraggableImg
+				client:load
 				src="/img/r-esistenza/lascia-il-segno.svg"
 				alt="lascia il segno"
-				class="absolute bottom-[-60px] right-[-50px] w-[220px] cursor-move md:right-[-140px] md:w-auto"
+				className="sticker absolute bottom-[-60px] right-[-50px] w-[220px]  md:right-[-140px] md:w-auto"
 			/>
-			<img
+			<DraggableImg
+				client:load
 				src="/img/r-esistenza/data.svg"
 				alt="3 maggio 2025"
-				class="absolute right-[-50px] top-[-100px] w-[160px] cursor-move md:right-[-120px] md:top-[-50px]"
+				className="sticker absolute right-[-50px] top-[-100px] w-[160px]  md:right-[-120px] md:top-[-50px]"
 			/>
 		</div>
 	</section>

@@ -2,7 +2,7 @@
 	"extends": "astro/tsconfigs/strict",
 	"exclude": ["dist"],
 	"compilerOptions": {
-		"baseUrl": ".",
+		"baseUrl": "/Users/davideaimar/Desktop/repos/TEDxCuneo-new",
 		"strictNullChecks": true,
 		"paths": {
 			"@components/*": ["src/components/*"],
@@ -11,6 +11,8 @@
 			"@pages/*": ["src/pages/*"],
 			"@styles/*": ["src/styles/*"],
 			"@layouts/*": ["src/layouts/*"]
-		}
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react"
 	}
 }
