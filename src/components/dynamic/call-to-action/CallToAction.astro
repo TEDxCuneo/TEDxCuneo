@@ -1,23 +1,23 @@
 ---
-import type { TypeComponentCTASkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import type { TypeComponentCTASkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-import NormalCTA from './NormalCTA.astro';
-import TicketsCTA from './TicketsCTA.astro';
+import NormalCTA from "./NormalCTA.astro";
+import TicketsCTA from "./TicketsCTA.astro";
 
 interface Props extends Entry<TypeComponentCTASkeleton> {}
 
 const callToAction = Astro.props;
 
 const getLayout = (cta: Entry<TypeComponentCTASkeleton>) => {
-	switch (cta.fields.layout) {
-		case 'Standard':
-			return NormalCTA;
-		case 'Biglietti':
-			return TicketsCTA;
-		default:
-			return NormalCTA;
-	}
+  switch (cta.fields.layout) {
+    case "Standard":
+      return NormalCTA;
+    case "Biglietti":
+      return TicketsCTA;
+    default:
+      return NormalCTA;
+  }
 };
 const CTA = getLayout(callToAction);
 ---

@@ -1,9 +1,9 @@
 ---
-import DynamicComponenList from '@components/DynamicComponenList.astro';
-import type { TypePageSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-import WithNavigation from './abstract/WithNavigation.astro';
+import WithNavigation from "./abstract/WithNavigation.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -11,34 +11,38 @@ const page = Astro.props;
 ---
 
 <WithNavigation {...page}>
-	<div
-		style="background-image: url('/img/entra-nel-team.jpeg')"
-		class="z-1 absolute inset-x-0 top-0 h-550 w-full bg-cover bg-center bg-no-repeat sm:h-600 md:h-800"
-		slot="before-container"
-	>
-	</div>
-	<div class="mb-40 mt-20 xsm:mb-64 md:mb-56 lg:mb-56">
-		<h1 class="mb-16 max-w-660 xxsm:mb-24 md:mb-28 md:mt-16">
-			{page.fields.title}
-		</h1>
+  <div
+    style="background-image: url('/img/entra-nel-team.jpeg')"
+    class="z-1 absolute inset-x-0 top-0 h-550 w-full bg-cover bg-center bg-no-repeat sm:h-600 md:h-800"
+    slot="before-container"
+  >
+  </div>
+  <div class="mb-40 mt-20 xsm:mb-64 md:mb-56 lg:mb-56">
+    <h1 class="mb-16 max-w-660 xxsm:mb-24 md:mb-28 md:mt-16">
+      {page.fields.title}
+    </h1>
 
-		<a
-			href="#posizioni"
-			class="no-uderline mb-4 box-content inline-block border border-tedWhite p-3 text-center text-small font-bold uppercase no-underline md:mb-5 md:p-4 md:text-d_base"
-			>{page.fields.intro}</a
-		>
+    <a
+      href="#posizioni"
+      class="no-uderline mb-4 box-content inline-block border border-tedWhite p-3 text-center text-small font-bold uppercase no-underline md:mb-5 md:p-4 md:text-d_base"
+      >{page.fields.intro}</a
+    >
 
-		<svg class="mb-4 h-6 md:mb-10" viewBox="0 0 13 24" xmlns="http://www.w3.org/2000/svg">
-			<path
-				fill="white"
-				d="M2.03383e-07 17.1647L6.5 24L13 17.1647L11.8973 15.9898L7.29799 20.8264L7.29799 -2.49243e-07L5.70201 -3.19005e-07L5.70201 20.8264L1.11719 15.9898L2.03383e-07 17.1647Z"
-			></path>
-		</svg>
-	</div>
+    <svg
+      class="mb-4 h-6 md:mb-10"
+      viewBox="0 0 13 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="white"
+        d="M2.03383e-07 17.1647L6.5 24L13 17.1647L11.8973 15.9898L7.29799 20.8264L7.29799 -2.49243e-07L5.70201 -3.19005e-07L5.70201 20.8264L1.11719 15.9898L2.03383e-07 17.1647Z"
+      ></path>
+    </svg>
+  </div>
 
-	<div id="posizioni">
-		<DynamicComponenList components={page.fields.content} />
-	</div>
+  <div id="posizioni">
+    <DynamicComponenList components={page.fields.content} />
+  </div>
 </WithNavigation>
 
 <style lang="scss"></style>

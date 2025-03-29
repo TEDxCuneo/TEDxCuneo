@@ -1,23 +1,23 @@
 ---
-import type { Entry } from '@lib/types';
+import type { Entry } from "@lib/types";
 
-import DynamicComponent from './DynamicComponent.astro';
-import PageSection from './PageSection.astro';
+import DynamicComponent from "./DynamicComponent.astro";
+import PageSection from "./PageSection.astro";
 
 interface Props {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	components?: (Entry<any> | undefined)[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  components?: (Entry<any> | undefined)[];
 }
 
 const { components } = Astro.props;
 ---
 
 {
-	components
-		?.filter((c) => c)
-		.map((c) => (
-			<PageSection>
-				<DynamicComponent {...c!} />
-			</PageSection>
-		))
+  components
+    ?.filter((c) => c)
+    .map((c) => (
+      <PageSection>
+        <DynamicComponent {...c!} />
+      </PageSection>
+    ))
 }

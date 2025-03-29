@@ -1,47 +1,49 @@
 ---
-import type { TypeComponentCTASkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
-import { prependSlash } from '@lib/utils';
+import type { TypeComponentCTASkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
+import { prependSlash } from "@lib/utils";
 
-import Picture from '../../Picture.astro';
+import Picture from "../../Picture.astro";
 
 interface Props extends Entry<TypeComponentCTASkeleton> {}
 
 const {
-	fields: { kicker, title, description, image, actionLabel, externalURL, page },
+  fields: { kicker, title, description, image, actionLabel, externalURL, page },
 } = Astro.props;
 
-const target = externalURL ? '_blank' : '_self';
+const target = externalURL ? "_blank" : "_self";
 let url = page?.fields.slug ?? externalURL;
 
-if (url && !url.startsWith('http')) {
-	url = prependSlash(url);
+if (url && !url.startsWith("http")) {
+  url = prependSlash(url);
 }
 ---
 
 {
-	url && (
-		<a
-			target={target}
-			href={url}
-			class="-mx-4 flex cursor-pointer flex-col gap-x-8  gap-y-4  bg-tedGray p-4 no-underline md:rounded-lg lg:m-0 lg:flex-row lg:p-8"
-		>
-			<Picture
-				{...image!}
-				class="h-full w-full rounded-lg object-cover"
-				alt={image?.fields.title}
-				width={800}
-			/>
-			<div class="flex w-full flex-col lg:max-w-[60%]">
-				<div>
-					<h3 class="mb-4 text-tedDarkWhite lg:mb-3">{kicker}</h3>
-					<h1 class="mb-4 lg:mb-6">{title}</h1>
-					<p class="mb-6 lg:mb-8">{description}</p>
-				</div>
-				<div class="flex justify-end">
-					<span class="link-underline link-underline--fixed no-underline">{actionLabel}</span>
-				</div>
-			</div>
-		</a>
-	)
+  url && (
+    <a
+      target={target}
+      href={url}
+      class="-mx-4 flex cursor-pointer flex-col gap-x-8  gap-y-4  bg-tedGray p-4 no-underline md:rounded-lg lg:m-0 lg:flex-row lg:p-8"
+    >
+      <Picture
+        {...image!}
+        class="size-full rounded-lg object-cover"
+        alt={image?.fields.title}
+        width={800}
+      />
+      <div class="flex w-full flex-col lg:max-w-[60%]">
+        <div>
+          <h3 class="mb-4 text-tedDarkWhite lg:mb-3">{kicker}</h3>
+          <h1 class="mb-4 lg:mb-6">{title}</h1>
+          <p class="mb-6 lg:mb-8">{description}</p>
+        </div>
+        <div class="flex justify-end">
+          <span class="link-underline link-underline--fixed no-underline">
+            {actionLabel}
+          </span>
+        </div>
+      </div>
+    </a>
+  )
 }
