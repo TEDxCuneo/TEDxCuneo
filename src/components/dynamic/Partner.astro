@@ -1,45 +1,50 @@
 ---
-import type { TypePartnerSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import type { TypePartnerSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypePartnerSkeleton> {
-	class?: string;
+  class?: string;
 }
 
 const {
-	class: className = '',
-	fields: { name, url, logo },
+  class: className = "",
+  fields: { name, url, logo },
 } = Astro.props;
 
 const clickable = !!url;
 
-const WrapperHtmlElement = clickable ? 'a' : 'div';
+const WrapperHtmlElement = clickable ? "a" : "div";
 
-let imageStyle = '';
+let imageStyle = "";
 
-if (logo?.fields.file?.details.image?.width && logo.fields.file.details.image?.height) {
-	imageStyle =
-		logo.fields.file.details.image.width / logo.fields.file.details.image.height > 1.2
-			? 'max-width: 70%; max-height: 70%;'
-			: 'max-height: 80%;';
+if (
+  logo?.fields.file?.details.image?.width &&
+  logo.fields.file.details.image?.height
+) {
+  imageStyle =
+    logo.fields.file.details.image.width /
+      logo.fields.file.details.image.height >
+    1.2
+      ? "max-width: 70%; max-height: 70%;"
+      : "max-height: 80%;";
 }
 ---
 
 <WrapperHtmlElement
-	href={clickable ? url : undefined}
-	target={clickable ? '_blank' : undefined}
-	style="background: rgba(255, 255, 255, 0.06);"
-	class="relative block aspect-[3/2] w-full select-none rounded transition delay-300 duration-200 ease-in-out md:hover:scale-105"
-	class:list={className}
+  href={clickable ? url : undefined}
+  target={clickable ? "_blank" : undefined}
+  style="background: rgba(255, 255, 255, 0.06);"
+  class="relative block aspect-[3/2] w-full select-none rounded transition delay-300 duration-200 ease-in-out md:hover:scale-105"
+  class:list={className}
 >
-	{
-		logo?.fields.file && (
-			<img
-				src={logo.fields.file.url}
-				alt={`${name} logo`}
-				style={imageStyle}
-				class="absolute inset-0 m-auto p-2"
-			/>
-		)
-	}
+  {
+    logo?.fields.file && (
+      <img
+        src={logo.fields.file.url}
+        alt={`${name} logo`}
+        style={imageStyle}
+        class="absolute inset-0 m-auto p-2"
+      />
+    )
+  }
 </WrapperHtmlElement>

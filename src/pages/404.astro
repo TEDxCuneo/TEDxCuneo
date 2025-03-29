@@ -1,24 +1,24 @@
 ---
-import { fakePage } from '@lib/utils';
-import WithNavigation from 'src/layouts/abstract/WithNavigation.astro';
+import { fakePage } from "@lib/utils";
+import WithNavigation from "src/layouts/abstract/WithNavigation.astro";
 
 const page = { ...fakePage };
 
 page.fields = {
-	...page.fields,
-	title: 'Pagina non trovata | TEDxCuneo',
-	browserTitle: 'Pagina non trovata | TEDxCuneo',
-	ogTitle: 'Pagina non trovata | TEDxCuneo',
-	ogDescription: 'Errore 404 - Pagina non trovata :(',
+  ...page.fields,
+  title: "Pagina non trovata | TEDxCuneo",
+  browserTitle: "Pagina non trovata | TEDxCuneo",
+  ogTitle: "Pagina non trovata | TEDxCuneo",
+  ogDescription: "Errore 404 - Pagina non trovata :(",
 };
 ---
 
 <WithNavigation {...page}>
-	<div class="flex flex-1 flex-col items-center justify-center text-center">
-		<div class="my-16">
-			<h1 class="mb-6">Errore 404</h1>
-			<p class="mb-5">La pagina che stai cercando non esiste.</p>
-			<a href="/" class="button button--red">Torna alla home</a>
-		</div>
-	</div>
+  <div class="flex flex-1 flex-col items-center justify-center text-center">
+    <div class="my-16">
+      <h1 class="mb-6">Errore 404</h1>
+      <p class="mb-5">La pagina che stai cercando non esiste.</p>
+      <a href="/" class="button button--red">Torna alla home</a>
+    </div>
+  </div>
 </WithNavigation>

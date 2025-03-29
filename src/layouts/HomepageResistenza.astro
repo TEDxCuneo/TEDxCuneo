@@ -1,10 +1,10 @@
 ---
-import DraggableImg from '@components/DraggableImg';
-import DynamicComponenList from '@components/DynamicComponenList.astro';
-import type { TypePageSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import DraggableImg from "@components/DraggableImg";
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-import WithNavigation from './abstract/WithNavigation.astro';
+import WithNavigation from "./abstract/WithNavigation.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -12,49 +12,49 @@ const page = Astro.props;
 ---
 
 <WithNavigation {...page}>
-	<section
-		class="bg-resistenza relative flex h-[calc(100vh-48px)] max-h-[800px] min-h-[750px] overflow-visible"
-	>
-		<img
-			src="/img/r-esistenza/x.svg"
-			alt="X"
-			class="md:[w-90%] absolute inset-0 m-auto w-[120%] lg:left-[100px] lg:top-[100px] lg:w-[930px]"
-		/>
-		<div
-			class="absolute inset-x-0 bottom-[80px] top-0 m-auto h-[300px] w-[310px] md:h-[440px] md:w-[580px]"
-		>
-			<img
-				src="/img/r-esistenza/intro.svg"
-				alt="si muove propoga idee e sentimenti È"
-				class="absolute inset-x-0 top-0 m-auto"
-			/>
-			<DraggableImg
-				client:load
-				src="/img/r-esistenza/r-esistenza.svg"
-				alt="resistenza"
-				className="sticker absolute inset-x-0 bottom-0 m-auto "
-			/>
-			<DraggableImg
-				client:load
-				src="/img/r-esistenza/lascia-il-segno.svg"
-				alt="lascia il segno"
-				className="sticker absolute bottom-[-60px] right-[-50px] w-[220px]  md:right-[-140px] md:w-auto"
-			/>
-			<DraggableImg
-				client:load
-				src="/img/r-esistenza/data.svg"
-				alt="3 maggio 2025"
-				className="sticker absolute right-[-50px] top-[-100px] w-[160px]  md:right-[-120px] md:top-[-50px]"
-			/>
-		</div>
-	</section>
-	<div class="z-10">
-		<DynamicComponenList components={page.fields.content} />
-	</div>
+  <section
+    class="bg-resistenza relative flex h-[calc(100vh-48px)] max-h-[800px] min-h-[750px] overflow-visible"
+  >
+    <img
+      src="/img/r-esistenza/x.svg"
+      alt="X"
+      class="md:[w-90%] absolute inset-0 m-auto w-[120%] lg:left-[100px] lg:top-[100px] lg:w-[930px]"
+    />
+    <div
+      class="absolute inset-x-0 bottom-[80px] top-0 m-auto h-[300px] w-[310px] md:h-[440px] md:w-[580px]"
+    >
+      <img
+        src="/img/r-esistenza/intro.svg"
+        alt="si muove propoga idee e sentimenti È"
+        class="absolute inset-x-0 top-0 m-auto"
+      />
+      <DraggableImg
+        client:load
+        src="/img/r-esistenza/r-esistenza.svg"
+        alt="resistenza"
+        className="sticker absolute inset-x-0 bottom-0 m-auto "
+      />
+      <DraggableImg
+        client:load
+        src="/img/r-esistenza/lascia-il-segno.svg"
+        alt="lascia il segno"
+        className="sticker absolute bottom-[-60px] right-[-50px] w-[220px]  md:right-[-140px] md:w-auto"
+      />
+      <DraggableImg
+        client:load
+        src="/img/r-esistenza/data.svg"
+        alt="3 maggio 2025"
+        className="sticker absolute right-[-50px] top-[-100px] w-[160px]  md:right-[-120px] md:top-[-50px]"
+      />
+    </div>
+  </section>
+  <div class="z-10">
+    <DynamicComponenList components={page.fields.content} />
+  </div>
 </WithNavigation>
 
 <style lang="scss">
-	.bg-resistenza {
-		background-image: url('/img/r-esistenza/bg.jpg');
-	}
+  .bg-resistenza {
+    background-image: url("/img/r-esistenza/bg.jpg");
+  }
 </style>

@@ -1,9 +1,9 @@
 .container {
-	@apply mx-auto w-full px-4;
-	max-width: 1440px !important;
+  @apply mx-auto w-full px-4;
+  max-width: 1440px !important;
 }
 @screen md {
-	.container {
-		@apply px-12;
-	}
+  .container {
+    @apply px-12;
+  }
 }

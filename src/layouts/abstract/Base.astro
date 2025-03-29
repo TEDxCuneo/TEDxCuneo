@@ -1,10 +1,10 @@
 ---
-import Head from '@components/Head.astro';
-import type { TypePageSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import Head from "@components/Head.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypePageSkeleton> {
-	className?: string;
+  className?: string;
 }
 
 const page = Astro.props;
@@ -12,8 +12,10 @@ const page = Astro.props;
 
 <!doctype html>
 <html lang="it">
-	<Head {...page} />
-	<body class={`overflow-x-hidden bg-tedBlack text-tedWhite ${page.className ?? ''}`}>
-		<slot />
-	</body>
+  <Head {...page} />
+  <body
+    class={`overflow-x-hidden bg-tedBlack text-tedWhite ${page.className ?? ""}`}
+  >
+    <slot />
+  </body>
 </html>

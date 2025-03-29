@@ -1,9 +1,9 @@
 ---
-import DynamicComponenList from '@components/DynamicComponenList.astro';
-import type { TypePageSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-import WithNavigation from './abstract/WithNavigation.astro';
+import WithNavigation from "./abstract/WithNavigation.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -11,20 +11,20 @@ const page = Astro.props;
 ---
 
 <WithNavigation {...page}>
-	<section class="mb-64 mt-12">
-		<h1 class="mb-6 mt-12 md:mb-8" style="max-width: 610px;">
-			Portiamo nuove idee da condividere a Cuneo
-		</h1>
-		<p class="max-w-400">
-			Vogliamo rendere la nostra città un luogo di incontro e scambio, dove la cultura e la
-			condivisione fanno nascere nuove idee.
-		</p>
-	</section>
-	<img
-		class="absolute top-20 hidden max-w-500 md:block"
-		style="right: 80px;"
-		src="/img/home/ubuntu-x.svg"
-		alt="x con pezzi di tetris"
-	/>
-	<DynamicComponenList components={page.fields.content} />
+  <section class="mb-64 mt-12">
+    <h1 class="mb-6 mt-12 md:mb-8" style="max-width: 610px;">
+      Portiamo nuove idee da condividere a Cuneo
+    </h1>
+    <p class="max-w-400">
+      Vogliamo rendere la nostra città un luogo di incontro e scambio, dove la
+      cultura e la condivisione fanno nascere nuove idee.
+    </p>
+  </section>
+  <img
+    class="absolute top-20 hidden max-w-500 md:block"
+    style="right: 80px;"
+    src="/img/home/ubuntu-x.svg"
+    alt="x con pezzi di tetris"
+  />
+  <DynamicComponenList components={page.fields.content} />
 </WithNavigation>

@@ -1,34 +1,36 @@
 ---
-import DynamicComponent from '@components/DynamicComponent.astro';
-import type { TypeComponentGridSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import DynamicComponent from "@components/DynamicComponent.astro";
+import type { TypeComponentGridSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypeComponentGridSkeleton> {}
 
 const {
-	fields: {
-		elements,
-		heading,
-		mobileColumnsAmount,
-		tabletColumnsAmount,
-		desktopColumnsAmount,
-		gapX,
-		gapY,
-	},
+  fields: {
+    elements,
+    heading,
+    mobileColumnsAmount,
+    tabletColumnsAmount,
+    desktopColumnsAmount,
+    gapX,
+    gapY,
+  },
 } = Astro.props;
 
 const mapGaps = {
-	None: '0',
-	xxsm: '1',
-	xsm: '3',
-	sm: '6',
-	lg: '8',
-	xlg: '12',
-	xxlg: '24',
+  None: "0",
+  xxsm: "1",
+  xsm: "3",
+  sm: "6",
+  lg: "8",
+  xlg: "12",
+  xxlg: "24",
 };
 
-function contentfulGapToTwGap(gap: 'None' | 'lg' | 'sm' | 'xlg' | 'xsm' | 'xxlg' | 'xxsm'): string {
-	return mapGaps[gap];
+function contentfulGapToTwGap(
+  gap: "None" | "lg" | "sm" | "xlg" | "xsm" | "xxlg" | "xxsm",
+): string {
+  return mapGaps[gap];
 }
 
 const colsClass = `grid-cols-${mobileColumnsAmount} md:grid-cols-${tabletColumnsAmount} lg:grid-cols-${desktopColumnsAmount}`;
@@ -39,5 +41,5 @@ const gapYClass = `gap-y-${contentfulGapToTwGap(gapY)}`;
 {heading && <h2 class="mb-6">{heading}</h2>}
 
 <div class={`w-full grid gap-y- ${colsClass} ${gapXClass} ${gapYClass}`}>
-	{elements?.filter((e) => e).map((e) => <DynamicComponent {...e!} />)}
+  {elements?.filter((e) => e).map((e) => <DynamicComponent {...e!} />)}
 </div>

@@ -1,15 +1,15 @@
 .button {
-	@apply cursor-pointer rounded-none bg-tedWhite px-4 py-3 text-center text-small font-bold uppercase text-tedBlack no-underline transition-colors;
-	&--white {
-		@apply bg-tedWhite text-tedBlack;
-		&:hover {
-			@apply bg-tedRed text-tedWhite;
-		}
-	}
-	&--red {
-		@apply bg-tedRed text-tedWhite;
-		&:hover {
-			@apply bg-tedWhite text-tedRed;
-		}
-	}
+  @apply cursor-pointer rounded-none bg-tedWhite px-4 py-3 text-center text-small font-bold uppercase text-tedBlack no-underline transition-colors;
+  &--white {
+    @apply bg-tedWhite text-tedBlack;
+    &:hover {
+      @apply bg-tedRed text-tedWhite;
+    }
+  }
+  &--red {
+    @apply bg-tedRed text-tedWhite;
+    &:hover {
+      @apply bg-tedWhite text-tedRed;
+    }
+  }
 }
