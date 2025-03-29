@@ -1,18 +1,18 @@
 {
-	"extends": "astro/tsconfigs/strict",
-	"exclude": ["dist"],
-	"compilerOptions": {
-		"baseUrl": "/Users/davideaimar/Desktop/repos/TEDxCuneo-new",
-		"strictNullChecks": true,
-		"paths": {
-			"@components/*": ["src/components/*"],
-			"@assets/*": ["src/assets/*"],
-			"@lib/*": ["src/lib/*"],
-			"@pages/*": ["src/pages/*"],
-			"@styles/*": ["src/styles/*"],
-			"@layouts/*": ["src/layouts/*"]
-		},
-		"jsx": "react-jsx",
-		"jsxImportSource": "react"
-	}
+  "extends": "astro/tsconfigs/strict",
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "baseUrl": "/Users/davideaimar/Desktop/repos/TEDxCuneo-new",
+    "strictNullChecks": true,
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@lib/*": ["src/lib/*"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["src/styles/*"],
+      "@layouts/*": ["src/layouts/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

@@ -12,16 +12,23 @@ const page = Astro.props;
 ---
 
 <WithNavigation {...page}>
+  <img
+    slot="before-container"
+    src="/img/r-esistenza/bg.jpg"
+    class="z-1 absolute inset-x-0 top-0 h-screen max-h-[800px] min-h-[750px] w-full object-cover object-bottom"
+    alt="Background"
+    aria-hidden="true"
+  />
   <section
-    class="bg-resistenza relative flex h-[calc(100vh-48px)] max-h-[800px] min-h-[750px] overflow-visible"
+    class="relative flex h-[calc(100vh-48px)] max-h-[800px] min-h-[750px] overflow-visible"
   >
     <img
       src="/img/r-esistenza/x.svg"
       alt="X"
-      class="md:[w-90%] absolute inset-0 m-auto w-[120%] lg:left-[100px] lg:top-[100px] lg:w-[930px]"
+      class="absolute -inset-x-10 inset-y-0 m-auto w-[140%] max-w-[780px] rotate-3 lg:left-[100px] lg:top-[100px] lg:w-[930px] lg:max-w-max lg:rotate-0"
     />
     <div
-      class="absolute inset-x-0 bottom-[80px] top-0 m-auto h-[300px] w-[310px] md:h-[440px] md:w-[580px]"
+      class="absolute inset-x-0 bottom-[80px] top-0 m-auto h-[300px] w-[310px] lg:top-[50px] lg:h-[440px] lg:w-[580px]"
     >
       <img
         src="/img/r-esistenza/intro.svg"
@@ -30,21 +37,45 @@ const page = Astro.props;
       />
       <DraggableImg
         client:load
-        src="/img/r-esistenza/r-esistenza.svg"
-        alt="resistenza"
-        className="sticker absolute inset-x-0 bottom-0 m-auto "
+        src="/img/r-esistenza/tedxcuneo.svg"
+        alt="TEDxCuneo"
+        className="sticker absolute left-[-200px] top-[100px] hidden w-[200px] lg:block"
+        style={{ transform: "rotate(-32deg)" }}
       />
       <DraggableImg
         client:load
         src="/img/r-esistenza/lascia-il-segno.svg"
         alt="lascia il segno"
-        className="sticker absolute bottom-[-60px] right-[-50px] w-[220px]  md:right-[-140px] md:w-auto"
+        className="sticker absolute bottom-[-50px] right-[-20px] w-[220px]  lg:bottom-[-80px] lg:right-[-80px] lg:w-auto"
+        style={{ transform: "rotate(-7deg)" }}
+      />
+      <DraggableImg
+        client:load
+        src="/img/r-esistenza/r-esistenza.svg"
+        alt="resistenza"
+        className="sticker absolute inset-x-0 bottom-0 m-auto "
+        style={{ transform: "rotate(-2deg)" }}
+      />
+      <DraggableImg
+        client:load
+        src="/img/r-esistenza/teatro-toselli.svg"
+        alt="Teatro Toselli"
+        className="sticker absolute right-[-50px] top-[-130px] w-[200px] lg:right-[-120px] lg:top-[-70px]"
+        style={{ transform: "rotate(24deg)" }}
+      />
+      <DraggableImg
+        client:load
+        src="/img/r-esistenza/cuneo.svg"
+        alt="Cuneo"
+        className="sticker absolute right-[20px] top-[-80px] w-[90px]  lg:right-[-45px] lg:top-[-30px]"
+        style={{ transform: "rotate(16deg)" }}
       />
       <DraggableImg
         client:load
         src="/img/r-esistenza/data.svg"
         alt="3 maggio 2025"
-        className="sticker absolute right-[-50px] top-[-100px] w-[160px]  md:right-[-120px] md:top-[-50px]"
+        className="sticker absolute bottom-[-180px] right-[-10px] w-[160px]  lg:bottom-[90px] lg:right-[-220px]"
+        style={{ transform: "rotate(12deg)" }}
       />
     </div>
   </section>
@@ -52,9 +83,3 @@ const page = Astro.props;
     <DynamicComponenList components={page.fields.content} />
   </div>
 </WithNavigation>
-
-<style lang="scss">
-  .bg-resistenza {
-    background-image: url("/img/r-esistenza/bg.jpg");
-  }
-</style>
