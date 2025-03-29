@@ -1,30 +1,30 @@
 ---
 import {
-	isTypeComponentAccordion,
-	isTypeComponentCard,
-	isTypeComponentCarousel,
-	isTypeComponentCTA,
-	isTypeComponentGrid,
-	isTypeComponentRichText,
-	isTypeComponentSpecialSection,
-	isTypeComponentVideo,
-	isTypePartner,
-	isTypeSpeaker,
-	isTypeTeamMember,
-} from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+  isTypeComponentAccordion,
+  isTypeComponentCard,
+  isTypeComponentCarousel,
+  isTypeComponentCTA,
+  isTypeComponentGrid,
+  isTypeComponentRichText,
+  isTypeComponentSpecialSection,
+  isTypeComponentVideo,
+  isTypePartner,
+  isTypeSpeaker,
+  isTypeTeamMember,
+} from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-import CallToAction from './dynamic/call-to-action/CallToAction.astro';
-import Card from './dynamic/Card.astro';
-import Carousel from './dynamic/Carousel.astro';
-import DynamicAccordion from './dynamic/DynamicAccordion.astro';
-import Grid from './dynamic/Grid.astro';
-import Partner from './dynamic/Partner.astro';
-import RichText from './dynamic/RichText.astro';
-import Speaker from './dynamic/SpeakerCard.astro';
-import SpecialSection from './dynamic/SpecialSection.astro';
-import TeamMember from './dynamic/TeamMember.astro';
-import Video from './dynamic/Video.astro';
+import CallToAction from "./dynamic/call-to-action/CallToAction.astro";
+import Card from "./dynamic/Card.astro";
+import Carousel from "./dynamic/Carousel.astro";
+import DynamicAccordion from "./dynamic/DynamicAccordion.astro";
+import Grid from "./dynamic/Grid.astro";
+import Partner from "./dynamic/Partner.astro";
+import RichText from "./dynamic/RichText.astro";
+import Speaker from "./dynamic/SpeakerCard.astro";
+import SpecialSection from "./dynamic/SpecialSection.astro";
+import TeamMember from "./dynamic/TeamMember.astro";
+import Video from "./dynamic/Video.astro";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Props extends Entry<any> {} // allow any since we use guards to check the type

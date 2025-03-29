@@ -1,10 +1,10 @@
 ---
-import DynamicComponenList from '@components/DynamicComponenList.astro';
-import PageIntro from '@components/PageIntro.astro';
-import type { TypePageSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import PageIntro from "@components/PageIntro.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
-import WithNavigation from './abstract/WithNavigation.astro';
+import WithNavigation from "./abstract/WithNavigation.astro";
 
 interface Props extends Entry<TypePageSkeleton> {}
 
@@ -16,7 +16,7 @@ const page = Astro.props;
 ---
 
 <WithNavigation {...page}>
-	<PageIntro {...page.fields} withMargin={false} />
-	<h3 class="mb-20 mt-8 text-tedDarkWhite md:mb-16 md:mt-12">15 maggio 2021</h3>
-	<DynamicComponenList components={page.fields.content} />
+  <PageIntro {...page.fields} withMargin={false} />
+  <h3 class="mb-20 mt-8 text-tedDarkWhite md:mb-16 md:mt-12">15 maggio 2021</h3>
+  <DynamicComponenList components={page.fields.content} />
 </WithNavigation>

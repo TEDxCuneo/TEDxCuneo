@@ -1,71 +1,71 @@
 ---
-import Evento2025 from '@layouts/Evento2025.astro';
-import Extraordinario from '@layouts/Extraordinario.astro';
-import Festinalente from '@layouts/Festinalente.astro';
-import Generic from '@layouts/Generic.astro';
-import Homepage from '@layouts/Homepage.astro';
-import HomepageMetamorfosi from '@layouts/HomepageMetamorfosi.astro';
-import LiveStreaming from '@layouts/LiveStreaming.astro';
-import Metamorfosi from '@layouts/Metamorfosi.astro';
-import OpenPositions from '@layouts/OpenPositions.astro';
-import Partner from '@layouts/Partner.astro';
-import Partnership from '@layouts/Partnership.astro';
-import Showcase from '@layouts/Showcase.astro';
-import Tickets from '@layouts/Tickets.astro';
-import Ubuntu from '@layouts/Ubuntu.astro';
-import contentful from '@lib/contentful';
-import type { TypePageSkeleton } from '@lib/generated/contentful/index';
-import type { Entry } from '@lib/types';
-import { prependSlash } from '@lib/utils';
+import Evento2025 from "@layouts/Evento2025.astro";
+import Extraordinario from "@layouts/Extraordinario.astro";
+import Festinalente from "@layouts/Festinalente.astro";
+import Generic from "@layouts/Generic.astro";
+import HomepageMetamorfosi from "@layouts/HomepageMetamorfosi.astro";
+import HomepageResistenza from "@layouts/HomepageResistenza.astro";
+import LiveStreaming from "@layouts/LiveStreaming.astro";
+import Metamorfosi from "@layouts/Metamorfosi.astro";
+import OpenPositions from "@layouts/OpenPositions.astro";
+import Partner from "@layouts/Partner.astro";
+import Partnership from "@layouts/Partnership.astro";
+import Showcase from "@layouts/Showcase.astro";
+import Tickets from "@layouts/Tickets.astro";
+import Ubuntu from "@layouts/Ubuntu.astro";
+import contentful from "@lib/contentful";
+import type { TypePageSkeleton } from "@lib/generated/contentful/index";
+import type { Entry } from "@lib/types";
+import { prependSlash } from "@lib/utils";
 
 export async function getStaticPaths() {
-	const pages = await contentful.getEntries<TypePageSkeleton>({
-		content_type: 'page',
-		include: 10, // max include depth
-	});
+  const pages = await contentful.getEntries<TypePageSkeleton>({
+    content_type: "page",
+    include: 10, // max include depth
+  });
 
-	return pages.items.map((page) => {
-		const slug = prependSlash(page.fields.slug);
-		return {
-			params: { slug: slug === '/' ? undefined : slug },
-			props: {
-				page,
-			},
-		};
-	});
+  return pages.items.map((page) => {
+    const slug = prependSlash(page.fields.slug);
+    return {
+      params: { slug: slug === "/" ? undefined : slug },
+      props: {
+        page,
+      },
+    };
+  });
 }
 
 const getLayout = (page: Entry<TypePageSkeleton>) => {
-	switch (page.fields.layout) {
-		case 'Homepage':
-			return Homepage;
-		case 'Evento 2023':
-			return Extraordinario;
-		case 'Evento 2024':
-			return Metamorfosi;
-		case 'Evento2025':
-			return Evento2025;
-		case 'Showcase':
-			return Showcase;
-		case 'Partnership':
-			return Partnership;
-		case 'Evento 2022':
-			return Ubuntu;
-		case 'Evento 2021':
-			return Festinalente;
-		case 'Partner':
-			return Partner;
-		case 'Homepage Metamorfosi':
-			return HomepageMetamorfosi;
-		case 'Biglietti':
-			return Tickets;
-		case 'Entra nel team':
-			return OpenPositions;
-		case 'Live streaming':
-			return LiveStreaming;
-		default:
-			return Generic;
-	}
+  switch (page.fields.layout) {
+    case "Homepage":
+      return HomepageResistenza;
+    case "Evento 2023":
+      return Extraordinario;
+    case "Evento 2024":
+      return Metamorfosi;
+    case "Evento2025":
+      return Evento2025;
+    case "Showcase":
+      return Showcase;
+    case "Partnership":
+      return Partnership;
+    case "Evento 2022":
+      return Ubuntu;
+    case "Evento 2021":
+      return Festinalente;
+    case "Partner":
+      return Partner;
+    case "Homepage Metamorfosi":
+      return HomepageMetamorfosi;
+    case "Biglietti":
+      return Tickets;
+    case "Entra nel team":
+      return OpenPositions;
+    case "Live streaming":
+      return LiveStreaming;
+    default:
+      return Generic;
+  }
 };
 
 const { page } = Astro.props;

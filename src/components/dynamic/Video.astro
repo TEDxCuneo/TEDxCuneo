@@ -1,37 +1,40 @@
 ---
-import type { TypeComponentVideoSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import type { TypeComponentVideoSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypeComponentVideoSkeleton> {}
 
 const {
-	fields: { id, source, maxWidth, aspectRatio },
+  fields: { id, source, maxWidth, aspectRatio },
 } = Astro.props;
 
-const getUrl = (src: Entry<TypeComponentVideoSkeleton>['fields']['source'], videoId: string) => {
-	switch (src) {
-		case 'youtube':
-			return `https://www.youtube-nocookie.com/embed/${videoId}`;
-		case 'vimeo':
-			return `https://player.vimeo.com/video/${videoId}`;
-		case 'TopIX':
-			return videoId;
-		default:
-			return '';
-	}
+const getUrl = (
+  src: Entry<TypeComponentVideoSkeleton>["fields"]["source"],
+  videoId: string,
+) => {
+  switch (src) {
+    case "youtube":
+      return `https://www.youtube-nocookie.com/embed/${videoId}`;
+    case "vimeo":
+      return `https://player.vimeo.com/video/${videoId}`;
+    case "TopIX":
+      return videoId;
+    default:
+      return "";
+  }
 };
 
 const url = getUrl(source, id);
 
 const aspectRatioStyle = {
-	aspectRatio,
+  aspectRatio,
 };
 ---
 
 <iframe
-	class={`w-full m-auto ${maxWidth ? 'max-w-[1000px]' : ''}`}
-	style={aspectRatioStyle}
-	src={url}
-	title="YouTube video player"
-	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-	allowfullscreen=""></iframe>
+  class={`w-full m-auto ${maxWidth ? "max-w-[1000px]" : ""}`}
+  style={aspectRatioStyle}
+  src={url}
+  title="YouTube video player"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen=""></iframe>

@@ -4,67 +4,67 @@
  */
 
 interface Props {
-	title?: string;
+  title?: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <script>
-	const initialize = () => {
-		const handles = document.getElementsByClassName('handle');
-		for (const handle of handles) {
-			handle.addEventListener('click', () => {
-				handle.nextElementSibling!.classList.toggle('open');
-				handle.classList.toggle('open');
-			});
-		}
-	};
-	document.addEventListener('astro:page-load', initialize);
+  const initialize = () => {
+    const handles = document.getElementsByClassName("handle");
+    for (const handle of handles) {
+      handle.addEventListener("click", () => {
+        handle.nextElementSibling!.classList.toggle("open");
+        handle.classList.toggle("open");
+      });
+    }
+  };
+  document.addEventListener("astro:page-load", initialize);
 </script>
 
 <section class="accordion mb-8" aria-expanded="false" role="button">
-	<div
-		class="handle mb-4 flex cursor-pointer items-center justify-between border-b border-tedDarkWhite py-6"
-	>
-		<h2>{title ?? 'Accordion'}</h2>
-		<div
-			class="plus-icon relative mr-2 inline-block size-4"
-			role="button"
-			aria-label="Toggle accordion"
-		>
-			{
-				[0, 1].map(() => (
-					<span class="absolute left-0 top-1/2 block h-0.5 w-full origin-center -translate-y-1/2 bg-tedRed transition-transform duration-300" />
-				))
-			}
-		</div>
-	</div>
-	<div class="content mx-auto h-0 overflow-y-hidden" role="tabpanel">
-		<slot />
-	</div>
+  <div
+    class="handle mb-4 flex cursor-pointer items-center justify-between border-b border-tedDarkWhite py-6"
+  >
+    <h2>{title ?? "Accordion"}</h2>
+    <div
+      class="plus-icon relative mr-2 inline-block size-4"
+      role="button"
+      aria-label="Toggle accordion"
+    >
+      {
+        [0, 1].map(() => (
+          <span class="absolute left-0 top-1/2 block h-0.5 w-full origin-center -translate-y-1/2 bg-tedRed transition-transform duration-300" />
+        ))
+      }
+    </div>
+  </div>
+  <div class="content mx-auto h-0 overflow-y-hidden" role="tabpanel">
+    <slot />
+  </div>
 </section>
 
 <style lang="scss">
-	.content.open {
-		height: auto;
-		overflow: visible;
-	}
-	.handle.open {
-		.plus-icon span {
-			&:first-child {
-				transform: rotate(180deg);
-			}
-			&:last-child {
-				transform: rotate(180deg);
-			}
-		}
-	}
-	.plus-icon {
-		span {
-			&:first-child {
-				transform: rotate(90deg);
-			}
-		}
-	}
+  .content.open {
+    height: auto;
+    overflow: visible;
+  }
+  .handle.open {
+    .plus-icon span {
+      &:first-child {
+        transform: rotate(180deg);
+      }
+      &:last-child {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .plus-icon {
+    span {
+      &:first-child {
+        transform: rotate(90deg);
+      }
+    }
+  }
 </style>

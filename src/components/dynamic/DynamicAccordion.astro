@@ -1,8 +1,8 @@
 ---
-import Accordion from '@components/Accordion.astro';
-import DynamicComponent from '@components/DynamicComponent.astro';
-import type { TypeComponentAccordionSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import Accordion from "@components/Accordion.astro";
+import DynamicComponent from "@components/DynamicComponent.astro";
+import type { TypeComponentAccordionSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypeComponentAccordionSkeleton> {}
 
@@ -10,5 +10,5 @@ const accordion = Astro.props;
 ---
 
 <Accordion title={accordion.fields.title}>
-	<DynamicComponent {...accordion.fields.content!} />
+  <DynamicComponent {...accordion.fields.content!} />
 </Accordion>

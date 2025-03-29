@@ -1,48 +1,58 @@
 ---
-import Picture from '@components/Picture.astro';
-import type { TypeComponentCardSkeleton } from '@lib/generated/contentful';
-import type { Entry } from '@lib/types';
+import Picture from "@components/Picture.astro";
+import type { TypeComponentCardSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
 
 interface Props extends Entry<TypeComponentCardSkeleton> {
-	class?: string;
+  class?: string;
 }
 
 const {
-	class: className = '',
-	fields: { image, kicker, title, actionPage, actionLabel },
+  class: className = "",
+  fields: { image, kicker, title, actionPage, actionLabel },
 } = Astro.props;
 
 const clickable = actionPage !== undefined;
-const WrapperHtmlElement = clickable ? 'a' : 'div';
+const WrapperHtmlElement = clickable ? "a" : "div";
 ---
 
 {
-	image?.fields.file && (
-		<WrapperHtmlElement
-			href={actionPage?.fields.slug}
-			class="flex h-auto select-none flex-col self-stretch overflow-hidden rounded-lg bg-tedGray no-underline shadow transition delay-100 duration-200 ease-in-out"
-			class:list={[className, clickable && ['md:hover:scale-105', 'cursor-pointer']]}
-		>
-			<div class="">
-				<Picture
-					{...image}
-					class="w-full"
-					alt={`${image.fields.description}`}
-					width={500}
-					height={500}
-				/>
-			</div>
-			<div class="flex h-full flex-col justify-between p-[12px] md:p-4">
-				<div class:list={['flex flex-col gap-y-2', clickable && ['flex-col-reverse']]}>
-					<h3 class="break-words">{title}</h3>
-					<p class="text-tedDarkWhite">{kicker}</p>
-				</div>
-				{clickable && (
-					<p class="mt-4 w-full text-center">
-						<span class="link-underline link-underline--fixed">{actionLabel}</span>
-					</p>
-				)}
-			</div>
-		</WrapperHtmlElement>
-	)
+  image?.fields.file && (
+    <WrapperHtmlElement
+      href={actionPage?.fields.slug}
+      class="flex h-auto select-none flex-col self-stretch overflow-hidden rounded-lg bg-tedGray no-underline shadow transition delay-100 duration-200 ease-in-out"
+      class:list={[
+        className,
+        clickable && ["md:hover:scale-105", "cursor-pointer"],
+      ]}
+    >
+      <div class="">
+        <Picture
+          {...image}
+          class="w-full"
+          alt={`${image.fields.description}`}
+          width={500}
+          height={500}
+        />
+      </div>
+      <div class="flex h-full flex-col justify-between p-[12px] md:p-4">
+        <div
+          class:list={[
+            "flex flex-col gap-y-2",
+            clickable && ["flex-col-reverse"],
+          ]}
+        >
+          <h3 class="break-words">{title}</h3>
+          <p class="text-tedDarkWhite">{kicker}</p>
+        </div>
+        {clickable && (
+          <p class="mt-4 w-full text-center">
+            <span class="link-underline link-underline--fixed">
+              {actionLabel}
+            </span>
+          </p>
+        )}
+      </div>
+    </WrapperHtmlElement>
+  )
 }
