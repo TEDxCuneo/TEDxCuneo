@@ -17,8 +17,5 @@ const page = Astro.props;
 
 <WithNavigation {...page}>
   <PageIntro {...page.fields} />
-  <div class="md:grid md:grid-cols-2 md:gap-x-4">
-    <DynamicComponenList components={page.fields.content?.slice(0, 2)} />
-  </div>
-  <DynamicComponenList components={page.fields.content?.slice(2)} />
+  <DynamicComponenList components={page.fields.content} />
 </WithNavigation>
