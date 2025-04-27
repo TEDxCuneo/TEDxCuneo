@@ -8,46 +8,46 @@ import {
   isTypeButton,
   type TypeComponentRichText,
 } from "@lib/generated/contentful";
+import {
+  escapeNewLines,
+  renderRichTextPicture,
+  renderRichTextTable,
+} from "@lib/richtext";
 import type { ChainModifier } from "@lib/types";
-import { prependSlash } from "@lib/utils";
-
-// check if first level domain is tedxcuneo.com
-const ourHostRegex = /^https?:\/\/(?:www\.)?tedxcuneo\.com/;
+import { isOurHost, prependSlash } from "@lib/utils";
 
 interface Props extends TypeComponentRichText<ChainModifier, string> {}
 
 const options: Partial<Options> = {
   renderMark: {},
   renderNode: {
+    [BLOCKS.HEADING_1]: (node, next) =>
+      `<h1>${escapeNewLines(next(node.content))}</h1>`,
+    [BLOCKS.HEADING_2]: (node, next) =>
+      `<h2>${escapeNewLines(next(node.content))}</h2>`,
+    [BLOCKS.HEADING_3]: (node, next) =>
+      `<h3>${escapeNewLines(next(node.content))}</h3>`,
+    [BLOCKS.HEADING_4]: (node, next) =>
+      `<h4>${escapeNewLines(next(node.content))}</h4>`,
+    [BLOCKS.HEADING_5]: (node, next) =>
+      `<h5>${escapeNewLines(next(node.content))}</h5>`,
+    [BLOCKS.HEADING_6]: (node, next) =>
+      `<h6>${escapeNewLines(next(node.content))}</h6>`,
     [BLOCKS.PARAGRAPH]: (node, next) =>
-      `<p>${next(node.content).replace(/\n/g, "<br/>")}</p>`,
-    [BLOCKS.TABLE]: (node, next) => `<div class="overflow-x-auto">
-          <table class="table-auto overflow-scroll w-full border-collapse overflow-x-auto">${next(
-            node.content,
-          )}</table>
-        </div>`,
+      `<p>${escapeNewLines(next(node.content))}</p>`,
+    [BLOCKS.TABLE]: renderRichTextTable,
     [BLOCKS.TABLE_CELL]: (node, next) =>
-      `<td class="px-4 py-2">${next(node.content)}</td>`,
+      `<td class="px-4 py-2">${escapeNewLines(next(node.content))}</td>`,
     [BLOCKS.TABLE_HEADER_CELL]: (node, next) =>
-      `<td class="bo px-4 py-2">${next(node.content)}</td>`,
-    [BLOCKS.EMBEDDED_ASSET]: ({
-      data: {
-        target: {
-          fields: { title, file },
-        },
-      },
-    }) => `<picture>
-        <source srcset="${file?.url}?fm=webp&q=80&w=1200&h=800" type="image/webp">
-        <source srcset="${file?.url}?fm=jpg&q=80&w=1200&h=800" type="image/jpeg">
-        <img src="${file?.url}?fm=jpg&q=80&w=1200&h=800" alt="${title}" loading="lazy">
-      </picture>`,
+      `<td class="bo px-4 py-2">${escapeNewLines(next(node.content))}</td>`,
+    [BLOCKS.EMBEDDED_ASSET]: renderRichTextPicture,
     [INLINES.HYPERLINK]: ({ data: { uri }, content }, next) =>
       `<a href="${uri}" target="${
-        ourHostRegex.test(uri) ? "_self" : "_blank"
-      }" class="link-underline link-underline--fixed">${next(content)}</a>`,
+        isOurHost(uri) ? "_self" : "_blank"
+      }" class="link-underline link-underline--fixed">${escapeNewLines(next(content))}</a>`,
     [INLINES.ENTRY_HYPERLINK]: ({ data: { target }, content }, next) => {
       const url = target.fields.slug;
-      return `<a href="${prependSlash(url)}" class="link-underline link-underline--fixed">${next(content)}</a>`;
+      return `<a href="${prependSlash(url)}" class="link-underline link-underline--fixed">${escapeNewLines(next(content))}</a>`;
     },
     [BLOCKS.EMBEDDED_ENTRY]: ({ data: { target } }) => {
       if (isTypeButton<ChainModifier, string>(target)) {
@@ -56,9 +56,8 @@ const options: Partial<Options> = {
         if (!label || !href) return "";
         const variantClass =
           variant === "Rosso" ? "button--red" : "button--white";
-        const targetType =
-          (url ?? ourHostRegex.test(href)) ? "_blank" : "_self";
-        return `<a href="${href}" target="${targetType}" class="button ${variantClass}">${label}</a>`;
+        const targetType = (url ?? isOurHost(href)) ? "_blank" : "_self";
+        return `<a href="${href}" target="${targetType}" class="button ${variantClass}">${escapeNewLines(label)}</a>`;
       }
       return "";
     },
@@ -68,6 +67,12 @@ const options: Partial<Options> = {
 const {
   fields: { content, noMargin },
 } = Astro.props;
+
+let contentString = "";
+
+if (content) {
+  contentString = documentToHtmlString(content, options);
+}
 ---
 
 <div
@@ -75,5 +80,5 @@ const {
     "rich-text mx-auto w-full",
     { "rich-text--no-margin": noMargin },
   ]}
-  set:html={content ? documentToHtmlString(content, options) : ""}
+  set:html={contentString}
 />

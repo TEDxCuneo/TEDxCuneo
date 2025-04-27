@@ -69,6 +69,22 @@ export const fakePage: Entry<TypePageSkeleton> = {
   },
 };
 
+export const customizeFakePage = (
+  overrides: Partial<Entry<TypePageSkeleton>>,
+): Entry<TypePageSkeleton> => ({
+  ...fakePage,
+  sys: {
+    ...fakePage.sys,
+    id: overrides.sys?.id ?? fakePage.sys.id,
+    createdAt: overrides.sys?.createdAt ?? fakePage.sys.createdAt,
+    updatedAt: overrides.sys?.updatedAt ?? fakePage.sys.updatedAt,
+  },
+  fields: {
+    ...fakePage.fields,
+    ...overrides.fields,
+  },
+});
+
 /**
  * Prepends a slash to a path if it doesn't already have one
  *
@@ -77,4 +93,11 @@ export const fakePage: Entry<TypePageSkeleton> = {
  */
 export function prependSlash(path: string): string {
   return path.startsWith("/") ? path : `/${path}`;
+}
+
+export const ourHostRegex = /^https?:\/\/(?:www\.)?tedxcuneo\.com/;
+
+// check if first level domain is tedxcuneo.com
+export function isOurHost(url: string): boolean {
+  return ourHostRegex.test(url);
 }

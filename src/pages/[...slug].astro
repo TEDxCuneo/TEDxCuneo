@@ -1,4 +1,5 @@
 ---
+import Agenda2025 from "@layouts/Agenda2025.astro";
 import Evento2025 from "@layouts/Evento2025.astro";
 import Extraordinario from "@layouts/Extraordinario.astro";
 import Festinalente from "@layouts/Festinalente.astro";
@@ -63,6 +64,8 @@ const getLayout = (page: Entry<TypePageSkeleton>) => {
       return OpenPositions;
     case "Live streaming":
       return LiveStreaming;
+    case "Agenda2025":
+      return Agenda2025;
     default:
       return Generic;
   }
