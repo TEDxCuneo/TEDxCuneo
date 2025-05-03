@@ -15,39 +15,32 @@ const page = Astro.props;
   <img
     slot="before-container"
     src="/img/r-esistenza/bg.jpg"
-    class="z-1 absolute inset-x-0 top-0 h-[120vh] w-full object-cover object-bottom"
+    class="z-1 absolute inset-x-0 top-0 h-[70vh] w-full object-cover object-bottom"
     alt="Background"
     aria-hidden="true"
   />
   <section
-    class="relative flex h-[calc(100vh-48px)] max-h-[800px] min-h-[750px] overflow-visible md:mb-10 lg:mb-36"
+    class="relative flex h-[calc(60vh-48px)] max-h-[800px] min-h-[450px] overflow-visible md:mb-10 lg:mb-36"
   >
     <img
       src="/img/r-esistenza/x.svg"
       alt="X"
-      class="absolute -inset-x-10 inset-y-0 m-auto w-[140%] max-w-[780px] rotate-3 lg:left-[100px] lg:top-[100px] lg:w-[930px] lg:max-w-max lg:rotate-0"
+      class="absolute inset-y-0 right-[-100px] m-auto w-[120%] max-w-[780px] rotate-3 lg:left-[100px] lg:top-[100px] lg:w-[700px] lg:max-w-max lg:rotate-0"
     />
     <div
       class="absolute inset-x-0 bottom-[80px] top-0 m-auto h-[300px] w-[310px] lg:top-[50px] lg:h-[440px] lg:w-[580px]"
     >
       <img
-        src="/img/r-esistenza/intro.svg"
-        alt="si muove propoga idee e sentimenti È"
-        class="absolute inset-x-0 top-0 m-auto"
-      />
-      <DraggableImg
-        client:load
-        src="/img/r-esistenza/lascia-il-segno.svg"
-        alt="lascia il segno"
-        className="sticker absolute bottom-[-50px] right-[-20px] w-[220px]  lg:bottom-[-80px] lg:right-[-80px] lg:w-auto"
-        style={{ transform: "rotate(-7deg)" }}
-      />
-      <DraggableImg
-        client:load
         src="/img/r-esistenza/r-esistenza.svg"
         alt="resistenza"
-        className="sticker absolute inset-x-0 bottom-0 m-auto "
-        style={{ transform: "rotate(-2deg)" }}
+        class="sticker absolute left-[-10px] top-[80px] m-auto lg:top-[140px]"
+        style={{ transform: "rotate(-6deg)" }}
+      />
+      <img
+        src="/img/r-esistenza/lascia-il-segno.svg"
+        alt="lascia il segno"
+        class="sticker absolute bottom-[98px] right-[-30px] w-[220px] lg:bottom-[95px] lg:right-[-80px] lg:w-auto"
+        style={{ transform: "rotate(-14deg)" }}
       />
     </div>
   </section>
