@@ -18,6 +18,7 @@ import contentful from "@lib/contentful";
 import type { TypePageSkeleton } from "@lib/generated/contentful/index";
 import type { Entry } from "@lib/types";
 import { prependSlash } from "@lib/utils";
+import type { EntryFieldTypes } from "contentful";
 
 export async function getStaticPaths() {
   const pages = await contentful.getEntries<TypePageSkeleton>({
@@ -36,40 +37,35 @@ export async function getStaticPaths() {
   });
 }
 
-const getLayout = (page: Entry<TypePageSkeleton>) => {
-  switch (page.fields.layout) {
-    case "Homepage":
-      return Homepage;
-    case "Evento 2023":
-      return Extraordinario;
-    case "Evento 2024":
-      return Metamorfosi;
-    case "Evento2025":
-      return Evento2025;
-    case "Showcase":
-      return Showcase;
-    case "Partnership":
-      return Partnership;
-    case "Evento 2022":
-      return Ubuntu;
-    case "Evento 2021":
-      return Festinalente;
-    case "Partner":
-      return Partner;
-    case "Homepage Metamorfosi":
-      return HomepageMetamorfosi;
-    case "Biglietti":
-      return Tickets;
-    case "Entra nel team":
-      return OpenPositions;
-    case "Live streaming":
-      return LiveStreaming;
-    case "Agenda2025":
-      return Agenda2025;
-    default:
-      return Generic;
-  }
+type PageLayout =
+  TypePageSkeleton["fields"]["layout"] extends EntryFieldTypes.Symbol<
+    infer TLayout
+  >
+    ? TLayout
+    : never;
+
+const layoutMap = {
+  Agenda2025,
+  Biglietti: Tickets,
+  "Entra nel team": OpenPositions,
+  "Evento 2021": Festinalente,
+  "Evento 2022": Ubuntu,
+  "Evento 2023": Extraordinario,
+  "Evento 2024": Metamorfosi,
+  Evento2025,
+  Generico: Generic,
+  Homepage,
+  "Homepage Metamorfosi": HomepageMetamorfosi,
+  "Live streaming": LiveStreaming,
+  Partner,
+  Partnership,
+  Showcase,
+} satisfies {
+  [key in PageLayout]: typeof Generic;
 };
+
+const getLayout = (page: Entry<TypePageSkeleton>) =>
+  layoutMap[page.fields.layout as PageLayout];
 
 const { page } = Astro.props;
 const Layout = getLayout(page);

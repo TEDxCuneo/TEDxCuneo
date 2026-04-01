@@ -1,24 +1,26 @@
+@use "sass:meta";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @import "./base/global.scss";
-  @import "./base/typography.scss";
-  @import "./base/container.scss";
+  @include meta.load-css("./base/global");
+  @include meta.load-css("./base/typography");
+  @include meta.load-css("./base/container");
 }
 
 @layer components {
-  @import "./components/button.scss";
-  @import "./components/swiper.scss";
-  @import "./components/rich-text.scss";
+  @include meta.load-css("./components/button");
+  @include meta.load-css("./components/swiper");
+  @include meta.load-css("./components/rich-text");
 }
 
 @layer utilities {
-  @import "./utilities/link-underline.scss";
-  @import "./utilities/blink-animation.scss";
+  @include meta.load-css("./utilities/link-underline");
+  @include meta.load-css("./utilities/blink-animation");
 }
 
-@import "tickets.scss";
-@import "live.scss";
-@import "partner.scss";
+@include meta.load-css("tickets");
+@include meta.load-css("live");
+@include meta.load-css("partner");

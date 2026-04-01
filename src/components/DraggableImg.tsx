@@ -1,12 +1,12 @@
-import { motion, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls } from "motion/react";
 import { useState } from "react";
 
-type InputProps = {
+interface InputProps {
   src: string;
   alt: string;
   className?: string;
   style?: React.CSSProperties;
-};
+}
 
 export default function DraggableImg({
   src,
@@ -75,7 +75,7 @@ export default function DraggableImg({
       }}
       src={src}
       alt={alt}
-      className={`cursor-grab ${className || ""}`}
+      className={`cursor-grab ${className ?? ""}`}
       style={{
         touchAction: "none",
         zIndex: isDragging || isReturning ? 100 : "auto",
@@ -83,7 +83,7 @@ export default function DraggableImg({
       }}
       transformTemplate={(_, generatedTransform) => {
         // Extract any transform from the inline style or className
-        const existingTransform = style?.transform || "";
+        const existingTransform = style?.transform ?? "";
         return existingTransform
           ? `${generatedTransform} ${existingTransform}`
           : generatedTransform;
