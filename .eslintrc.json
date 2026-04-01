@@ -26,6 +26,7 @@
     "extraFileExtensions": [".astro"]
   },
   "settings": {
+    "import/core-modules": ["astro:transitions"],
     "import/resolver": {
       "typescript": true
     }
