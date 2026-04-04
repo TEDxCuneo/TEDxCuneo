@@ -81,7 +81,7 @@ export type TypeComponentCarouselSkeleton = EntrySkeletonType<TypeComponentCarou
  * @since 2024-01-04T18:36:19.750Z
  * @version 15
  */
-export type TypeComponentCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentCarouselSkeleton, Modifiers, Locales>;
+export type TypeComponentCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentCarouselSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentCarousel<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentCarousel'

@@ -62,7 +62,7 @@ export type TypeTeamMemberSkeleton = EntrySkeletonType<TypeTeamMemberFields, "te
  * @since 2023-12-23T12:40:55.206Z
  * @version 13
  */
-export type TypeTeamMember<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeTeamMemberSkeleton, Modifiers, Locales>;
+export type TypeTeamMember<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeTeamMemberSkeleton, Modifiers, Locales>;
 
 export function isTypeTeamMember<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeTeamMember<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'teamMember'

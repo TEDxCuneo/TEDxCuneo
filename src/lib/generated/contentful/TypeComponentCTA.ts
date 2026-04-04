@@ -82,7 +82,7 @@ export type TypeComponentCTASkeleton = EntrySkeletonType<TypeComponentCTAFields,
  * @since 2024-02-04T10:57:38.601Z
  * @version 5
  */
-export type TypeComponentCTA<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentCTASkeleton, Modifiers, Locales>;
+export type TypeComponentCTA<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentCTASkeleton, Modifiers, Locales>;
 
 export function isTypeComponentCTA<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentCTA<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentCTA'

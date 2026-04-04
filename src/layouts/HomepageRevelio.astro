@@ -1,0 +1,121 @@
+---
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
+
+import WithNavigation from "./abstract/WithNavigation.astro";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+---
+
+<WithNavigation {...page}>
+  <div slot="before-container" class="revelio-hero-bg" aria-hidden="true"></div>
+  <section class="revelio-hero">
+    <div class="revelio-hero__frame">
+      <picture class="revelio-hero__art">
+        <source
+          media="(max-width: 768px)"
+          srcset="/img/revelio/hero-revelio-mobile.svg"
+        />
+        <img
+          src="/img/revelio/hero-revelio.svg"
+          alt="Revelio - Dritti al punto"
+        />
+      </picture>
+    </div>
+  </section>
+  <div class="z-10">
+    <DynamicComponenList components={page.fields.content} />
+  </div>
+</WithNavigation>
+
+<style>
+  .revelio-hero-bg {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 0;
+    min-height: calc(clamp(28rem, calc(100vh - 48px), 52rem) + 5rem);
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(235, 0, 40, 0.22),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at top right,
+        rgba(235, 0, 40, 0.12),
+        transparent 28%
+      ),
+      linear-gradient(180deg, #090909 0%, #111111 62%, #0e0e0e 100%);
+  }
+
+  .revelio-hero-bg::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: clamp(4rem, 10vw, 7rem);
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0) 0%, #0e0e0e 100%);
+    pointer-events: none;
+  }
+
+  .revelio-hero {
+    position: relative;
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(0rem, 2vw, 1rem)
+      clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .revelio-hero__frame {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: clamp(1.5rem, 3vw, 2.5rem);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 24px 80px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+  }
+
+  .revelio-hero__art,
+  .revelio-hero__art img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1100px) {
+    .revelio-hero {
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .revelio-hero-bg {
+      min-height: calc(clamp(24rem, calc(100svh - 48px), 40rem) + 4rem);
+    }
+
+    .revelio-hero {
+      padding-inline: 0;
+      padding-block: 1rem 1.5rem;
+    }
+
+    .revelio-hero__frame {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+  }
+</style>

@@ -58,7 +58,7 @@ export type TypeButtonSkeleton = EntrySkeletonType<TypeButtonFields, "button">;
  * @since 2024-03-28T21:44:32.497Z
  * @version 3
  */
-export type TypeButton<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeButtonSkeleton, Modifiers, Locales>;
+export type TypeButton<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeButtonSkeleton, Modifiers, Locales>;
 
 export function isTypeButton<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeButton<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'button'

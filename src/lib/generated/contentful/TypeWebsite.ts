@@ -101,7 +101,7 @@ export type TypeWebsiteSkeleton = EntrySkeletonType<TypeWebsiteFields, "website"
  * @since 2023-11-27T20:55:26.267Z
  * @version 23
  */
-export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
+export type TypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeWebsiteSkeleton, Modifiers, Locales>;
 
 export function isTypeWebsite<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeWebsite<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'website'

@@ -85,7 +85,7 @@ export type TypeComponentGridSkeleton = EntrySkeletonType<TypeComponentGridField
  * @since 2023-12-22T21:32:33.934Z
  * @version 27
  */
-export type TypeComponentGrid<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentGridSkeleton, Modifiers, Locales>;
+export type TypeComponentGrid<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentGridSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentGrid<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentGrid<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentGrid'

@@ -46,7 +46,7 @@ export type TypeComponentAccordionSkeleton = EntrySkeletonType<TypeComponentAcco
  * @since 2023-12-26T20:37:47.836Z
  * @version 5
  */
-export type TypeComponentAccordion<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentAccordionSkeleton, Modifiers, Locales>;
+export type TypeComponentAccordion<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentAccordionSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentAccordion<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentAccordion<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentAccordion'

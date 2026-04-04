@@ -76,7 +76,7 @@ export type TypeSpeakerSkeleton = EntrySkeletonType<TypeSpeakerFields, "speaker"
  * @since 2023-12-23T14:59:21.889Z
  * @version 13
  */
-export type TypeSpeaker<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeSpeakerSkeleton, Modifiers, Locales>;
+export type TypeSpeaker<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeSpeakerSkeleton, Modifiers, Locales>;
 
 export function isTypeSpeaker<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeSpeaker<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'speaker'

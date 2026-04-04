@@ -1,7 +1,7 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeComponentAccordionSkeleton } from "./TypeComponentAccordion";
-import type { TypeComponentCTASkeleton } from "./TypeComponentCTA";
 import type { TypeComponentCarouselSkeleton } from "./TypeComponentCarousel";
+import type { TypeComponentCTASkeleton } from "./TypeComponentCTA";
 import type { TypeComponentGridSkeleton } from "./TypeComponentGrid";
 import type { TypeComponentRichTextSkeleton } from "./TypeComponentRichText";
 import type { TypeComponentSpecialSectionSkeleton } from "./TypeComponentSpecialSection";
@@ -33,7 +33,7 @@ export interface TypePageFields {
      * @localized false
      * @summary Il layout con cui renderizzare la pagina.
      */
-    layout: EntryFieldTypes.Symbol<"Agenda2025" | "Biglietti" | "Entra nel team" | "Evento 2021" | "Evento 2022" | "Evento 2023" | "Evento 2024" | "Evento2025" | "Generico" | "Homepage Metamorfosi" | "Homepage" | "Live streaming" | "Partner" | "Partnership" | "Showcase">;
+    layout: EntryFieldTypes.Symbol<"Agenda2025" | "Biglietti" | "Entra nel team" | "Evento 2021" | "Evento 2022" | "Evento 2023" | "Evento 2024" | "Evento2025" | "Evento2026" | "Generico" | "Homepage Metamorfosi" | "Homepage Revelio" | "Homepage" | "Live streaming" | "Partner" | "Partnership" | "Showcase">;
     /**
      * Field type definition for field 'previousPage' (Pagina precedente)
      * @name Pagina precedente
@@ -139,7 +139,7 @@ export interface TypePageFields {
  * @type {TypePageSkeleton}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 91
+ * @version 93
  */
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 /**
@@ -148,9 +148,9 @@ export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
  * @type {TypePage}
  * @author 6krpat7VFUspp3909jRjPB
  * @since 2023-11-27T21:05:54.456Z
- * @version 91
+ * @version 93
  */
-export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
+export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
 
 export function isTypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypePage<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'page'

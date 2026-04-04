@@ -1,0 +1,73 @@
+---
+import DynamicComponenList from "@components/DynamicComponenList.astro";
+import PageIntro from "@components/PageIntro.astro";
+import type { TypePageSkeleton } from "@lib/generated/contentful";
+import type { Entry } from "@lib/types";
+
+import WithNavigation from "./abstract/WithNavigation.astro";
+
+interface Props extends Entry<TypePageSkeleton> {}
+
+const page = Astro.props;
+---
+
+<WithNavigation {...page}>
+  <PageIntro {...page.fields} withMargin={false} />
+  <section class="evento-2026-hero">
+    <div class="evento-2026-hero__frame">
+      <picture class="evento-2026-hero__art">
+        <source
+          media="(max-width: 768px)"
+          srcset="/img/revelio/hero-revelio-mobile.svg"
+        />
+        <img
+          src="/img/revelio/hero-revelio.svg"
+          alt="Revelio - Dritti al punto"
+        />
+      </picture>
+    </div>
+  </section>
+  <DynamicComponenList components={page.fields.content} />
+</WithNavigation>
+
+<style>
+  .evento-2026-hero {
+    margin-block: 3rem 6rem;
+  }
+
+  .evento-2026-hero__frame {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: clamp(1rem, 2vw, 1.5rem);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 24px 80px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+  }
+
+  .evento-2026-hero__art,
+  .evento-2026-hero__art img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .evento-2026-hero {
+      margin-block: 2rem 4rem;
+      margin-inline: -1rem;
+    }
+
+    .evento-2026-hero__frame {
+      padding: 0.75rem;
+      border-inline: 0;
+      border-radius: 0;
+    }
+  }
+</style>

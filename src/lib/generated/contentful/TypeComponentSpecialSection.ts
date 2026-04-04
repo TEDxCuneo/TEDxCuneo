@@ -32,7 +32,7 @@ export type TypeComponentSpecialSectionSkeleton = EntrySkeletonType<TypeComponen
  * @since 2024-01-05T21:35:56.664Z
  * @version 1
  */
-export type TypeComponentSpecialSection<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentSpecialSectionSkeleton, Modifiers, Locales>;
+export type TypeComponentSpecialSection<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentSpecialSectionSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentSpecialSection<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentSpecialSection<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentSpecialSection'

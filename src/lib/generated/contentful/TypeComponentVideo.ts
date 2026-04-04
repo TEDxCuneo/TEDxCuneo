@@ -59,7 +59,7 @@ export type TypeComponentVideoSkeleton = EntrySkeletonType<TypeComponentVideoFie
  * @since 2024-01-04T16:30:22.025Z
  * @version 5
  */
-export type TypeComponentVideo<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentVideoSkeleton, Modifiers, Locales>;
+export type TypeComponentVideo<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentVideoSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentVideo<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentVideo<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentVideo'

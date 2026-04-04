@@ -65,7 +65,7 @@ export type TypeComponentCardSkeleton = EntrySkeletonType<TypeComponentCardField
  * @since 2024-02-12T21:53:58.782Z
  * @version 3
  */
-export type TypeComponentCard<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentCardSkeleton, Modifiers, Locales>;
+export type TypeComponentCard<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentCardSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentCard<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentCard<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentCard'

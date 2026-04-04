@@ -45,7 +45,7 @@ export type TypeComponentRichTextSkeleton = EntrySkeletonType<TypeComponentRichT
  * @since 2023-11-27T21:28:54.496Z
  * @version 21
  */
-export type TypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
+export type TypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeComponentRichTextSkeleton, Modifiers, Locales>;
 
 export function isTypeComponentRichText<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeComponentRichText<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'componentRichText'

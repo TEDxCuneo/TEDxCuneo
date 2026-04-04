@@ -45,7 +45,7 @@ export type TypePartnerSkeleton = EntrySkeletonType<TypePartnerFields, "partner"
  * @since 2023-12-26T12:11:41.108Z
  * @version 1
  */
-export type TypePartner<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePartnerSkeleton, Modifiers, Locales>;
+export type TypePartner<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypePartnerSkeleton, Modifiers, Locales>;
 
 export function isTypePartner<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypePartner<Modifiers, Locales> {
     return entry.sys.contentType.sys.id === 'partner'
