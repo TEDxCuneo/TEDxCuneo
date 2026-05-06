@@ -1,0 +1,329 @@
+---
+interface Props {
+  href?: string;
+  text?: string;
+  timeZone?: string;
+  year?: number;
+  month?: number;
+  day?: number;
+  startHour?: number;
+  endHour?: number;
+  forceVisibleInDev?: boolean;
+  className?: string;
+}
+
+const {
+  href = "/live/",
+  text = "Siamo live, vai alla diretta",
+  timeZone = "Europe/Rome",
+  year = 2026,
+  month = 5,
+  day = 9,
+  startHour = 14,
+  endHour = 19,
+  forceVisibleInDev = false,
+  className,
+} = Astro.props;
+
+const showOnInitialRender = import.meta.env.DEV && forceVisibleInDev;
+---
+
+<script>
+  const LIVE_STREAM_CTA_SELECTOR = "[data-live-stream-cta]";
+
+  declare global {
+    interface Window {
+      __liveStreamCtaIntervalId?: number;
+    }
+  }
+
+  const getRomeDateParts = (date: Date, timeZone: string) => {
+    const formatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    });
+
+    return Object.fromEntries(
+      formatter
+        .formatToParts(date)
+        .filter(({ type }) => type !== "literal")
+        .map(({ type, value }) => [type, Number(value)]),
+    );
+  };
+
+  const shouldShowLiveStreamCta = (
+    element: HTMLElement,
+    date: Date = new Date(),
+  ) => {
+    const {
+      liveStreamCtaTimezone,
+      liveStreamCtaYear,
+      liveStreamCtaMonth,
+      liveStreamCtaDay,
+      liveStreamCtaStartHour,
+      liveStreamCtaEndHour,
+      liveStreamCtaForceVisibleInDev,
+    } = element.dataset;
+
+    if (import.meta.env.DEV && liveStreamCtaForceVisibleInDev === "true") {
+      return true;
+    }
+
+    const { year, month, day, hour } = getRomeDateParts(
+      date,
+      liveStreamCtaTimezone ?? "Europe/Rome",
+    );
+
+    return (
+      year === Number(liveStreamCtaYear) &&
+      month === Number(liveStreamCtaMonth) &&
+      day === Number(liveStreamCtaDay) &&
+      hour >= Number(liveStreamCtaStartHour) &&
+      hour < Number(liveStreamCtaEndHour)
+    );
+  };
+
+  const updateLiveStreamCtaVisibility = () => {
+    const ctas = document.querySelectorAll(LIVE_STREAM_CTA_SELECTOR);
+
+    for (const cta of ctas) {
+      if (!(cta instanceof HTMLElement)) continue;
+
+      cta.hidden = !shouldShowLiveStreamCta(cta);
+    }
+  };
+
+  const initializeLiveStreamCta = () => {
+    updateLiveStreamCtaVisibility();
+
+    const { __liveStreamCtaIntervalId: intervalId } = window;
+
+    if (typeof intervalId === "number") {
+      window.clearInterval(intervalId);
+    }
+
+    window.__liveStreamCtaIntervalId = window.setInterval(
+      updateLiveStreamCtaVisibility,
+      60_000,
+    );
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeLiveStreamCta, {
+      once: true,
+    });
+  } else {
+    initializeLiveStreamCta();
+  }
+
+  document.addEventListener("astro:page-load", initializeLiveStreamCta);
+</script>
+
+<section
+  class:list={["live-stream-cta", className]}
+  data-live-stream-cta
+  data-live-stream-cta-timezone={timeZone}
+  data-live-stream-cta-year={year}
+  data-live-stream-cta-month={month}
+  data-live-stream-cta-day={day}
+  data-live-stream-cta-start-hour={startHour}
+  data-live-stream-cta-end-hour={endHour}
+  data-live-stream-cta-force-visible-in-dev={String(forceVisibleInDev)}
+  hidden={!showOnInitialRender}
+>
+  <a href={href} class="live-stream-cta__link">
+    <span class="live-stream-cta__badge" aria-hidden="true">LIVE</span>
+    <span class="live-stream-cta__text">{text}</span>
+    <span class="live-stream-cta__arrow" aria-hidden="true">
+      <svg
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="live-stream-cta__arrow-icon"
+      >
+        <path
+          d="M6 14L14 6M8 6H14V12"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </a>
+</section>
+
+<style>
+  .live-stream-cta {
+    margin-block: 0 4rem;
+  }
+
+  .live-stream-cta__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 1.15rem 1.35rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: clamp(1.25rem, 3vw, 2rem);
+    background:
+      radial-gradient(
+        circle at 12% 50%,
+        rgba(235, 0, 40, 0.28),
+        transparent 24%
+      ),
+      radial-gradient(
+        circle at 88% 50%,
+        rgba(235, 0, 40, 0.16),
+        transparent 22%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+      );
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 24px 80px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      filter 180ms ease;
+  }
+
+  .live-stream-cta__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(235, 0, 40, 0.08),
+      transparent 30%,
+      transparent 70%,
+      rgba(235, 0, 40, 0.05)
+    );
+    pointer-events: none;
+  }
+
+  .live-stream-cta__link:hover,
+  .live-stream-cta__link:focus-visible {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      0 30px 90px rgba(0, 0, 0, 0.42);
+  }
+
+  .live-stream-cta__link:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 4px;
+  }
+
+  .live-stream-cta__badge {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.65);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .live-stream-cta__badge::before {
+    content: "";
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    background: #eb0028;
+    box-shadow: 0 0 0 0 rgba(235, 0, 40, 0.65);
+    animation: live-stream-cta-pulse 1.6s infinite;
+  }
+
+  .live-stream-cta__text {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.3;
+    text-align: left;
+    text-wrap: balance;
+  }
+
+  .live-stream-cta__arrow {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    margin-left: auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .live-stream-cta__arrow-icon {
+    display: block;
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+  }
+
+  @keyframes live-stream-cta-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.65);
+    }
+
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 77, 79, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .live-stream-cta {
+      margin-block-end: 3rem;
+    }
+
+    .live-stream-cta__link {
+      gap: 0.9rem;
+      padding: 1rem;
+      align-items: center;
+    }
+
+    .live-stream-cta__badge {
+      padding: 0.45rem 0.7rem;
+      font-size: 0.68rem;
+    }
+
+    .live-stream-cta__arrow {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+</style>

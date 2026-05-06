@@ -1,5 +1,6 @@
 ---
 import DynamicComponenList from "@components/DynamicComponenList.astro";
+import LiveStreamCTA from "@components/LiveStreamCTA.astro";
 import PageIntro from "@components/PageIntro.astro";
 import type { TypePageSkeleton } from "@lib/generated/contentful";
 import type { Entry } from "@lib/types";
@@ -27,6 +28,7 @@ const page = Astro.props;
       </picture>
     </div>
   </section>
+  <LiveStreamCTA />
   <DynamicComponenList components={page.fields.content} />
 </WithNavigation>
 
